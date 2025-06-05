@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wellbeing - Purple Ruler Academy</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #663399;
+            --primary-dark: #4a2570;
+            --primary-light: #8a5bb8;
+            --secondary-color: #f8f9fa;
+            --text-color: #333;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0,0,0,0.1);
+            --border-radius: 8px;
+            --wellbeing-green: #4CAF50;
+            --wellbeing-blue: #2196F3;
+            --wellbeing-orange: #FF9800;
+            --wellbeing-pink: #E91E63;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            z-index: 1000;
+        }
+
+        .logo {
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .logo h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .nav-menu {
+            padding: 20px 0;
+        }
+
+        .nav-item {
+            margin: 5px 0;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            padding: 12px 20px;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover,
+        .nav-link.active {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            border-right: 3px solid white;
+        }
+
+        .nav-link i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        .user-profile {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 250px;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header h1 {
+            color: var(--primary-color);
+            font-size: 2rem;
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .emergency-btn {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .emergency-btn:hover {
+            background: #c82333;
+            transform: translateY(-2px);
+        }
+
+        /* Wellbeing Overview */
+        .wellbeing-overview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .wellbeing-card {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .wellbeing-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .wellbeing-card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .wellbeing-card.mood .icon {
+            color: var(--wellbeing-pink);
+        }
+
+        .wellbeing-card.stress .icon {
+            color: var(--wellbeing-orange);
+        }
+
+        .wellbeing-card.sleep .icon {
+            color: var(--wellbeing-blue);
+        }
+
+        .wellbeing-card.overall .icon {
+            color: var(--wellbeing-green);
+        }
+
+        .wellbeing-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .wellbeing-score {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .wellbeing-status {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Quick Actions */
+        .quick-actions {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .quick-actions h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .actions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .action-btn {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            background: var(--secondary-color);
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .action-btn:hover {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .action-btn i {
+            font-size: 1.5rem;
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+
+        /* Mood Tracker */
+        .mood-tracker {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .mood-tracker h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .mood-selector {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .mood-option {
+            text-align: center;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: var(--border-radius);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .mood-option:hover,
+        .mood-option.selected {
+            border-color: var(--primary-color);
+            background: var(--secondary-color);
+        }
+
+        .mood-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .mood-label {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        .mood-note {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            font-family: inherit;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 15px;
+        }
+
+        .mood-note:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .save-mood-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .save-mood-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* Resources Section */
+        .resources-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .resource-card {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+        }
+
+        .resource-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .resource-list {
+            list-style: none;
+        }
+
+        .resource-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .resource-list li:last-child {
+            border-bottom: none;
+        }
+
+        .resource-link {
+            color: var(--primary-color);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .resource-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .resource-link i {
+            margin-right: 10px;
+            width: 20px;
+        }
+
+        /* Progress Charts */
+        .progress-section {
+            background: white;
+            padding: 25px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .progress-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .progress-item {
+            text-align: center;
+        }
+
+        .progress-circle {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: conic-gradient(var(--primary-color) 0deg, var(--primary-color) 252deg, var(--border-color) 252deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            position: relative;
+        }
+
+        .progress-circle::before {
+            content: '';
+            width: 80px;
+            height: 80px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        .progress-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            z-index: 1;
+        }
+
+        .progress-label {
+            font-size: 1rem;
+            color: var(--text-color);
+            margin-bottom: 5px;
+        }
+
+        .progress-description {
+            font-size: 0.9rem;
+            color: var(--text-light);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .wellbeing-overview {
+                grid-template-columns: 1fr;
+            }
+
+            .actions-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .mood-selector {
+                justify-content: center;
+            }
+
+            .resources-section {
+                grid-template-columns: 1fr;
+            }
+
+            .progress-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Sidebar -->
+        <div class="sidebar" id="sidebar">
+            <div class="logo">
+                <h2>Purple Ruler Academy</h2>
+            </div>
+            
+            <nav class="nav-menu">
+                <div class="nav-item">
+                    <a href="student-dashboard.html" class="nav-link">
+                        <i class="fas fa-home"></i>
+                        Dashboard
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="student-courses.html" class="nav-link">
+                        <i class="fas fa-book"></i>
+                        Courses
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="student-assignments.html" class="nav-link">
+                        <i class="fas fa-tasks"></i>
+                        Assignments
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="student-schedule.html" class="nav-link">
+                        <i class="fas fa-calendar"></i>
+                        Schedule
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="student-progress.html" class="nav-link">
+                        <i class="fas fa-chart-line"></i>
+                        Progress
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="student-wellbeing.html" class="nav-link active">
+                        <i class="fas fa-heart"></i>
+                        Wellbeing
+                    </a>
+                </div>
+            </nav>
+            
+            <div class="user-profile">
+                <div class="user-info">
+                    <div class="user-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div>
+                        <div style="font-weight: 600;">Alex Chen</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Student</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <div class="header">
+                <h1>Wellbeing Center</h1>
+                <div class="header-actions">
+                    <button class="emergency-btn" onclick="showEmergencySupport()">
+                        <i class="fas fa-phone"></i>
+                        Emergency Support
+                    </button>
+                </div>
+            </div>
+
+            <!-- Wellbeing Overview -->
+            <div class="wellbeing-overview">
+                <div class="wellbeing-card mood">
+                    <div class="icon">
+                        <i class="fas fa-smile"></i>
+                    </div>
+                    <h3>Today's Mood</h3>
+                    <div class="wellbeing-score" style="color: var(--wellbeing-pink);">😊</div>
+                    <div class="wellbeing-status">Feeling Good</div>
+                </div>
+                
+                <div class="wellbeing-card stress">
+                    <div class="icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Stress Level</h3>
+                    <div class="wellbeing-score" style="color: var(--wellbeing-orange);">3/10</div>
+                    <div class="wellbeing-status">Low Stress</div>
+                </div>
+                
+                <div class="wellbeing-card sleep">
+                    <div class="icon">
+                        <i class="fas fa-moon"></i>
+                    </div>
+                    <h3>Sleep Quality</h3>
+                    <div class="wellbeing-score" style="color: var(--wellbeing-blue);">8.2/10</div>
+                    <div class="wellbeing-status">Well Rested</div>
+                </div>
+                
+                <div class="wellbeing-card overall">
+                    <div class="icon">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Overall Score</h3>
+                    <div class="wellbeing-score" style="color: var(--wellbeing-green);">85%</div>
+                    <div class="wellbeing-status">Excellent</div>
+                </div>
+            </div>
+
+            <!-- Quick Actions -->
+            <div class="quick-actions">
+                <h2>Quick Wellbeing Actions</h2>
+                <div class="actions-grid">
+                    <div class="action-btn" onclick="startBreathingExercise()">
+                        <i class="fas fa-wind"></i>
+                        <div>
+                            <div style="font-weight: 600;">Breathing Exercise</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">5-minute guided session</div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-btn" onclick="startMeditation()">
+                        <i class="fas fa-leaf"></i>
+                        <div>
+                            <div style="font-weight: 600;">Quick Meditation</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">10-minute mindfulness</div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-btn" onclick="takeBreak()">
+                        <i class="fas fa-pause"></i>
+                        <div>
+                            <div style="font-weight: 600;">Take a Break</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">Step away from studies</div>
+                        </div>
+                    </div>
+                    
+                    <div class="action-btn" onclick="bookCounseling()">
+                        <i class="fas fa-comments"></i>
+                        <div>
+                            <div style="font-weight: 600;">Book Counseling</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">Talk to a counselor</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mood Tracker -->
+            <div class="mood-tracker">
+                <h2>Daily Mood Check-in</h2>
+                <p style="margin-bottom: 20px; color: var(--text-light);">How are you feeling today? Your mood tracking helps us provide better support.</p>
+                
+                <div class="mood-selector">
+                    <div class="mood-option" onclick="selectMood(this, 'very-sad')">
+                        <span class="mood-emoji">😢</span>
+                        <div class="mood-label">Very Sad</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood(this, 'sad')">
+                        <span class="mood-emoji">😞</span>
+                        <div class="mood-label">Sad</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood(this, 'neutral')">
+                        <span class="mood-emoji">😐</span>
+                        <div class="mood-label">Neutral</div>
+                    </div>
+                    <div class="mood-option selected" onclick="selectMood(this, 'happy')">
+                        <span class="mood-emoji">😊</span>
+                        <div class="mood-label">Happy</div>
+                    </div>
+                    <div class="mood-option" onclick="selectMood(this, 'very-happy')">
+                        <span class="mood-emoji">😄</span>
+                        <div class="mood-label">Very Happy</div>
+                    </div>
+                </div>
+                
+                <textarea class="mood-note" placeholder="How was your day? What made you feel this way? (Optional)"></textarea>
+                
+                <button class="save-mood-btn" onclick="saveMood()">
+                    <i class="fas fa-save"></i>
+                    Save Today's Mood
+                </button>
+            </div>
+
+            <!-- Progress Tracking -->
+            <div class="progress-section">
+                <h2>Wellbeing Progress</h2>
+                <div class="progress-grid">
+                    <div class="progress-item">
+                        <div class="progress-circle">
+                            <div class="progress-value">7</div>
+                        </div>
+                        <div class="progress-label">Days Streak</div>
+                        <div class="progress-description">Consecutive mood check-ins</div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-circle" style="background: conic-gradient(var(--wellbeing-green) 0deg, var(--wellbeing-green) 288deg, var(--border-color) 288deg);">
+                            <div class="progress-value">80%</div>
+                        </div>
+                        <div class="progress-label">Positive Days</div>
+                        <div class="progress-description">This month</div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-circle" style="background: conic-gradient(var(--wellbeing-blue) 0deg, var(--wellbeing-blue) 216deg, var(--border-color) 216deg);">
+                            <div class="progress-value">60%</div>
+                        </div>
+                        <div class="progress-label">Stress Management</div>
+                        <div class="progress-description">Improvement rate</div>
+                    </div>
+                    
+                    <div class="progress-item">
+                        <div class="progress-circle" style="background: conic-gradient(var(--wellbeing-orange) 0deg, var(--wellbeing-orange) 324deg, var(--border-color) 324deg);">
+                            <div class="progress-value">90%</div>
+                        </div>
+                        <div class="progress-label">Sleep Quality</div>
+                        <div class="progress-description">Average this week</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources -->
+            <div class="resources-section">
+                <div class="resource-card">
+                    <h3>Mental Health Resources</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-book-open"></i>
+                                Stress Management Guide
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-video"></i>
+                                Mindfulness Videos
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-headphones"></i>
+                                Meditation Audio
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-users"></i>
+                                Support Groups
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Emergency Contacts</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="tel:988" class="resource-link">
+                                <i class="fas fa-phone"></i>
+                                Crisis Hotline: 988
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-user-md"></i>
+                                School Counselor
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-hospital"></i>
+                                Campus Health Center
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-envelope"></i>
+                                Email Support
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Wellness Tips</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-dumbbell"></i>
+                                Exercise Routines
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-utensils"></i>
+                                Healthy Eating
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-bed"></i>
+                                Sleep Hygiene
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-clock"></i>
+                                Time Management
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Mood selection
+        function selectMood(element, mood) {
+            // Remove selected class from all mood options
+            document.querySelectorAll('.mood-option').forEach(option => {
+                option.classList.remove('selected');
+            });
+            
+            // Add selected class to clicked option
+            element.classList.add('selected');
+            
+            // Store selected mood
+            element.dataset.selectedMood = mood;
+        }
+
+        // Save mood
+        function saveMood() {
+            const selectedMood = document.querySelector('.mood-option.selected');
+            const moodNote = document.querySelector('.mood-note').value;
+            
+            if (selectedMood) {
+                // Simulate saving mood
+                alert('Mood saved successfully! Thank you for checking in.');
+                
+                // Clear the note
+                document.querySelector('.mood-note').value = '';
+                
+                // You would typically send this data to a server here
+                console.log('Saved mood:', selectedMood.dataset.selectedMood, 'Note:', moodNote);
+            } else {
+                alert('Please select a mood first.');
+            }
+        }
+
+        // Quick action functions
+        function startBreathingExercise() {
+            alert('Starting 5-minute breathing exercise...\n\nBreathe in for 4 seconds, hold for 4 seconds, breathe out for 4 seconds. Repeat.');
+        }
+
+        function startMeditation() {
+            alert('Starting 10-minute mindfulness meditation...\n\nFind a comfortable position and focus on your breath.');
+        }
+
+        function takeBreak() {
+            alert('Time for a break!\n\nStep away from your studies for 15 minutes. Go for a walk, stretch, or do something you enjoy.');
+        }
+
+        function bookCounseling() {
+            alert('Booking counseling session...\n\nYou will be redirected to the appointment booking system.');
+        }
+
+        function showEmergencySupport() {
+            alert('Emergency Support\n\nIf you are in crisis, please call 988 immediately.\n\nFor non-emergency support, contact the school counselor or campus health center.');
+        }
+
+        // Auto-save functionality
+        function autoSave() {
+            const moodNote = document.querySelector('.mood-note').value;
+            if (moodNote) {
+                localStorage.setItem('moodNote', moodNote);
+            }
+        }
+
+        // Load saved note on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedNote = localStorage.getItem('moodNote');
+            if (savedNote) {
+                document.querySelector('.mood-note').value = savedNote;
+            }
+            
+            // Auto-save every 30 seconds
+            setInterval(autoSave, 30000);
+        });
+
+        // Mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebar').classList.remove('active');
+            }
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
+            
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target) && 
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+    </script>
+</body>
+</html>
