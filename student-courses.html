@@ -78,14 +78,15 @@
             padding: 12px 20px;
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            border-radius: var(--border-radius);
+            border-radius: 8px;
             transition: all 0.3s ease;
+            margin: 0 10px;
             min-height: 44px;
         }
 
         .nav-link i {
             margin-right: 10px;
-            font-size: 1.1rem;
+            font-size: 16px;
             width: 20px;
             text-align: center;
         }
@@ -98,7 +99,8 @@
 
         .nav-link.active {
             background-color: rgba(255, 255, 255, 0.2);
-            font-weight: 600;
+            color: white;
+            border-right: 3px solid white;
         }
 
         .user-profile {
@@ -300,23 +302,34 @@
             line-height: 1.5;
         }
 
-        .course-progress {
+        .course-stats {
+            display: flex;
+            justify-content: space-between;
             margin-bottom: 15px;
         }
 
-        .progress-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 5px;
-            font-size: 0.9rem;
-            font-weight: 500;
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-value {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
         }
 
         .progress-bar {
+            width: 100%;
             height: 8px;
-            background-color: #f0f0f0;
+            background-color: var(--border-color);
             border-radius: 4px;
             overflow: hidden;
+            margin-bottom: 15px;
         }
 
         .progress-fill {
@@ -325,63 +338,23 @@
             transition: width 0.3s ease;
         }
 
-        .course-stats {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-            padding: 15px;
-            background-color: var(--secondary-color);
-            border-radius: var(--border-radius);
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-value {
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--primary-color);
-        }
-
-        .stat-label {
-            font-size: 0.8rem;
-            color: var(--text-light);
-            margin-top: 2px;
-        }
-
         .course-actions {
             display: flex;
             gap: 10px;
-            margin-bottom: 15px;
-            justify-content: center;
-        }
-
-        .course-secondary-actions {
-            display: flex;
-            gap: 10px;
-            justify-content: center;
         }
 
         .btn {
-            padding: 10px 20px;
+            padding: 8px 16px;
             border: none;
             border-radius: var(--border-radius);
             cursor: pointer;
-            font-size: 14px;
+            font-size: 0.9rem;
             font-weight: 500;
+            transition: all 0.3s ease;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-            flex: 1;
-            justify-content: center;
-            max-width: 150px;
-        }
-
-        .btn i {
-            font-size: 12px;
+            gap: 5px;
         }
 
         .btn-primary {
@@ -403,106 +376,52 @@
         .btn-outline:hover {
             background: var(--primary-color);
             color: white;
-            transform: translateY(-2px);
         }
 
-        .btn-success {
-            background: var(--success-color);
-            color: white;
+        /* Course Status Badges */
+        .status-badge {
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-transform: uppercase;
         }
 
-        .btn-success:hover {
-            background: #218838;
-            transform: translateY(-2px);
-        }
-
-        .btn-info {
-            background: var(--info-color);
-            color: white;
-        }
-
-        .btn-info:hover {
-            background: #138496;
-            transform: translateY(-2px);
-        }
-
-        /* Assignments Section */
-        .assignments-section {
-            background: white;
-            padding: 20px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-        }
-
-        .section-title {
-            color: var(--primary-color);
-            font-size: 1.5rem;
-            margin-bottom: 20px;
-            font-weight: 600;
-        }
-
-        .assignment-list {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-        }
-
-        .assignment-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            transition: all 0.3s ease;
-        }
-
-        .assignment-item:hover {
-            border-color: var(--primary-color);
-            transform: translateX(5px);
-        }
-
-        .assignment-item.completed {
-            background-color: #f8f9fa;
-            opacity: 0.7;
-        }
-
-        .assignment-info h4 {
-            color: var(--text-color);
-            margin-bottom: 5px;
-        }
-
-        .assignment-info p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-        }
-
-        .assignment-due {
-            text-align: right;
-        }
-
-        .due-date {
-            font-weight: 600;
-            color: var(--warning-color);
-        }
-
-        .due-date.completed {
+        .status-active {
+            background: rgba(40, 167, 69, 0.1);
             color: var(--success-color);
         }
 
-        /* Responsive Design */
+        .status-upcoming {
+            background: rgba(255, 193, 7, 0.1);
+            color: var(--warning-color);
+        }
+
+        .status-completed {
+            background: rgba(108, 117, 125, 0.1);
+            color: #6c757d;
+        }
+
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             .sidebar {
                 transform: translateX(-100%);
                 transition: transform 0.3s ease;
             }
 
-            .main-content {
-                margin-left: 0;
+            .sidebar.active {
+                transform: translateX(0);
             }
 
-            .courses-grid {
-                grid-template-columns: 1fr;
+            .main-content {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
             }
 
             .filter-section {
@@ -514,25 +433,95 @@
                 min-width: auto;
             }
 
-            .assignment-item {
+            .courses-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .course-stats {
                 flex-direction: column;
-                align-items: flex-start;
                 gap: 10px;
             }
 
-            .assignment-due {
-                text-align: left;
+            .course-actions {
+                flex-direction: column;
             }
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px solid var(--border-color);
+            border-top: 4px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-light);
+        }
+
+        .empty-state i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            color: var(--border-color);
+        }
+
+        .empty-state h3 {
+            margin-bottom: 10px;
+            color: var(--text-color);
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar Navigation -->
-        <nav class="sidebar">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
+        <!-- Sidebar -->
+        <nav class="sidebar" id="sidebar">
             <div class="logo">
-                <h2>Purple Ruler Academy</h2>
+                <h2>Student Portal</h2>
             </div>
+            
             <div class="nav-menu">
                 <div class="nav-item">
                     <a href="student-dashboard.html" class="nav-link">
@@ -553,9 +542,21 @@
                     </a>
                 </div>
                 <div class="nav-item">
+                    <a href="student-assignments.html" class="nav-link">
+                        <i class="fas fa-tasks"></i>
+                        Assignments
+                    </a>
+                </div>
+                <div class="nav-item">
                     <a href="student-progress.html" class="nav-link">
                         <i class="fas fa-chart-line"></i>
                         Progress
+                    </a>
+                </div>
+                <div class="nav-item">
+                    <a href="student-support.html" class="nav-link">
+                        <i class="fas fa-hands-helping"></i>
+                        Support
                     </a>
                 </div>
                 <div class="nav-item">
@@ -570,517 +571,481 @@
                         Safeguarding
                     </a>
                 </div>
-                <div class="nav-item">
-                    <a href="student-support.html" class="nav-link">
-                        <i class="fas fa-hands-helping"></i>
-                        Get Support
-                    </a>
-                </div>
             </div>
+            
             <div class="user-profile">
                 <div class="user-info">
                     <div class="user-avatar">
                         <i class="fas fa-user"></i>
                     </div>
                     <div>
-                        <div style="font-weight: 600;">Alex Johnson</div>
-                        <div style="font-size: 0.8rem; opacity: 0.8;">Year 10 Student</div>
+                        <div style="font-weight: 600;">Alex Student</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Year 10</div>
                     </div>
                 </div>
             </div>
         </nav>
-
+        
         <!-- Main Content -->
-        <main class="main-content">
-            <!-- Header -->
+        <div class="main-content">
             <div class="header">
-                <div>
-                    <h1>My Courses</h1>
-                    <p style="color: var(--text-light); margin: 5px 0 0 0;">Manage your enrolled courses and track your learning progress</p>
-                </div>
+                <h1>My Courses</h1>
                 <div class="header-actions">
-                    <button class="emergency-btn">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        Emergency Support
-                    </button>
                     <div class="notification-icon">
                         <i class="fas fa-bell"></i>
-                        <div class="notification-badge">3</div>
+                        <span class="notification-badge">3</span>
                     </div>
+                    <button class="emergency-btn" onclick="showEmergencyContact()">
+                        <i class="fas fa-phone"></i>
+                        Emergency
+                    </button>
                 </div>
             </div>
-
+            
             <!-- Filter Section -->
-             
             <div class="filter-section">
-                <input type="text" class="search-input" placeholder="Search courses..." id="courseSearch">
-                <select class="filter-select" id="subjectFilter">
-                    <option value="">All Courses</option>
-                    <option value="mathematics">Mathematics</option>
-                    <option value="english">English Language</option>
-                    <option value="science">Combined Science</option>
-                    <option value="history">History</option>
-                    <option value="geography">Geography</option>
-                    <option value="french">French</option>
-                </select>
-                <select class="filter-select" id="progressFilter">
-                    <option value="">All Progress</option>
-                    <option value="not-started">Not Started</option>
-                    <option value="in-progress">In Progress</option>
+                <input type="text" class="search-input" placeholder="Search courses..." id="searchInput">
+                <select class="filter-select" id="statusFilter">
+                    <option value="all">All Courses</option>
+                    <option value="active">Active</option>
+                    <option value="upcoming">Upcoming</option>
                     <option value="completed">Completed</option>
                 </select>
                 <select class="filter-select" id="keyStageFilter">
-                    <option value="">All Key Stages</option>
+                    <option value="all">All Key Stages</option>
+                    <option value="ks3">Key Stage 3</option>
                     <option value="ks4">Key Stage 4</option>
+                    <option value="ks5">Key Stage 5</option>
                 </select>
             </div>
-
+            
             <!-- Courses Grid -->
-            <div class="courses-grid">
-                <!-- Mathematics Course -->
-                <div class="course-card mathematics" data-subject="mathematics" data-progress="in-progress" data-keystage="ks4">
+            <div class="courses-grid" id="coursesGrid">
+                <!-- Course Card 1 -->
+                <div class="course-card" data-status="active" data-keystage="ks4">
                     <div class="course-header">
                         <div class="course-title">GCSE Mathematics</div>
-                        <div class="course-teacher">Mr. Smith</div>
-                        <div class="course-schedule">Mon, Wed, Fri - 9:00 AM</div>
-                        <div class="key-stage">Key Stage 4</div>
-                    </div>
-                    <div class="course-body">
-                        <div class="course-description">
-                            GCSE Mathematics covering algebra, geometry, statistics, and number theory. Preparation for final examinations.
-                        </div>
-                        <div class="course-progress">
-                            <div class="progress-label">
-                                <span>Progress</span>
-                                <span>75%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 75%;"></div>
-                            </div>
-                        </div>
-                        <div class="course-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">24</div>
-                                <div class="stat-label">Lessons</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">18</div>
-                                <div class="stat-label">Completed</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">6</div>
-                                <div class="stat-label">Remaining</div>
-                            </div>
-                        </div>
-                        <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- English Language Course -->
-                <div class="course-card english" data-subject="english" data-progress="in-progress" data-keystage="ks4">
-                    <div class="course-header">
-                        <div class="course-title">GCSE English Language</div>
                         <div class="course-teacher">Ms. Johnson</div>
-                        <div class="course-schedule">Tue, Thu - 10:30 AM</div>
-                        <div class="key-stage">Key Stage 4</div>
+                        <div class="course-schedule">Mon, Wed, Fri - 9:00 AM</div>
+                        <span class="key-stage">Key Stage 4</span>
                     </div>
                     <div class="course-body">
-                        <div class="course-description">
-                            GCSE English Language focusing on reading comprehension, creative writing, and language analysis skills.
-                        </div>
-                        <div class="course-progress">
-                            <div class="progress-label">
-                                <span>Progress</span>
-                                <span>60%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 60%;"></div>
-                            </div>
-                        </div>
+                        <p class="course-description">
+                            Comprehensive GCSE Mathematics covering algebra, geometry, statistics, and number theory.
+                        </p>
                         <div class="course-stats">
                             <div class="stat-item">
-                                <div class="stat-value">20</div>
-                                <div class="stat-label">Lessons</div>
+                                <div class="stat-value">85%</div>
+                                <div class="stat-label">Progress</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-value">12</div>
-                                <div class="stat-label">Completed</div>
+                                <div class="stat-label">Assignments</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">A-</div>
+                                <div class="stat-label">Current Grade</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 85%;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="status-badge status-active">Active</span>
+                            <span style="font-size: 0.9rem; color: var(--text-light);">Next: Chapter 8 Quiz</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-primary" onclick="enterCourse('math')">
+                                <i class="fas fa-play"></i>
+                                Continue Learning
+                            </a>
+                            <a href="#" class="btn btn-outline" onclick="viewCourseDetails('math')">
+                                <i class="fas fa-info-circle"></i>
+                                Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Course Card 2 -->
+                <div class="course-card" data-status="active" data-keystage="ks4">
+                    <div class="course-header">
+                        <div class="course-title">GCSE English Literature</div>
+                        <div class="course-teacher">Mr. Thompson</div>
+                        <div class="course-schedule">Tue, Thu - 10:30 AM</div>
+                        <span class="key-stage">Key Stage 4</span>
+                    </div>
+                    <div class="course-body">
+                        <p class="course-description">
+                            Explore classic and contemporary literature, developing critical analysis and writing skills.
+                        </p>
+                        <div class="course-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">72%</div>
+                                <div class="stat-label">Progress</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-value">8</div>
-                                <div class="stat-label">Remaining</div>
+                                <div class="stat-label">Essays</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">B+</div>
+                                <div class="stat-label">Current Grade</div>
                             </div>
                         </div>
-                        <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 72%;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="status-badge status-active">Active</span>
+                            <span style="font-size: 0.9rem; color: var(--text-light);">Next: Macbeth Analysis</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-primary" onclick="enterCourse('english')">
+                                <i class="fas fa-play"></i>
+                                Continue Learning
+                            </a>
+                            <a href="#" class="btn btn-outline" onclick="viewCourseDetails('english')">
+                                <i class="fas fa-info-circle"></i>
+                                Details
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Combined Science Course -->
-                <div class="course-card science" data-subject="science" data-progress="in-progress" data-keystage="ks4">
+                
+                <!-- Course Card 3 -->
+                <div class="course-card" data-status="active" data-keystage="ks4">
                     <div class="course-header">
-                        <div class="course-title">GCSE Combined Science</div>
-                        <div class="course-teacher">Dr. Brown</div>
+                        <div class="course-title">GCSE Science (Biology)</div>
+                        <div class="course-teacher">Dr. Williams</div>
                         <div class="course-schedule">Mon, Wed - 2:00 PM</div>
-                        <div class="key-stage">Key Stage 4</div>
+                        <span class="key-stage">Key Stage 4</span>
                     </div>
                     <div class="course-body">
-                        <div class="course-description">
-                            GCSE Combined Science covering biology, chemistry, and physics. Laboratory work and scientific investigation skills.
-                        </div>
-                        <div class="course-progress">
-                            <div class="progress-label">
-                                <span>Progress</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 85%;"></div>
-                            </div>
-                        </div>
+                        <p class="course-description">
+                            Study living organisms, their structure, function, and interactions with the environment.
+                        </p>
                         <div class="course-stats">
                             <div class="stat-item">
-                                <div class="stat-value">28</div>
-                                <div class="stat-label">Lessons</div>
+                                <div class="stat-value">90%</div>
+                                <div class="stat-label">Progress</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">24</div>
-                                <div class="stat-label">Completed</div>
+                                <div class="stat-value">15</div>
+                                <div class="stat-label">Lab Reports</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">4</div>
-                                <div class="stat-label">Remaining</div>
+                                <div class="stat-value">A</div>
+                                <div class="stat-label">Current Grade</div>
                             </div>
                         </div>
-                        <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 90%;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="status-badge status-active">Active</span>
+                            <span style="font-size: 0.9rem; color: var(--text-light);">Next: Genetics Lab</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-primary" onclick="enterCourse('biology')">
+                                <i class="fas fa-play"></i>
+                                Continue Learning
+                            </a>
+                            <a href="#" class="btn btn-outline" onclick="viewCourseDetails('biology')">
+                                <i class="fas fa-info-circle"></i>
+                                Details
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <!-- History Course -->
-                <div class="course-card history" data-subject="history" data-progress="in-progress" data-keystage="ks4">
+                
+                <!-- Course Card 4 -->
+                <div class="course-card" data-status="upcoming" data-keystage="ks4">
                     <div class="course-header">
                         <div class="course-title">GCSE History</div>
-                        <div class="course-teacher">Mr. Wilson</div>
-                        <div class="course-schedule">Tue, Fri - 1:00 PM</div>
-                        <div class="key-stage">Key Stage 4</div>
-                    </div>
-                    <div class="course-body">
-                        <div class="course-description">
-                            GCSE History covering modern world history, including WWI, WWII, and Cold War. Source analysis and essay writing.
-                        </div>
-                        <div class="course-progress">
-                            <div class="progress-label">
-                                <span>Progress</span>
-                                <span>45%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 45%;"></div>
-                            </div>
-                        </div>
-                        <div class="course-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">22</div>
-                                <div class="stat-label">Lessons</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">10</div>
-                                <div class="stat-label">Completed</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">12</div>
-                                <div class="stat-label">Remaining</div>
-                            </div>
-                        </div>
-                        <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Geography Course -->
-                <div class="course-card geography" data-subject="geography" data-progress="not-started" data-keystage="ks4">
-                    <div class="course-header">
-                        <div class="course-title">GCSE Geography</div>
                         <div class="course-teacher">Ms. Davis</div>
-                        <div class="course-schedule">Thu - 11:00 AM</div>
-                        <div class="key-stage">Key Stage 4</div>
+                        <div class="course-schedule">Starting Next Term</div>
+                        <span class="key-stage">Key Stage 4</span>
                     </div>
                     <div class="course-body">
-                        <div class="course-description">
-                            GCSE Geography covering physical and human geography. Fieldwork, data analysis, and case study examination.
-                        </div>
-                        <div class="course-progress">
-                            <div class="progress-label">
-                                <span>Progress</span>
-                                <span>0%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 0%;"></div>
-                            </div>
-                        </div>
+                        <p class="course-description">
+                            Explore significant historical events, their causes, consequences, and impact on society.
+                        </p>
                         <div class="course-stats">
                             <div class="stat-item">
-                                <div class="stat-value">18</div>
-                                <div class="stat-label">Lessons</div>
+                                <div class="stat-value">0%</div>
+                                <div class="stat-label">Progress</div>
                             </div>
                             <div class="stat-item">
                                 <div class="stat-value">0</div>
-                                <div class="stat-label">Completed</div>
+                                <div class="stat-label">Assignments</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">18</div>
-                                <div class="stat-label">Remaining</div>
+                                <div class="stat-value">-</div>
+                                <div class="stat-label">Current Grade</div>
                             </div>
                         </div>
-                        <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 0%;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="status-badge status-upcoming">Upcoming</span>
+                            <span style="font-size: 0.9rem; color: var(--text-light);">Starts: Jan 15, 2024</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-outline" onclick="viewCourseDetails('history')">
+                                <i class="fas fa-info-circle"></i>
+                                Course Info
+                            </a>
+                            <a href="#" class="btn btn-outline" onclick="prepareCourse('history')">
+                                <i class="fas fa-bookmark"></i>
+                                Prepare
+                            </a>
                         </div>
                     </div>
                 </div>
-
-                <!-- French Course -->
-                <div class="course-card french" data-subject="french" data-progress="completed" data-keystage="ks4">
+                
+                <!-- Course Card 5 -->
+                <div class="course-card" data-status="completed" data-keystage="ks3">
                     <div class="course-header">
-                        <div class="course-title">GCSE French</div>
-                        <div class="course-teacher">Mme. Laurent</div>
-                        <div class="course-schedule">Fri - 3:00 PM</div>
-                        <div class="key-stage">Key Stage 4</div>
+                        <div class="course-title">Key Stage 3 Art</div>
+                        <div class="course-teacher">Ms. Garcia</div>
+                        <div class="course-schedule">Completed</div>
+                        <span class="key-stage">Key Stage 3</span>
                     </div>
                     <div class="course-body">
-                        <div class="course-description">
-                            GCSE French covering speaking, listening, reading, and writing skills. Cultural studies and practical communication.
-                        </div>
-                        <div class="course-progress">
-                            <div class="progress-label">
-                                <span>Progress</span>
-                                <span>100%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 100%;"></div>
-                            </div>
-                        </div>
+                        <p class="course-description">
+                            Develop artistic skills through various media including drawing, painting, and sculpture.
+                        </p>
                         <div class="course-stats">
                             <div class="stat-item">
-                                <div class="stat-value">16</div>
-                                <div class="stat-label">Lessons</div>
+                                <div class="stat-value">100%</div>
+                                <div class="stat-label">Progress</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">16</div>
-                                <div class="stat-label">Completed</div>
+                                <div class="stat-value">20</div>
+                                <div class="stat-label">Projects</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">0</div>
-                                <div class="stat-label">Remaining</div>
+                                <div class="stat-value">A-</div>
+                                <div class="stat-label">Final Grade</div>
                             </div>
                         </div>
-                        <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 100%;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="status-badge status-completed">Completed</span>
+                            <span style="font-size: 0.9rem; color: var(--text-light);">Finished: July 2023</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-outline" onclick="viewCourseDetails('art')">
+                                <i class="fas fa-certificate"></i>
+                                View Certificate
+                            </a>
+                            <a href="#" class="btn btn-outline" onclick="reviewCourse('art')">
+                                <i class="fas fa-eye"></i>
+                                Review Work
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Course Card 6 -->
+                <div class="course-card" data-status="active" data-keystage="ks4">
+                    <div class="course-header">
+                        <div class="course-title">Personal Development</div>
+                        <div class="course-teacher">Mr. Brown</div>
+                        <div class="course-schedule">Fri - 1:00 PM</div>
+                        <span class="key-stage">Key Stage 4</span>
+                    </div>
+                    <div class="course-body">
+                        <p class="course-description">
+                            Focus on life skills, career planning, and personal growth for alternative provision students.
+                        </p>
+                        <div class="course-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">65%</div>
+                                <div class="stat-label">Progress</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">6</div>
+                                <div class="stat-label">Modules</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">B</div>
+                                <div class="stat-label">Current Grade</div>
+                            </div>
+                        </div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" style="width: 65%;"></div>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                            <span class="status-badge status-active">Active</span>
+                            <span style="font-size: 0.9rem; color: var(--text-light);">Next: Career Planning</span>
+                        </div>
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-primary" onclick="enterCourse('personal-dev')">
+                                <i class="fas fa-play"></i>
+                                Continue Learning
+                            </a>
+                            <a href="#" class="btn btn-outline" onclick="viewCourseDetails('personal-dev')">
+                                <i class="fas fa-info-circle"></i>
+                                Details
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
-
-            <!-- Upcoming Assignments -->
-            <div class="assignments-section">
-                <h2 class="section-title">Upcoming Assignments</h2>
-                <div class="assignment-list">
-                    <div class="assignment-item">
-                        <div class="assignment-info">
-                            <h4>GCSE Mathematics - Quadratic Equations Practice</h4>
-                            <p>Complete past paper questions on quadratic equations and graphs</p>
-                        </div>
-                        <div class="assignment-due">
-                            <div class="due-date">Due Tomorrow</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">March 15, 2024</div>
-                        </div>
-                    </div>
-                    
-                    <div class="assignment-item">
-                        <div class="assignment-info">
-                            <h4>GCSE English Language - Creative Writing Task</h4>
-                            <p>Write a descriptive piece based on the given stimulus image</p>
-                        </div>
-                        <div class="assignment-due">
-                            <div class="due-date">Due in 3 days</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">March 17, 2024</div>
-                        </div>
-                    </div>
-                    
-                    <div class="assignment-item">
-                        <div class="assignment-info">
-                            <h4>GCSE Combined Science - Chemistry Practical Report</h4>
-                            <p>Write up findings from the rates of reaction experiment</p>
-                        </div>
-                        <div class="assignment-due">
-                            <div class="due-date">Due in 5 days</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">March 19, 2024</div>
-                        </div>
-                    </div>
-                    
-                    <div class="assignment-item completed">
-                        <div class="assignment-info">
-                            <h4>GCSE History - WWI Causes Essay</h4>
-                            <p>Analyze the long and short-term causes of World War I</p>
-                        </div>
-                        <div class="assignment-due">
-                            <div class="due-date completed">Completed</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">Submitted March 10</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-
-    <script>
-        // Add active state to navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
-            const currentPage = window.location.pathname.split('/').pop();
             
-            navLinks.forEach(link => {
-                if (link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                } else {
-                    link.classList.remove('active');
-                }
-            });
-        });
-
-        // Search functionality
-        document.getElementById('courseSearch').addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
+            <!-- Empty State (hidden by default) -->
+            <div class="empty-state" id="emptyState" style="display: none;">
+                <i class="fas fa-search"></i>
+                <h3>No courses found</h3>
+                <p>Try adjusting your search or filter criteria.</p>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Toggle sidebar for mobile
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+        
+        // Search and filter functionality
+        function filterCourses() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const statusFilter = document.getElementById('statusFilter').value;
+            const keyStageFilter = document.getElementById('keyStageFilter').value;
             const courseCards = document.querySelectorAll('.course-card');
+            let visibleCount = 0;
             
             courseCards.forEach(card => {
                 const title = card.querySelector('.course-title').textContent.toLowerCase();
                 const teacher = card.querySelector('.course-teacher').textContent.toLowerCase();
-                const description = card.querySelector('.course-description').textContent.toLowerCase();
+                const status = card.dataset.status;
+                const keyStage = card.dataset.keystage;
                 
-                if (title.includes(searchTerm) || teacher.includes(searchTerm) || description.includes(searchTerm)) {
+                const matchesSearch = title.includes(searchTerm) || teacher.includes(searchTerm);
+                const matchesStatus = statusFilter === 'all' || status === statusFilter;
+                const matchesKeyStage = keyStageFilter === 'all' || keyStage === keyStageFilter;
+                
+                if (matchesSearch && matchesStatus && matchesKeyStage) {
                     card.style.display = 'block';
+                    visibleCount++;
                 } else {
                     card.style.display = 'none';
                 }
             });
-        });
-
-        // Subject filter
-        document.getElementById('subjectFilter').addEventListener('change', function() {
-            const selectedSubject = this.value;
-            const courseCards = document.querySelectorAll('.course-card');
             
-            courseCards.forEach(card => {
-                if (selectedSubject === '' || card.dataset.subject === selectedSubject) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // Progress filter
-        document.getElementById('progressFilter').addEventListener('change', function() {
-            const selectedProgress = this.value;
-            const courseCards = document.querySelectorAll('.course-card');
+            // Show/hide empty state
+            const emptyState = document.getElementById('emptyState');
+            const coursesGrid = document.getElementById('coursesGrid');
             
-            courseCards.forEach(card => {
-                if (selectedProgress === '' || card.dataset.progress === selectedProgress) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // Key Stage filter
-        document.getElementById('keyStageFilter').addEventListener('change', function() {
-            const selectedKeyStage = this.value;
-            const courseCards = document.querySelectorAll('.course-card');
-            
-            courseCards.forEach(card => {
-                if (selectedKeyStage === '' || card.dataset.keystage === selectedKeyStage) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
-
-        // Emergency button functionality
-        document.querySelector('.emergency-btn').addEventListener('click', function() {
-            alert('Emergency support has been contacted. Help is on the way.');
-        });
-
-        // Notification icon functionality
-        document.querySelector('.notification-icon').addEventListener('click', function() {
-            alert('You have 3 new notifications:\n1. Assignment due tomorrow\n2. Science quiz on Friday\n3. New study guide available');
-        });
-
-        // Recording button functionality
-        document.querySelectorAll('.btn-success').forEach(button => {
-            if (button.textContent.includes('Recordings')) {
-                button.addEventListener('click', function() {
-                    const courseTitle = this.closest('.course-card').querySelector('.course-title').textContent;
-                    alert(`Opening ${courseTitle} recordings...`);
-                });
+            if (visibleCount === 0) {
+                emptyState.style.display = 'block';
+                coursesGrid.style.display = 'none';
+            } else {
+                emptyState.style.display = 'none';
+                coursesGrid.style.display = 'grid';
             }
-        });
-
-        // Assignment button functionality
-        document.querySelectorAll('.btn-info').forEach(button => {
-            if (button.textContent.includes('Assignments')) {
-                button.addEventListener('click', function() {
-                    const courseTitle = this.closest('.course-card').querySelector('.course-title').textContent;
-                    alert(`Viewing ${courseTitle} assignments...`);
+        }
+        
+        // Course action functions
+        function enterCourse(courseId) {
+            showMessage(`Entering ${courseId} course...`, 'info');
+            // Here you would navigate to the course content
+        }
+        
+        function viewCourseDetails(courseId) {
+            showMessage(`Loading ${courseId} course details...`, 'info');
+        }
+        
+        function prepareCourse(courseId) {
+            showMessage(`Preparing for ${courseId} course...`, 'info');
+        }
+        
+        function reviewCourse(courseId) {
+            showMessage(`Opening ${courseId} course review...`, 'info');
+        }
+        
+        function showEmergencyContact() {
+            showMessage('Emergency contact: Call 999 or contact school office', 'warning');
+        }
+        
+        // Show message function
+        function showMessage(text, type = 'info') {
+            const message = document.createElement('div');
+            const colors = {
+                success: 'var(--success-color)',
+                error: 'var(--danger-color)',
+                warning: 'var(--warning-color)',
+                info: 'var(--info-color)'
+            };
+            
+            message.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: ${colors[type]};
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                z-index: 1000;
+                box-shadow: var(--shadow);
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                max-width: 300px;
+            `;
+            message.innerHTML = `<i class="fas fa-${type === 'success' ? 'check' : type === 'warning' ? 'exclamation-triangle' : 'info'}"></i> ${text}`;
+            document.body.appendChild(message);
+            
+            // Animate in
+            setTimeout(() => {
+                message.style.transform = 'translateX(0)';
+            }, 100);
+            
+            // Remove after delay
+            setTimeout(() => {
+                message.style.transform = 'translateX(100%)';
+                setTimeout(() => {
+                    message.remove();
+                }, 300);
+            }, 5000);
+        }
+        
+        // Initialize page
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners for search and filters
+            document.getElementById('searchInput').addEventListener('input', filterCourses);
+            document.getElementById('statusFilter').addEventListener('change', filterCourses);
+            document.getElementById('keyStageFilter').addEventListener('change', filterCourses);
+            
+            // Add hover effects to course cards
+            document.querySelectorAll('.course-card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-5px)';
                 });
-            }
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                const sidebar = document.getElementById('sidebar');
+                const toggle = document.querySelector('.mobile-menu-toggle');
+                
+                if (window.innerWidth <= 768 && 
+                    !sidebar.contains(event.target) && 
+                    !toggle.contains(event.target) && 
+                    sidebar.classList.contains('active')) {
+                    sidebar.classList.remove('active');
+                }
+            });
         });
     </script>
 </body>
