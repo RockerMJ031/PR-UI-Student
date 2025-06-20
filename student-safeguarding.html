@@ -3,28 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safeguarding - Student Portal</title>
+    <title>Safeguarding & Protection - Student Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #663399;
-            --primary-dark: #4a2570;
-            --primary-light: #8a5bb8;
+            --primary-color: #6c5ce7;
+            --primary-dark: #5a4fcf;
             --secondary-color: #f8f9fa;
-            --text-color: #333;
-            --text-light: #666;
-            --border-color: #e0e0e0;
-            --success-color: #28a745;
-            --warning-color: #ffc107;
-            --danger-color: #dc3545;
-            --info-color: #17a2b8;
-            --white: #ffffff;
+            --accent-color: #fd79a8;
+            --success-color: #00b894;
+            --warning-color: #fdcb6e;
+            --danger-color: #e17055;
+            --text-color: #2d3436;
+            --text-light: #636e72;
+            --border-color: #ddd;
             --shadow: 0 2px 10px rgba(0,0,0,0.1);
-            --border-radius: 8px;
+            --border-radius: 12px;
             --safeguarding-red: #e74c3c;
-            --safeguarding-orange: #f39c12;
             --safeguarding-blue: #3498db;
-            --safeguarding-green: #27ae60;
         }
 
         * {
@@ -35,9 +31,9 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--secondary-color);
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             color: var(--text-color);
-            line-height: 1.6;
         }
 
         .container {
@@ -45,27 +41,28 @@
             min-height: 100vh;
         }
 
-        /* Sidebar - Aligned with student-dashboard.html */
+        /* Sidebar */
         .sidebar {
-            width: 250px;
-            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
-            color: white;
-            padding: 0;
+            width: 280px;
+            background: white;
+            box-shadow: var(--shadow);
             position: fixed;
             height: 100vh;
-            overflow-y: auto;
+            left: 0;
+            top: 0;
             z-index: 1000;
+            overflow-y: auto;
         }
 
         .logo {
-            padding: 20px;
+            padding: 25px;
+            border-bottom: 1px solid var(--border-color);
             text-align: center;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .logo h2 {
+            color: var(--primary-color);
             font-size: 1.5rem;
-            font-weight: 600;
         }
 
         .nav-menu {
@@ -73,47 +70,44 @@
         }
 
         .nav-item {
-            margin: 5px 0;
+            margin-bottom: 5px;
         }
 
         .nav-link {
             display: flex;
             align-items: center;
-            padding: 12px 20px;
-            color: rgba(255, 255, 255, 0.8);
+            padding: 15px 25px;
+            color: var(--text-color);
             text-decoration: none;
-            border-radius: 8px;
             transition: all 0.3s ease;
-            margin: 0 10px;
-            min-height: 44px;
+            border-left: 4px solid transparent;
         }
 
-        .nav-link:hover,
-        .nav-link.active {
-            background-color: rgba(255,255,255,0.1);
-            color: white;
-            border-right: 3px solid white;
+        .nav-link:hover {
+            background: var(--secondary-color);
+            border-left-color: var(--primary-color);
         }
 
         .nav-link.active {
-            background-color: rgba(255, 255, 255, 0.2);
+            background: var(--primary-color);
             color: white;
-            border-right: 3px solid white;
+            border-left-color: var(--primary-dark);
         }
 
         .nav-link i {
-            margin-right: 10px;
+            margin-right: 12px;
             width: 20px;
             text-align: center;
-            font-size: 16px;
         }
 
         .user-profile {
             position: absolute;
             bottom: 0;
-            width: 100%;
-            padding: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
+            left: 0;
+            right: 0;
+            padding: 20px 25px;
+            border-top: 1px solid var(--border-color);
+            background: white;
         }
 
         .user-info {
@@ -124,27 +118,30 @@
         .user-avatar {
             width: 40px;
             height: 40px;
+            background: var(--primary-color);
             border-radius: 50%;
-            background-color: rgba(255,255,255,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-right: 10px;
+            color: white;
+            margin-right: 12px;
         }
 
         /* Main Content */
         .main-content {
             flex: 1;
-            margin-left: 250px;
-            padding: 20px;
+            margin-left: 280px;
+            padding: 30px;
+            background: var(--secondary-color);
+            min-height: 100vh;
         }
 
         .header {
             background: white;
-            padding: 20px;
+            padding: 25px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            margin-bottom: 20px;
+            margin-bottom: 30px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -153,51 +150,111 @@
         .header h1 {
             color: var(--primary-color);
             font-size: 2rem;
-            font-weight: 600;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 10px;
+            margin-bottom: 5px;
         }
 
         .emergency-btn {
-            background: var(--danger-color);
+            background: var(--safeguarding-red);
             color: white;
             border: none;
             padding: 12px 20px;
             border-radius: var(--border-radius);
             cursor: pointer;
             font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             transition: all 0.3s ease;
-            font-size: 1rem;
+            animation: pulse 2s infinite;
         }
 
         .emergency-btn:hover {
-            background: #c82333;
+            background: #c0392b;
             transform: translateY(-2px);
         }
 
-        /* Important Notice Banner */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
+        }
+
+        /* Important Notice */
         .important-notice {
-            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
-            border: 2px solid #ffc107;
+            background: linear-gradient(135deg, var(--safeguarding-red), #c0392b);
+            color: white;
+            padding: 20px 25px;
             border-radius: var(--border-radius);
-            padding: 20px;
-            margin-bottom: 20px;
-            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
         }
 
         .important-notice h2 {
-            color: #856404;
             margin-bottom: 10px;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
-        .important-notice p {
-            color: #856404;
-            font-size: 1.1rem;
-            font-weight: 500;
+        .important-notice i {
+            margin-right: 10px;
+        }
+
+        /* SAFE Guidelines */
+        .safe-guidelines {
+            background: linear-gradient(135deg, #e8d5f2, #f0e6ff);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .safe-header {
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .safe-header h2 {
+            margin: 0;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .safe-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .safe-item {
+            display: flex;
+            align-items: center;
+            background: white;
+            padding: 15px 20px;
+            border-radius: 25px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .safe-letter {
+            width: 40px;
+            height: 40px;
+            background: #ff6b35;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .safe-text {
+            color: var(--text-color);
+            font-size: 1rem;
+            line-height: 1.4;
         }
 
         /* Quick Report Section */
@@ -238,14 +295,34 @@
             box-shadow: var(--shadow);
         }
 
-        .report-card.urgent {
+        .report-card.safeguarding {
+            border-color: var(--primary-color);
+            background: #f3e8ff;
+        }
+
+        .report-card.safeguarding:hover {
+            background: white;
+            border-color: var(--primary-color);
+        }
+
+        .report-card.bullying {
             border-color: var(--safeguarding-red);
             background: #ffeaea;
         }
 
-        .report-card.urgent:hover {
+        .report-card.bullying:hover {
             background: white;
             border-color: var(--safeguarding-red);
+        }
+
+        .report-card.email {
+            border-color: var(--safeguarding-blue);
+            background: #e3f2fd;
+        }
+
+        .report-card.email:hover {
+            background: white;
+            border-color: var(--safeguarding-blue);
         }
 
         .report-card .icon {
@@ -253,16 +330,16 @@
             margin-bottom: 15px;
         }
 
-        .report-card.urgent .icon {
+        .report-card.safeguarding .icon {
+            color: var(--primary-color);
+        }
+
+        .report-card.bullying .icon {
             color: var(--safeguarding-red);
         }
 
-        .report-card.general .icon {
+        .report-card.email .icon {
             color: var(--safeguarding-blue);
-        }
-
-        .report-card.anonymous .icon {
-            color: var(--safeguarding-green);
         }
 
         .report-card h3 {
@@ -302,102 +379,137 @@
         }
 
         .info-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            align-items: center;
+            margin-bottom: 10px;
+            padding-left: 25px;
+            position: relative;
         }
 
-        .info-list li:last-child {
-            border-bottom: none;
+        .info-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success-color);
+            font-weight: bold;
         }
 
-        .info-list li i {
-            color: var(--primary-color);
-            margin-right: 10px;
-            width: 20px;
+        /* Who Can You Talk To Section */
+        .who-to-talk-section {
+            margin: 2rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            color: white;
         }
-
-        /* Contact Cards */
-        .contact-cards {
+        
+        .who-to-talk-section h2 {
+            color: white;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 1.8rem;
+        }
+        
+        .talk-to-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            gap: 1.5rem;
+        }
+        
+        .talk-to-item {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        
+        .talk-to-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .talk-to-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .talk-to-content h4 {
+            color: white;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+        
+        .talk-to-content p {
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+            margin: 0;
+        }
+        
+        .talk-to-content a {
+            color: #ffd700;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .talk-to-content a:hover {
+            text-decoration: underline;
         }
 
-        .contact-card {
+        /* Contact Information */
+        .contact-section {
             background: white;
             padding: 25px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+
+        .contact-section h2 {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .contact-card {
+            background: var(--secondary-color);
+            padding: 20px;
+            border-radius: var(--border-radius);
             text-align: center;
-            transition: transform 0.3s ease;
-        }
-
-        .contact-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .contact-card.emergency {
-            background: linear-gradient(135deg, #ffebee, #ffcdd2);
-            border: 2px solid var(--safeguarding-red);
         }
 
         .contact-card .icon {
-            font-size: 3rem;
+            font-size: 2.5rem;
             margin-bottom: 15px;
+            display: block;
         }
 
-        .contact-card.emergency .icon {
-            color: var(--safeguarding-red);
-        }
-
-        .contact-card.counseling .icon {
-            color: var(--safeguarding-blue);
-        }
-
-        .contact-card.support .icon {
-            color: var(--safeguarding-green);
-        }
-
-        .contact-card h3 {
-            font-size: 1.3rem;
+        .contact-card h4 {
             margin-bottom: 10px;
             color: var(--text-color);
         }
 
         .contact-card p {
             color: var(--text-light);
-            margin-bottom: 15px;
+            margin: 5px 0;
+            font-size: 0.9rem;
         }
 
-        .contact-btn {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 12px 20px;
-            border-radius: var(--border-radius);
-            cursor: pointer;
+        .contact-card .phone {
+            color: var(--success-color);
             font-weight: 600;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        .contact-btn:hover {
-            background: var(--primary-dark);
-        }
-
-        .contact-card.emergency .contact-btn {
-            background: var(--safeguarding-red);
-        }
-
-        .contact-card.emergency .contact-btn:hover {
-            background: #c0392b;
+            font-size: 1rem;
         }
 
         /* Resources Section */
-        .resources {
+        .resources-section {
             background: white;
             padding: 25px;
             border-radius: var(--border-radius);
@@ -405,19 +517,19 @@
             margin-bottom: 30px;
         }
 
-        .resources h2 {
+        .resources-section h2 {
             color: var(--primary-color);
             margin-bottom: 20px;
             font-size: 1.5rem;
         }
 
-        .resource-grid {
+        .resources-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 15px;
         }
 
-        .resource-item {
+        .resource-link {
             display: flex;
             align-items: center;
             padding: 15px;
@@ -426,34 +538,115 @@
             text-decoration: none;
             color: var(--text-color);
             transition: all 0.3s ease;
-            border: 2px solid transparent;
         }
 
-        .resource-item:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
+        .resource-link:hover {
+            background: white;
+            box-shadow: var(--shadow);
             transform: translateY(-2px);
         }
 
-        .resource-item i {
+        .resource-link i {
             font-size: 1.5rem;
             margin-right: 15px;
-            width: 30px;
-            text-align: center;
+            color: var(--primary-color);
+            min-width: 30px;
         }
 
-        .resource-info .title {
+        .resource-text {
+            flex: 1;
+        }
+
+        .resource-title {
             font-weight: 600;
             margin-bottom: 5px;
         }
 
-        .resource-info .description {
+        .resource-description {
             font-size: 0.9rem;
-            opacity: 0.8;
+            color: var(--text-light);
         }
 
-        /* Report Form Modal */
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .sidebar.active {
+                transform: translateX(0);
+            }
+
+            .main-content {
+                margin-left: 0;
+                padding: 15px;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            .report-options {
+                grid-template-columns: 1fr;
+            }
+
+            .safeguarding-info {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .safe-guidelines {
+                padding: 20px;
+            }
+
+            .safe-item {
+                padding: 12px 15px;
+            }
+
+            .safe-letter {
+                width: 35px;
+                height: 35px;
+                font-size: 1.1rem;
+                margin-right: 12px;
+            }
+
+            .safe-text {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
+        }
+
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -500,8 +693,8 @@
         }
 
         .form-group input,
-        .form-group select,
-        .form-group textarea {
+        .form-group textarea,
+        .form-group select {
             width: 100%;
             padding: 12px;
             border: 2px solid var(--border-color);
@@ -511,26 +704,26 @@
         }
 
         .form-group input:focus,
-        .form-group select:focus,
-        .form-group textarea:focus {
+        .form-group textarea:focus,
+        .form-group select:focus {
             outline: none;
             border-color: var(--primary-color);
         }
 
         .form-group textarea {
-            resize: vertical;
             min-height: 120px;
+            resize: vertical;
         }
 
         .submit-btn {
             background: var(--primary-color);
             color: white;
             border: none;
-            padding: 15px 30px;
+            padding: 12px 25px;
             border-radius: var(--border-radius);
             cursor: pointer;
-            font-weight: 600;
             font-size: 1rem;
+            font-weight: 600;
             transition: all 0.3s ease;
             width: 100%;
         }
@@ -539,64 +732,24 @@
             background: var(--primary-dark);
         }
 
-        .urgent-form .submit-btn {
+        .urgent-submit-btn {
             background: var(--safeguarding-red);
         }
 
-        .urgent-form .submit-btn:hover {
+        .urgent-submit-btn:hover {
             background: #c0392b;
-        }
-
-        /* Mobile Responsiveness */
-        @media (max-width: 768px) {
-            .sidebar {
-                transform: translateX(-100%);
-                transition: transform 0.3s ease;
-            }
-
-            .sidebar.active {
-                transform: translateX(0);
-            }
-
-            .main-content {
-                margin-left: 0;
-                padding: 15px;
-            }
-
-            .header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-
-            .report-options {
-                grid-template-columns: 1fr;
-            }
-
-            .safeguarding-info {
-                grid-template-columns: 1fr;
-            }
-
-            .contact-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .resource-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .modal-content {
-                width: 95%;
-                margin: 10% auto;
-                padding: 20px;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <!-- Sidebar -->
-        <nav class="sidebar">
+        <nav class="sidebar" id="sidebar">
             <div class="logo">
                 <h2>Student Portal</h2>
             </div>
@@ -621,21 +774,9 @@
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="student-assignments.html" class="nav-link">
-                        <i class="fas fa-tasks"></i>
-                        Assignments
-                    </a>
-                </div>
-                <div class="nav-item">
                     <a href="student-progress.html" class="nav-link">
                         <i class="fas fa-chart-line"></i>
                         Progress
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="student-support.html" class="nav-link">
-                        <i class="fas fa-hands-helping"></i>
-                        Support
                     </a>
                 </div>
                 <div class="nav-item">
@@ -650,6 +791,12 @@
                         Safeguarding
                     </a>
                 </div>
+                <div class="nav-item">
+                    <a href="student-support.html" class="nav-link">
+                        <i class="fas fa-hands-helping"></i>
+                        Get Support
+                    </a>
+                </div>
             </div>
             
             <div class="user-profile">
@@ -658,372 +805,366 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div>
-                        <div style="font-weight: 600;">Alex Student</div>
-                        <div style="font-size: 0.8rem; opacity: 0.8;">Year 10</div>
+                        <div style="font-weight: 600;">Alex Johnson</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Year 10 Student</div>
                     </div>
                 </div>
             </div>
         </nav>
-        
+
         <!-- Main Content -->
         <div class="main-content">
+            <!-- Header -->
             <div class="header">
-                <h1>Safeguarding</h1>
+                <div>
+                    <h1>Safeguarding & Protection</h1>
+                    <p style="color: var(--text-light); margin: 5px 0 0 0;">Your safety and wellbeing are our top priority</p>
+                </div>
                 <div class="header-actions">
-                    <button class="emergency-btn" onclick="showEmergencyModal()">
+                    <button class="emergency-btn" onclick="showEmergencyContacts()">
                         <i class="fas fa-exclamation-triangle"></i>
-                        Emergency Report
+                        Emergency Help
                     </button>
                 </div>
             </div>
-            
+
             <!-- Important Notice -->
             <div class="important-notice">
                 <h2><i class="fas fa-shield-alt"></i> Your Safety Matters</h2>
-                <p>If you're in immediate danger, call emergency services. For non-urgent concerns, use our confidential reporting system below.</p>
+                <p>If you are in immediate danger, call 999. All reports are taken seriously and handled confidentially by trained professionals.</p>
             </div>
-            
-            <!-- Quick Report Options -->
-            <div class="quick-report">
-                <h2>Report a Concern</h2>
-                <div class="report-options">
-                    <div class="report-card urgent" onclick="openReportModal('urgent')">
-                        <div class="icon">
-                            <i class="fas fa-exclamation-triangle"></i>
-                        </div>
-                        <h3>Urgent Report</h3>
-                        <p>For immediate safety concerns that require urgent attention</p>
+
+            <!-- SAFE Guidelines -->
+            <div class="safe-guidelines">
+                <div class="safe-header">
+                    <h2>Remember</h2>
+                </div>
+                <div class="safe-items">
+                    <div class="safe-item">
+                        <div class="safe-letter">S</div>
+                        <div class="safe-text">Speak up: If something doesn't feel right, talk to someone you trust</div>
                     </div>
-                    
-                    <div class="report-card general" onclick="openReportModal('general')">
-                        <div class="icon">
-                            <i class="fas fa-flag"></i>
-                        </div>
-                        <h3>General Report</h3>
-                        <p>For non-urgent safeguarding concerns or incidents</p>
+                    <div class="safe-item">
+                        <div class="safe-letter">A</div>
+                        <div class="safe-text">Ask for help: You'll never get in trouble for asking</div>
                     </div>
-                    
-                    <div class="report-card anonymous" onclick="openReportModal('anonymous')">
-                        <div class="icon">
-                            <i class="fas fa-user-secret"></i>
-                        </div>
-                        <h3>Anonymous Report</h3>
-                        <p>Submit a concern anonymously without revealing your identity</p>
+                    <div class="safe-item">
+                        <div class="safe-letter">F</div>
+                        <div class="safe-text">Feelings matter: Even small worries are important</div>
+                    </div>
+                    <div class="safe-item">
+                        <div class="safe-letter">E</div>
+                        <div class="safe-text">Everyone needs support: You are never alone — there are people who care</div>
                     </div>
                 </div>
             </div>
-            
+
+            <!-- Quick Report Section -->
+            <div class="quick-report">
+                <h2>Report a Concern</h2>
+                <p style="margin-bottom: 20px; color: var(--text-light);">Choose the most appropriate option below. All reports are confidential and will be handled by qualified safeguarding professionals.</p>
+                
+                <div class="report-options">
+                    <div class="report-card safeguarding" onclick="openSafeguardingForm()">
+                        <div class="icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Safeguarding Form</h3>
+                        <p>Report any safeguarding concerns through our secure online form</p>
+                    </div>
+                    
+                    <div class="report-card bullying" onclick="openBullyingForm()">
+                        <div class="icon">
+                            <i class="fas fa-user-shield"></i>
+                        </div>
+                        <h3>Bullying Report</h3>
+                        <p>Report bullying incidents through our dedicated reporting system</p>
+                    </div>
+                    
+                    <div class="report-card email" onclick="openEmailContact()">
+                        <div class="icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <h3>Email Contact</h3>
+                        <p>Contact our safeguarding team directly via email</p>
+                    </div>
+                </div>
+            </div>
+
             <!-- Safeguarding Information -->
             <div class="safeguarding-info">
                 <div class="info-card">
                     <h3>What is Safeguarding?</h3>
                     <ul class="info-list">
-                        <li><i class="fas fa-check"></i>Protecting students from harm and abuse</li>
-                        <li><i class="fas fa-check"></i>Preventing impairment of health and development</li>
-                        <li><i class="fas fa-check"></i>Ensuring safe and effective care</li>
-                        <li><i class="fas fa-check"></i>Taking action to enable all students to thrive</li>
+                        <li>Protecting you from abuse, neglect, and harm</li>
+                        <li>Ensuring your physical and emotional safety</li>
+                        <li>Supporting your wellbeing and development</li>
+                        <li>Preventing exploitation and discrimination</li>
+                        <li>Promoting your rights and dignity</li>
                     </ul>
                 </div>
                 
                 <div class="info-card">
-                    <h3>Types of Concerns</h3>
+                    <h3>When to Report</h3>
                     <ul class="info-list">
-                        <li><i class="fas fa-exclamation-triangle"></i>Physical abuse or violence</li>
-                        <li><i class="fas fa-exclamation-triangle"></i>Emotional or psychological abuse</li>
-                        <li><i class="fas fa-exclamation-triangle"></i>Bullying or harassment</li>
-                        <li><i class="fas fa-exclamation-triangle"></i>Neglect or abandonment</li>
-                        <li><i class="fas fa-exclamation-triangle"></i>Online safety issues</li>
-                        <li><i class="fas fa-exclamation-triangle"></i>Substance abuse</li>
+                        <li>Physical, emotional, or sexual abuse</li>
+                        <li>Neglect or abandonment</li>
+                        <li>Bullying or harassment</li>
+                        <li>Discrimination or hate incidents</li>
+                        <li>Online safety concerns</li>
+                        <li>Substance abuse issues</li>
+                        <li>Mental health crises</li>
+                        <li>Domestic violence</li>
                     </ul>
                 </div>
                 
                 <div class="info-card">
                     <h3>Your Rights</h3>
                     <ul class="info-list">
-                        <li><i class="fas fa-shield-alt"></i>Right to feel safe and protected</li>
-                        <li><i class="fas fa-shield-alt"></i>Right to confidential support</li>
-                        <li><i class="fas fa-shield-alt"></i>Right to be heard and believed</li>
-                        <li><i class="fas fa-shield-alt"></i>Right to appropriate action</li>
-                        <li><i class="fas fa-shield-alt"></i>Right to ongoing support</li>
+                        <li>To be safe and protected from harm</li>
+                        <li>To be listened to and taken seriously</li>
+                        <li>To receive appropriate support</li>
+                        <li>To confidentiality and privacy</li>
+                        <li>To be involved in decisions about you</li>
+                        <li>To access independent advocacy</li>
+                        <li>To make complaints if needed</li>
                     </ul>
                 </div>
             </div>
-            
-            <!-- Contact Cards -->
-            <div class="contact-cards">
-                <div class="contact-card emergency">
-                    <div class="icon">
-                        <i class="fas fa-phone"></i>
+
+            <!-- Who Can You Talk To Section -->
+            <div class="who-to-talk-section">
+                <h2>Who Can You Talk To?</h2>
+                <div class="talk-to-grid">
+                    <div class="talk-to-item">
+                        <div class="talk-to-icon">👥</div>
+                        <div class="talk-to-content">
+                            <h4>Your Facilitators at Purple Ruler</h4>
+                            <p>They are trained to listen and help you.</p>
+                        </div>
                     </div>
-                    <h3>Emergency Contact</h3>
-                    <p>For immediate safety concerns requiring urgent response</p>
-                    <button class="contact-btn" onclick="callEmergency()">
-                        Call Now: +1 (555) 911-SAFE
-                    </button>
-                </div>
-                
-                <div class="contact-card counseling">
-                    <div class="icon">
-                        <i class="fas fa-user-md"></i>
+                    
+                    <div class="talk-to-item">
+                        <div class="talk-to-icon">🛡️</div>
+                        <div class="talk-to-content">
+                            <h4>Our Designated Safeguarding Lead</h4>
+                            <p>Their job is to make sure you are safe. You can email them directly at: <a href="mailto:safeguarding@purpleruler.com">safeguarding@purpleruler.com</a> or call 01227 913313.</p>
+                        </div>
                     </div>
-                    <h3>Counseling Services</h3>
-                    <p>Professional support and guidance for personal concerns</p>
-                    <button class="contact-btn" onclick="bookCounseling()">
-                        Book Appointment
-                    </button>
-                </div>
-                
-                <div class="contact-card support">
-                    <div class="icon">
-                        <i class="fas fa-hands-helping"></i>
+                    
+                    <div class="talk-to-item">
+                        <div class="talk-to-icon">👨‍👩‍👧‍👦</div>
+                        <div class="talk-to-content">
+                            <h4>A parent, carer, or another trusted adult</h4>
+                            <p>Someone who looks after you at home.</p>
+                        </div>
                     </div>
-                    <h3>Student Support</h3>
-                    <p>General support and assistance with various issues</p>
-                    <button class="contact-btn" onclick="contactSupport()">
-                        Get Support
-                    </button>
+                    
+                    <div class="talk-to-item">
+                        <div class="talk-to-icon">🏫</div>
+                        <div class="talk-to-content">
+                            <h4>A trusted adult at school</h4>
+                            <p>Like your teacher, headteacher, DSL or school counsellor.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Resources -->
-            <div class="resources">
-                <h2>Helpful Resources</h2>
-                <div class="resource-grid">
-                    <a href="#" class="resource-item">
+
+            <!-- Contact Information -->
+            <div class="contact-section">
+                <h2>Safeguarding Contacts</h2>
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="icon">👩‍🏫</div>
+                        <h4>DSL or DDSL</h4>
+                        <p>Bella Ma / Candice Steytler</p>
+                        <p class="phone">📞 01227 913313</p>
+                        <p>📧 safeguarding@purpleruler.com</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="icon">📞</div>
+                        <h4>24/7 Helpline</h4>
+                        <p>Police or emergency services</p>
+                        <p class="phone">📞 999</p>
+                        <p>National Domestic Abuse Helpline</p>
+                        <p class="phone">📞 0808 2000 247</p>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="icon">🏛️</div>
+                        <h4>Local Authority</h4>
+                        <p>Children's Services</p>
+                        <p class="phone">📞 01234 567892</p>
+                        <p>📧 children@localauth.gov.uk</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Resources Section -->
+            <div class="resources-section">
+                <h2>Support Resources</h2>
+                <div class="resources-grid">
+                    <a href="#" class="resource-link">
                         <i class="fas fa-book-open"></i>
-                        <div class="resource-info">
-                            <div class="title">Safeguarding Policy</div>
-                            <div class="description">Read our complete safeguarding policy</div>
+                        <div class="resource-text">
+                            <div class="resource-title">Safeguarding Handbook</div>
+                            <div class="resource-description">Complete guide to staying safe</div>
                         </div>
                     </a>
                     
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-video"></i>
-                        <div class="resource-info">
-                            <div class="title">Safety Videos</div>
-                            <div class="description">Educational videos about staying safe</div>
+                    <a href="#" class="resource-link">
+                        <i class="fas fa-laptop"></i>
+                        <div class="resource-text">
+                            <div class="resource-title">Online Safety Guide</div>
+                            <div class="resource-description">Protecting yourself online</div>
                         </div>
                     </a>
                     
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-globe"></i>
-                        <div class="resource-info">
-                            <div class="title">Online Safety</div>
-                            <div class="description">Tips for staying safe online</div>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="resource-item">
+                    <a href="#" class="resource-link">
                         <i class="fas fa-users"></i>
-                        <div class="resource-info">
-                            <div class="title">Peer Support</div>
-                            <div class="description">Connect with peer support groups</div>
+                        <div class="resource-text">
+                            <div class="resource-title">Peer Support Network</div>
+                            <div class="resource-description">Connect with trained peer supporters</div>
                         </div>
                     </a>
                     
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-phone-alt"></i>
-                        <div class="resource-info">
-                            <div class="title">Helplines</div>
-                            <div class="description">External support helplines</div>
+                    <a href="#" class="resource-link">
+                        <i class="fas fa-heart"></i>
+                        <div class="resource-text">
+                            <div class="resource-title">Mental Health Resources</div>
+                            <div class="resource-description">Support for emotional wellbeing</div>
                         </div>
                     </a>
                     
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-download"></i>
-                        <div class="resource-info">
-                            <div class="title">Downloads</div>
-                            <div class="description">Useful forms and documents</div>
+                    <a href="#" class="resource-link">
+                        <i class="fas fa-gavel"></i>
+                        <div class="resource-text">
+                            <div class="resource-title">Legal Rights Information</div>
+                            <div class="resource-description">Know your rights and protections</div>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="resource-link">
+                        <i class="fas fa-home"></i>
+                        <div class="resource-text">
+                            <div class="resource-title">Housing Support</div>
+                            <div class="resource-description">Safe accommodation assistance</div>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <!-- Report Modal -->
     <div id="reportModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeReportModal()">&times;</span>
-            <h2 id="modalTitle">Submit Report</h2>
-            
-            <form id="reportForm" onsubmit="submitReport(event)">
+            <h2 id="modalTitle">Report a Concern</h2>
+            <form id="reportForm">
                 <div class="form-group">
-                    <label for="reportType">Report Type</label>
-                    <select id="reportType" required>
-                        <option value="">Select report type</option>
-                        <option value="bullying">Bullying/Harassment</option>
-                        <option value="abuse">Physical/Emotional Abuse</option>
-                        <option value="neglect">Neglect</option>
+                    <label for="reportType">Type of Concern:</label>
+                    <select id="reportType" name="reportType" required>
+                        <option value="">Select concern type...</option>
+                        <option value="abuse">Physical/Emotional/Sexual Abuse</option>
+                        <option value="neglect">Neglect or Abandonment</option>
+                        <option value="bullying">Bullying or Harassment</option>
+                        <option value="discrimination">Discrimination</option>
                         <option value="online">Online Safety</option>
                         <option value="substance">Substance Abuse</option>
-                        <option value="other">Other Concern</option>
+                        <option value="mental-health">Mental Health Crisis</option>
+                        <option value="domestic">Domestic Violence</option>
+                        <option value="other">Other</option>
                     </select>
                 </div>
                 
-                <div class="form-group">
-                    <label for="location">Location of Incident</label>
-                    <input type="text" id="location" placeholder="Where did this occur?">
-                </div>
-                
-                <div class="form-group">
-                    <label for="dateTime">Date and Time</label>
-                    <input type="datetime-local" id="dateTime">
-                </div>
-                
-                <div class="form-group">
-                    <label for="description">Description</label>
-                    <textarea id="description" placeholder="Please provide details about the incident or concern..." required></textarea>
+                <div class="form-group" id="nameGroup">
+                    <label for="reporterName">Your Name (optional for anonymous reports):</label>
+                    <input type="text" id="reporterName" name="reporterName">
                 </div>
                 
                 <div class="form-group" id="contactGroup">
-                    <label for="contactInfo">Your Contact Information (Optional)</label>
-                    <input type="text" id="contactInfo" placeholder="Email or phone number for follow-up">
+                    <label for="contactInfo">Contact Information (optional):</label>
+                    <input type="text" id="contactInfo" name="contactInfo" placeholder="Phone number or email">
                 </div>
                 
                 <div class="form-group">
-                    <label for="urgency">Urgency Level</label>
-                    <select id="urgency" required>
-                        <option value="">Select urgency</option>
-                        <option value="immediate">Immediate - Requires urgent attention</option>
-                        <option value="high">High - Within 24 hours</option>
-                        <option value="medium">Medium - Within 3 days</option>
-                        <option value="low">Low - When convenient</option>
+                    <label for="concernDetails">Details of Concern:</label>
+                    <textarea id="concernDetails" name="concernDetails" required placeholder="Please provide as much detail as possible about your concern..."></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="immediateRisk">Is there immediate risk of harm?</label>
+                    <select id="immediateRisk" name="immediateRisk" required>
+                        <option value="">Select...</option>
+                        <option value="yes">Yes - immediate danger</option>
+                        <option value="no">No - not immediate</option>
+                        <option value="unsure">Unsure</option>
                     </select>
                 </div>
                 
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i>
-                    Submit Report
-                </button>
+                <div class="form-group">
+                    <label for="previousReports">Has this been reported before?</label>
+                    <select id="previousReports" name="previousReports">
+                        <option value="no">No</option>
+                        <option value="yes">Yes</option>
+                        <option value="unsure">Unsure</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="submit-btn" id="submitBtn">Submit Report</button>
             </form>
         </div>
     </div>
-    
+
     <script>
-        let currentReportType = '';
-        
-        // Open report modal
-        function openReportModal(type) {
-            currentReportType = type;
-            const modal = document.getElementById('reportModal');
-            const modalTitle = document.getElementById('modalTitle');
-            const form = document.getElementById('reportForm');
-            const contactGroup = document.getElementById('contactGroup');
-            
-            // Configure modal based on type
-            switch(type) {
-                case 'urgent':
-                    modalTitle.textContent = 'Urgent Safety Report';
-                    form.classList.add('urgent-form');
-                    document.getElementById('urgency').value = 'immediate';
-                    break;
-                case 'general':
-                    modalTitle.textContent = 'General Safeguarding Report';
-                    form.classList.remove('urgent-form');
-                    break;
-                case 'anonymous':
-                    modalTitle.textContent = 'Anonymous Report';
-                    form.classList.remove('urgent-form');
-                    contactGroup.style.display = 'none';
-                    break;
-                default:
-                    modalTitle.textContent = 'Submit Report';
-                    form.classList.remove('urgent-form');
-            }
-            
-            modal.style.display = 'block';
+        // Mobile sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
+        }
+
+        // Emergency contacts function
+        function showEmergencyContacts() {
+            alert('EMERGENCY CONTACTS\n\n🚨 IMMEDIATE DANGER: Call 999\n\n📞 24/7 Helplines:\n• Childline: 0800 1111\n• Samaritans: 116 123\n• NSPCC: 0808 2000 247\n\n🏫 School Safeguarding:\n• Sarah Mitchell: 01234 567890\n• James Thompson: 01234 567891\n\n🏛️ Local Authority:\n• Children\'s Services: 01234 567892\n• Out of hours: 01234 567893\n\nYou are not alone. Help is available.');
+        }
+
+        // Report functions
+        function openSafeguardingForm() {
+            window.open('https://purpleruler.larksuite.com/share/base/form/shrusjBn7gcOaLf7QotIustHGPc', '_blank');
         }
         
-        // Close report modal
+        function openBullyingForm() {
+            window.open('https://purpleruler.larksuite.com/share/base/form/shruskC5aTJLlagnyByxQPzxYwg', '_blank');
+        }
+        
+        function openEmailContact() {
+            window.location.href = 'mailto:safeguarding@purpleruler.com?subject=Safeguarding Concern&body=Please describe your concern here...';
+        }
+
         function closeReportModal() {
             const modal = document.getElementById('reportModal');
             modal.style.display = 'none';
             document.getElementById('reportForm').reset();
-            document.getElementById('contactGroup').style.display = 'block';
         }
-        
-        // Submit report
-        function submitReport(event) {
-            event.preventDefault();
+
+        // Form submission
+        document.getElementById('reportForm').addEventListener('submit', function(e) {
+            e.preventDefault();
             
-            const btn = event.target.querySelector('.submit-btn');
-            const originalText = btn.innerHTML;
+            const formData = new FormData(this);
+            const immediateRisk = formData.get('immediateRisk');
             
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-            btn.disabled = true;
+            if (immediateRisk === 'yes') {
+                alert('IMMEDIATE RISK IDENTIFIED\n\nYour report has been flagged as urgent and will be reviewed immediately.\n\nIf you are in immediate danger, please call 999 or contact emergency services.\n\nA safeguarding professional will contact you within 1 hour.');
+            } else {
+                alert('REPORT SUBMITTED SUCCESSFULLY\n\nThank you for reporting this concern. Your report has been received and will be reviewed by our safeguarding team.\n\nReference Number: SG' + Date.now().toString().slice(-6) + '\n\nYou will receive a response within 24 hours.\n\nIf the situation becomes urgent, please contact emergency services or our 24/7 helpline.');
+            }
             
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                closeReportModal();
-                
-                if (currentReportType === 'urgent') {
-                    showMessage('Urgent report submitted successfully. You will be contacted within 1 hour.', 'warning');
-                } else {
-                    showMessage('Report submitted successfully. Thank you for helping keep our community safe.', 'success');
-                }
-            }, 2000);
-        }
-        
-        // Emergency modal
-        function showEmergencyModal() {
-            openReportModal('urgent');
-        }
-        
-        // Contact functions
-        function callEmergency() {
-            showMessage('Emergency contact: +1 (555) 911-SAFE', 'warning');
-        }
-        
-        function bookCounseling() {
-            showMessage('Counseling appointment booking system would open here', 'info');
-        }
-        
-        function contactSupport() {
-            showMessage('Student support contact system would open here', 'info');
-        }
-        
-        // Show message function
-        function showMessage(text, type = 'info') {
-            const message = document.createElement('div');
-            const colors = {
-                success: 'var(--success-color)',
-                error: 'var(--danger-color)',
-                warning: 'var(--warning-color)',
-                info: 'var(--info-color)'
-            };
-            
-            message.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${colors[type]};
-                color: white;
-                padding: 15px 20px;
-                border-radius: 8px;
-                z-index: 1000;
-                box-shadow: var(--shadow);
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-            `;
-            message.innerHTML = `<i class="fas fa-${type === 'success' ? 'check' : type === 'warning' ? 'exclamation-triangle' : 'info'}"></i> ${text}`;
-            document.body.appendChild(message);
-            
-            // Animate in
-            setTimeout(() => {
-                message.style.transform = 'translateX(0)';
-            }, 100);
-            
-            // Remove after delay
-            setTimeout(() => {
-                message.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    message.remove();
-                }, 300);
-            }, 5000);
-        }
-        
+            closeReportModal();
+        });
+
         // Close modal when clicking outside
         window.onclick = function(event) {
             const modal = document.getElementById('reportModal');
@@ -1031,32 +1172,18 @@
                 closeReportModal();
             }
         }
-        
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to cards
-            document.querySelectorAll('.report-card, .contact-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                    this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                    if (this.classList.contains('report-card')) {
-                        this.style.boxShadow = 'var(--shadow)';
-                    }
-                });
-            });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
             
-            // Add click handlers to resource items
-            document.querySelectorAll('.resource-item').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const title = this.querySelector('.title').textContent;
-                    showMessage(`Opening ${title}...`, 'info');
-                });
-            });
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target) && 
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
         });
     </script>
 </body>
