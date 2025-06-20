@@ -707,7 +707,7 @@
                         <div class="course-item">
                             <div class="course-info">
                                 <h4>English Literature</h4>
-                                <p>Today 2:00 PM - Mr. David Wilson</p>
+                                <p>Tomorrow 2:00 PM - Mr. David Wilson</p>
                                 <div class="progress-bar">
                                     <div class="progress-fill" style="width: 60%;"></div>
                                 </div>
@@ -718,41 +718,61 @@
                         <div class="course-item">
                             <div class="course-info">
                                 <h4>Science</h4>
-                                <p>Tomorrow 9:00 AM - Dr. Emily Chen</p>
+                                <p>Wednesday 11:00 AM - Dr. Emily Chen</p>
                                 <div class="progress-bar">
                                     <div class="progress-fill" style="width: 85%;"></div>
                                 </div>
                             </div>
-                            <button class="btn btn-info">View Details</button>
+                            <button class="btn btn-primary">Join Lesson</button>
+                        </div>
+                        
+                        <div class="course-item">
+                            <div class="course-info">
+                                <h4>History</h4>
+                                <p>Friday 9:00 AM - Mr. Robert Thompson</p>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%;"></div>
+                                </div>
+                            </div>
+                            <button class="btn btn-primary">Join Lesson</button>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Sidebar Section -->
                 <div class="section">
-                    <h2>Recent Notifications</h2>
+                    <h2>Notifications & Updates</h2>
                     
                     <div class="notification">
                         <strong>Assignment Reminder</strong>
-                        <p>Mathematics homework due tomorrow at 11:59 PM</p>
+                        <p>Mathematics homework due tomorrow at 9:00 AM</p>
                     </div>
                     
                     <div class="notification">
-                        <strong>New Message</strong>
-                        <p>Your teacher has posted feedback on your recent essay</p>
+                        <strong>Upcoming Test</strong>
+                        <p>Science quiz scheduled for Friday, 15th March</p>
                     </div>
                     
                     <div class="notification">
-                        <strong>Schedule Update</strong>
-                        <p>Science class moved to Room 204 for tomorrow's session</p>
+                        <strong>New Resource Available</strong>
+                        <p>English Literature study guide has been uploaded</p>
                     </div>
                     
                     <div class="safeguarding-alert">
                         <i class="fas fa-shield-alt"></i>
                         <div>
-                            <strong>Need Help?</strong>
-                            <p style="margin: 5px 0 0 0; font-size: 0.9rem;">If you're experiencing any concerns, our safeguarding team is here to help. Click the emergency button above.</p>
+                            <strong>Need to talk?</strong>
+                            <p>Your facilitator or the safeguarding team is just a message away. You're not alone — we're here to help you feel safe and supported.</p>
                         </div>
+                    </div>
+                    
+                    <div class="notification" style="background: #e8f5e8; border: 1px solid #4caf50; margin-top: 15px;">
+                        <strong>Student Feedback</strong>
+                        <p>Your voice matters! Share your thoughts and feedback with us.</p>
+                        <button class="btn btn-success" onclick="window.open('https://purpleruler.larksuite.com/share/base/form/shrusINzPL0o2g2kwftrIXxyuVb', '_blank')" style="margin-top: 10px;">
+                            <i class="fas fa-comment"></i>
+                            Give Feedback
+                        </button>
                     </div>
                 </div>
             </div>
@@ -760,45 +780,151 @@
     </div>
 
     <script>
-        // Emergency button functionality
-        document.querySelector('.emergency-btn').addEventListener('click', function() {
-            if (confirm('This will connect you with emergency support. Continue?')) {
-                // In a real application, this would connect to emergency services
-                alert('Connecting to emergency support...');
-                // You could redirect to a support page or open a chat widget
-                window.open('https://purpleruler.larksuite.com/share/base/form/shrusjBn7gcOaLf7QotIustHGPc', '_blank');
-            }
-        });
-
-        // Wellbeing check-in modal
-        function showWellbeingModal() {
-            const mood = prompt('How are you feeling today? (1-10, where 10 is excellent)');
-            if (mood !== null) {
-                if (mood >= 1 && mood <= 10) {
-                    alert(`Thank you for checking in! Your mood rating: ${mood}/10`);
-                    // In a real application, this would save to a database
-                } else {
-                    alert('Please enter a number between 1 and 10.');
-                }
-            }
-        }
-
-        // Notification click handler
-        document.querySelector('.notification-icon').addEventListener('click', function() {
-            alert('You have 3 new notifications:\n\n1. Assignment reminder\n2. New teacher message\n3. Schedule update');
-        });
-
-        // Course progress animation
+        // Add active state to navigation
         document.addEventListener('DOMContentLoaded', function() {
-            const progressBars = document.querySelectorAll('.progress-fill');
-            progressBars.forEach(bar => {
-                const width = bar.style.width;
-                bar.style.width = '0%';
-                setTimeout(() => {
-                    bar.style.width = width;
-                }, 500);
+            const navLinks = document.querySelectorAll('.nav-link');
+            const currentPage = window.location.pathname.split('/').pop();
+            
+            navLinks.forEach(link => {
+                if (link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                } else {
+                    link.classList.remove('active');
+                }
             });
         });
+
+        // Emergency button functionality
+        document.querySelector('.emergency-btn').addEventListener('click', function() {
+            alert('Emergency support has been contacted. Help is on the way.');
+        });
+
+        // Notification icon functionality
+        document.querySelector('.notification-icon').addEventListener('click', function() {
+            alert('You have 3 new notifications:\n1. Assignment due tomorrow\n2. Science quiz on Friday\n3. New study guide available');
+        });
+
+        // Wellbeing check-in modal functionality
+        function showWellbeingModal() {
+            const modal = document.createElement('div');
+            modal.style.cssText = `
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.5);
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                z-index: 1000;
+            `;
+            
+            modal.innerHTML = `
+                <div style="
+                    background: white;
+                    padding: 30px;
+                    border-radius: 12px;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+                    max-width: 400px;
+                    width: 90%;
+                    text-align: center;
+                ">
+                    <h3 style="color: #6B46C1; margin-bottom: 20px;">How are you feeling today?</h3>
+                    <p style="color: #6B7280; margin-bottom: 25px;">Your wellbeing matters to us. Please select how you're feeling:</p>
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-bottom: 25px;">
+                        <button onclick="submitMood('great')" style="
+                            padding: 15px;
+                            border: 2px solid #10B981;
+                            background: #F0FDF4;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 5px;">😊</div>
+                            <div style="color: #10B981; font-weight: 600;">Great</div>
+                        </button>
+                        
+                        <button onclick="submitMood('good')" style="
+                            padding: 15px;
+                            border: 2px solid #3B82F6;
+                            background: #EFF6FF;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 5px;">🙂</div>
+                            <div style="color: #3B82F6; font-weight: 600;">Good</div>
+                        </button>
+                        
+                        <button onclick="submitMood('okay')" style="
+                            padding: 15px;
+                            border: 2px solid #F59E0B;
+                            background: #FFFBEB;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 5px;">😐</div>
+                            <div style="color: #F59E0B; font-weight: 600;">Okay</div>
+                        </button>
+                        
+                        <button onclick="submitMood('struggling')" style="
+                            padding: 15px;
+                            border: 2px solid #EF4444;
+                            background: #FEF2F2;
+                            border-radius: 8px;
+                            cursor: pointer;
+                            transition: all 0.3s ease;
+                        ">
+                            <div style="font-size: 2rem; margin-bottom: 5px;">😔</div>
+                            <div style="color: #EF4444; font-weight: 600;">Struggling</div>
+                        </button>
+                    </div>
+                    
+                    <button onclick="closeModal()" style="
+                        background: #6B7280;
+                        color: white;
+                        border: none;
+                        padding: 10px 20px;
+                        border-radius: 6px;
+                        cursor: pointer;
+                        font-weight: 600;
+                    ">Close</button>
+                </div>
+            `;
+            
+            document.body.appendChild(modal);
+            
+            // Close modal when clicking outside
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+            
+            window.currentModal = modal;
+        }
+        
+        function submitMood(mood) {
+            const messages = {
+                great: 'Wonderful! Keep up the positive energy! 🌟',
+                good: 'That\'s great to hear! Have a wonderful day! 😊',
+                okay: 'Thanks for sharing. Remember, we\'re here if you need support. 💙',
+                struggling: 'Thank you for being honest. Please reach out to our support team - you\'re not alone. 🤗'
+            };
+            
+            alert(messages[mood]);
+            closeModal();
+        }
+        
+        function closeModal() {
+            if (window.currentModal) {
+                document.body.removeChild(window.currentModal);
+                window.currentModal = null;
+            }
+        }
     </script>
 </body>
 </html>
