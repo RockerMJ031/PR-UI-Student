@@ -629,35 +629,33 @@
                     <option value="in-progress">In Progress</option>
                     <option value="completed">Completed</option>
                 </select>
-                <select class="filter-select" id="keyStageFilter">
-                    <option value="">All Key Stages</option>
-                    <option value="ks4">Key Stage 4</option>
-                </select>
             </div>
 
             <!-- Courses Grid -->
-            <div class="courses-grid">
+            <div class="courses-grid" id="coursesGrid">
                 <!-- Mathematics Course -->
-                <div class="course-card mathematics" data-subject="mathematics" data-progress="in-progress" data-keystage="ks4">
+                <div class="course-card" data-subject="mathematics" data-progress="in-progress">
                     <div class="course-header">
                         <div class="course-title">GCSE Mathematics</div>
-                        <div class="course-teacher">Mr. Smith</div>
+                        <div class="course-teacher">Teacher: Ms. Sarah Thompson</div>
                         <div class="course-schedule">Mon, Wed, Fri - 9:00 AM</div>
                         <div class="key-stage">Key Stage 4</div>
                     </div>
                     <div class="course-body">
                         <div class="course-description">
-                            GCSE Mathematics covering algebra, geometry, statistics, and number theory. Preparation for final examinations.
+                            Comprehensive GCSE Mathematics covering algebra, geometry, statistics, and number theory. Focus on problem-solving and real-world applications.
                         </div>
+                        
                         <div class="course-progress">
                             <div class="progress-label">
-                                <span>Progress</span>
-                                <span>75%</span>
+                                <span>Course Progress</span>
+                                <span>68%</span>
                             </div>
                             <div class="progress-bar">
-                                <div class="progress-fill" style="width: 75%;"></div>
+                                <div class="progress-fill" style="width: 68%;"></div>
                             </div>
                         </div>
+
                         <div class="course-stats">
                             <div class="stat-item">
                                 <div class="stat-value">24</div>
@@ -672,187 +670,181 @@
                                 <div class="stat-label">Remaining</div>
                             </div>
                         </div>
+
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Continue Learning
+                            </a>
+                            <a href="#" class="btn btn-outline">
+                                <i class="fas fa-chart-bar"></i>
+                                View Progress
+                            </a>
+                        </div>
+
                         <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
+                            <a href="#" class="btn btn-info">
+                                <i class="fas fa-calendar"></i>
+                                Schedule
+                            </a>
+                            <a href="#" class="btn btn-success">
+                                <i class="fas fa-comments"></i>
+                                Discussion
+                            </a>
                         </div>
                     </div>
                 </div>
 
                 <!-- English Language Course -->
-                <div class="course-card english" data-subject="english" data-progress="in-progress" data-keystage="ks4">
+                <div class="course-card" data-subject="english" data-progress="in-progress">
                     <div class="course-header">
                         <div class="course-title">GCSE English Language</div>
-                        <div class="course-teacher">Ms. Johnson</div>
+                        <div class="course-teacher">Teacher: Mr. James Wilson</div>
                         <div class="course-schedule">Tue, Thu - 10:30 AM</div>
                         <div class="key-stage">Key Stage 4</div>
                     </div>
                     <div class="course-body">
                         <div class="course-description">
-                            GCSE English Language focusing on reading comprehension, creative writing, and language analysis skills.
+                            Develop critical reading, writing, and communication skills. Focus on creative writing, comprehension, and language analysis.
                         </div>
+                        
                         <div class="course-progress">
                             <div class="progress-label">
-                                <span>Progress</span>
-                                <span>60%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 60%;"></div>
-                            </div>
-                        </div>
-                        <div class="course-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">20</div>
-                                <div class="stat-label">Lessons</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">12</div>
-                                <div class="stat-label">Completed</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">8</div>
-                                <div class="stat-label">Remaining</div>
-                            </div>
-                        </div>
-                        <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Combined Science Course -->
-                <div class="course-card science" data-subject="science" data-progress="in-progress" data-keystage="ks4">
-                    <div class="course-header">
-                        <div class="course-title">GCSE Combined Science</div>
-                        <div class="course-teacher">Dr. Brown</div>
-                        <div class="course-schedule">Mon, Wed - 2:00 PM</div>
-                        <div class="key-stage">Key Stage 4</div>
-                    </div>
-                    <div class="course-body">
-                        <div class="course-description">
-                            GCSE Combined Science covering biology, chemistry, and physics. Laboratory work and scientific investigation skills.
-                        </div>
-                        <div class="course-progress">
-                            <div class="progress-label">
-                                <span>Progress</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="progress-bar">
-                                <div class="progress-fill" style="width: 85%;"></div>
-                            </div>
-                        </div>
-                        <div class="course-stats">
-                            <div class="stat-item">
-                                <div class="stat-value">28</div>
-                                <div class="stat-label">Lessons</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">24</div>
-                                <div class="stat-label">Completed</div>
-                            </div>
-                            <div class="stat-item">
-                                <div class="stat-value">4</div>
-                                <div class="stat-label">Remaining</div>
-                            </div>
-                        </div>
-                        <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- History Course -->
-                <div class="course-card history" data-subject="history" data-progress="in-progress" data-keystage="ks4">
-                    <div class="course-header">
-                        <div class="course-title">GCSE History</div>
-                        <div class="course-teacher">Mr. Wilson</div>
-                        <div class="course-schedule">Tue, Fri - 1:00 PM</div>
-                        <div class="key-stage">Key Stage 4</div>
-                    </div>
-                    <div class="course-body">
-                        <div class="course-description">
-                            GCSE History covering modern world history, including WWI, WWII, and Cold War. Source analysis and essay writing.
-                        </div>
-                        <div class="course-progress">
-                            <div class="progress-label">
-                                <span>Progress</span>
+                                <span>Course Progress</span>
                                 <span>45%</span>
                             </div>
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: 45%;"></div>
                             </div>
                         </div>
+
                         <div class="course-stats">
                             <div class="stat-item">
-                                <div class="stat-value">22</div>
+                                <div class="stat-value">20</div>
                                 <div class="stat-label">Lessons</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">10</div>
+                                <div class="stat-value">9</div>
                                 <div class="stat-label">Completed</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">12</div>
+                                <div class="stat-value">11</div>
                                 <div class="stat-label">Remaining</div>
                             </div>
                         </div>
+
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Continue Learning
+                            </a>
+                            <a href="#" class="btn btn-outline">
+                                <i class="fas fa-chart-bar"></i>
+                                View Progress
+                            </a>
+                        </div>
+
                         <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
+                            <a href="#" class="btn btn-info">
+                                <i class="fas fa-calendar"></i>
+                                Schedule
+                            </a>
+                            <a href="#" class="btn btn-success">
+                                <i class="fas fa-comments"></i>
+                                Discussion
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Geography Course -->
-                <div class="course-card geography" data-subject="geography" data-progress="not-started" data-keystage="ks4">
+                <!-- Combined Science Course -->
+                <div class="course-card" data-subject="science" data-progress="in-progress">
                     <div class="course-header">
-                        <div class="course-title">GCSE Geography</div>
-                        <div class="course-teacher">Ms. Davis</div>
-                        <div class="course-schedule">Thu - 11:00 AM</div>
+                        <div class="course-title">GCSE Combined Science</div>
+                        <div class="course-teacher">Teacher: Dr. Emily Chen</div>
+                        <div class="course-schedule">Mon, Wed - 2:00 PM</div>
                         <div class="key-stage">Key Stage 4</div>
                     </div>
                     <div class="course-body">
                         <div class="course-description">
-                            GCSE Geography covering physical and human geography. Fieldwork, data analysis, and case study examination.
+                            Integrated approach to Biology, Chemistry, and Physics. Hands-on experiments and scientific method exploration.
                         </div>
+                        
                         <div class="course-progress">
                             <div class="progress-label">
-                                <span>Progress</span>
+                                <span>Course Progress</span>
+                                <span>52%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 52%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="course-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">30</div>
+                                <div class="stat-label">Lessons</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">16</div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">14</div>
+                                <div class="stat-label">Remaining</div>
+                            </div>
+                        </div>
+
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Continue Learning
+                            </a>
+                            <a href="#" class="btn btn-outline">
+                                <i class="fas fa-chart-bar"></i>
+                                View Progress
+                            </a>
+                        </div>
+
+                        <div class="course-secondary-actions">
+                            <a href="#" class="btn btn-info">
+                                <i class="fas fa-calendar"></i>
+                                Schedule
+                            </a>
+                            <a href="#" class="btn btn-success">
+                                <i class="fas fa-comments"></i>
+                                Discussion
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- History Course -->
+                <div class="course-card" data-subject="history" data-progress="not-started">
+                    <div class="course-header">
+                        <div class="course-title">GCSE History</div>
+                        <div class="course-teacher">Teacher: Mr. David Brown</div>
+                        <div class="course-schedule">Tue, Fri - 11:00 AM</div>
+                        <div class="key-stage">Key Stage 4</div>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-description">
+                            Study of modern world history including World Wars, social changes, and political developments from 1900-present.
+                        </div>
+                        
+                        <div class="course-progress">
+                            <div class="progress-label">
+                                <span>Course Progress</span>
                                 <span>0%</span>
                             </div>
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: 0%;"></div>
                             </div>
                         </div>
+
                         <div class="course-stats">
                             <div class="stat-item">
-                                <div class="stat-value">18</div>
+                                <div class="stat-value">22</div>
                                 <div class="stat-label">Lessons</div>
                             </div>
                             <div class="stat-item">
@@ -860,51 +852,65 @@
                                 <div class="stat-label">Completed</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">18</div>
+                                <div class="stat-value">22</div>
                                 <div class="stat-label">Remaining</div>
                             </div>
                         </div>
+
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Start Course
+                            </a>
+                            <a href="#" class="btn btn-outline">
+                                <i class="fas fa-info-circle"></i>
+                                Course Info
+                            </a>
+                        </div>
+
                         <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
+                            <a href="#" class="btn btn-info">
+                                <i class="fas fa-calendar"></i>
+                                Schedule
+                            </a>
+                            <a href="#" class="btn btn-success">
+                                <i class="fas fa-comments"></i>
+                                Discussion
+                            </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- French Course -->
-                <div class="course-card french" data-subject="french" data-progress="completed" data-keystage="ks4">
+                <!-- Geography Course -->
+                <div class="course-card" data-subject="geography" data-progress="completed">
                     <div class="course-header">
-                        <div class="course-title">GCSE French</div>
-                        <div class="course-teacher">Mme. Laurent</div>
-                        <div class="course-schedule">Fri - 3:00 PM</div>
+                        <div class="course-title">GCSE Geography</div>
+                        <div class="course-teacher">Teacher: Ms. Lisa Anderson</div>
+                        <div class="course-schedule">Thu - 1:00 PM</div>
                         <div class="key-stage">Key Stage 4</div>
                     </div>
                     <div class="course-body">
                         <div class="course-description">
-                            GCSE French covering speaking, listening, reading, and writing skills. Cultural studies and practical communication.
+                            Physical and human geography covering climate, ecosystems, urban development, and environmental challenges.
                         </div>
+                        
                         <div class="course-progress">
                             <div class="progress-label">
-                                <span>Progress</span>
+                                <span>Course Progress</span>
                                 <span>100%</span>
                             </div>
                             <div class="progress-bar">
                                 <div class="progress-fill" style="width: 100%;"></div>
                             </div>
                         </div>
+
                         <div class="course-stats">
                             <div class="stat-item">
-                                <div class="stat-value">16</div>
+                                <div class="stat-value">18</div>
                                 <div class="stat-label">Lessons</div>
                             </div>
                             <div class="stat-item">
-                                <div class="stat-value">16</div>
+                                <div class="stat-value">18</div>
                                 <div class="stat-label">Completed</div>
                             </div>
                             <div class="stat-item">
@@ -912,65 +918,142 @@
                                 <div class="stat-label">Remaining</div>
                             </div>
                         </div>
+
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-success">
+                                <i class="fas fa-check"></i>
+                                Course Completed
+                            </a>
+                            <a href="#" class="btn btn-outline">
+                                <i class="fas fa-redo"></i>
+                                Review Content
+                            </a>
+                        </div>
+
                         <div class="course-secondary-actions">
-                            <button class="btn btn-success">
-                                <i class="fas fa-video"></i>
-                                Recordings
-                            </button>
-                            <button class="btn btn-info">
-                                <i class="fas fa-tasks"></i>
-                                Assignments
-                            </button>
+                            <a href="#" class="btn btn-info">
+                                <i class="fas fa-certificate"></i>
+                                Certificate
+                            </a>
+                            <a href="#" class="btn btn-success">
+                                <i class="fas fa-comments"></i>
+                                Discussion
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- French Course -->
+                <div class="course-card" data-subject="french" data-progress="in-progress">
+                    <div class="course-header">
+                        <div class="course-title">GCSE French</div>
+                        <div class="course-teacher">Teacher: Mme. Claire Dubois</div>
+                        <div class="course-schedule">Mon, Thu - 3:30 PM</div>
+                        <div class="key-stage">Key Stage 4</div>
+                    </div>
+                    <div class="course-body">
+                        <div class="course-description">
+                            Develop French language skills through speaking, listening, reading, and writing. Cultural exploration and practical communication.
+                        </div>
+                        
+                        <div class="course-progress">
+                            <div class="progress-label">
+                                <span>Course Progress</span>
+                                <span>33%</span>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 33%;"></div>
+                            </div>
+                        </div>
+
+                        <div class="course-stats">
+                            <div class="stat-item">
+                                <div class="stat-value">24</div>
+                                <div class="stat-label">Lessons</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">8</div>
+                                <div class="stat-label">Completed</div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-value">16</div>
+                                <div class="stat-label">Remaining</div>
+                            </div>
+                        </div>
+
+                        <div class="course-actions">
+                            <a href="#" class="btn btn-primary">
+                                <i class="fas fa-play"></i>
+                                Continue Learning
+                            </a>
+                            <a href="#" class="btn btn-outline">
+                                <i class="fas fa-chart-bar"></i>
+                                View Progress
+                            </a>
+                        </div>
+
+                        <div class="course-secondary-actions">
+                            <a href="#" class="btn btn-info">
+                                <i class="fas fa-calendar"></i>
+                                Schedule
+                            </a>
+                            <a href="#" class="btn btn-success">
+                                <i class="fas fa-comments"></i>
+                                Discussion
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Upcoming Assignments -->
+            <!-- Upcoming Assignments Section -->
             <div class="assignments-section">
-                <h2 class="section-title">Upcoming Assignments</h2>
+                <h2 class="section-title">
+                    <i class="fas fa-tasks"></i>
+                    Upcoming Assignments
+                </h2>
                 <div class="assignment-list">
                     <div class="assignment-item">
                         <div class="assignment-info">
-                            <h4>GCSE Mathematics - Quadratic Equations Practice</h4>
-                            <p>Complete past paper questions on quadratic equations and graphs</p>
+                            <h4>Mathematics - Quadratic Equations Test</h4>
+                            <p>Complete practice problems and prepare for assessment</p>
                         </div>
                         <div class="assignment-due">
-                            <div class="due-date">Due Tomorrow</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">March 15, 2024</div>
+                            <div class="due-date">Due: Tomorrow</div>
+                            <div style="font-size: 0.8rem; color: var(--text-light);">High Priority</div>
                         </div>
                     </div>
                     
                     <div class="assignment-item">
                         <div class="assignment-info">
-                            <h4>GCSE English Language - Creative Writing Task</h4>
-                            <p>Write a descriptive piece based on the given stimulus image</p>
+                            <h4>English Language - Creative Writing Essay</h4>
+                            <p>Write a 500-word creative piece on "A Day in the Future"</p>
                         </div>
                         <div class="assignment-due">
-                            <div class="due-date">Due in 3 days</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">March 17, 2024</div>
+                            <div class="due-date">Due: Friday</div>
+                            <div style="font-size: 0.8rem; color: var(--text-light);">Medium Priority</div>
                         </div>
                     </div>
                     
                     <div class="assignment-item">
                         <div class="assignment-info">
-                            <h4>GCSE Combined Science - Chemistry Practical Report</h4>
-                            <p>Write up findings from the rates of reaction experiment</p>
+                            <h4>Combined Science - Lab Report</h4>
+                            <p>Submit findings from the chemical reactions experiment</p>
                         </div>
                         <div class="assignment-due">
-                            <div class="due-date">Due in 5 days</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">March 19, 2024</div>
+                            <div class="due-date">Due: Next Monday</div>
+                            <div style="font-size: 0.8rem; color: var(--text-light);">Medium Priority</div>
                         </div>
                     </div>
                     
                     <div class="assignment-item completed">
                         <div class="assignment-info">
-                            <h4>GCSE History - WWI Causes Essay</h4>
-                            <p>Analyze the long and short-term causes of World War I</p>
+                            <h4>French - Vocabulary Quiz</h4>
+                            <p>Test on Unit 3 vocabulary and phrases</p>
                         </div>
                         <div class="assignment-due">
                             <div class="due-date completed">Completed</div>
-                            <div style="font-size: 0.8rem; color: var(--text-light);">Submitted March 10</div>
+                            <div style="font-size: 0.8rem; color: var(--success-color);">Grade: A-</div>
                         </div>
                     </div>
                 </div>
@@ -979,10 +1062,11 @@
     </div>
 
     <script>
-        // Add active state to navigation
+        // Navigation active state
         document.addEventListener('DOMContentLoaded', function() {
-            const navLinks = document.querySelectorAll('.nav-link');
+            // Set active navigation item
             const currentPage = window.location.pathname.split('/').pop();
+            const navLinks = document.querySelectorAll('.nav-link');
             
             navLinks.forEach(link => {
                 if (link.getAttribute('href') === currentPage) {
@@ -991,96 +1075,74 @@
                     link.classList.remove('active');
                 }
             });
-        });
 
-        // Search functionality
-        document.getElementById('courseSearch').addEventListener('input', function() {
-            const searchTerm = this.value.toLowerCase();
-            const courseCards = document.querySelectorAll('.course-card');
-            
-            courseCards.forEach(card => {
-                const title = card.querySelector('.course-title').textContent.toLowerCase();
-                const teacher = card.querySelector('.course-teacher').textContent.toLowerCase();
-                const description = card.querySelector('.course-description').textContent.toLowerCase();
-                
-                if (title.includes(searchTerm) || teacher.includes(searchTerm) || description.includes(searchTerm)) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
+            // Course filtering functionality
+            const searchInput = document.getElementById('courseSearch');
+            const subjectFilter = document.getElementById('subjectFilter');
+            const progressFilter = document.getElementById('progressFilter');
+            const coursesGrid = document.getElementById('coursesGrid');
+            const courseCards = coursesGrid.querySelectorAll('.course-card');
 
-        // Subject filter
-        document.getElementById('subjectFilter').addEventListener('change', function() {
-            const selectedSubject = this.value;
-            const courseCards = document.querySelectorAll('.course-card');
-            
-            courseCards.forEach(card => {
-                if (selectedSubject === '' || card.dataset.subject === selectedSubject) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
+            function filterCourses() {
+                const searchTerm = searchInput.value.toLowerCase();
+                const selectedSubject = subjectFilter.value;
+                const selectedProgress = progressFilter.value;
 
-        // Progress filter
-        document.getElementById('progressFilter').addEventListener('change', function() {
-            const selectedProgress = this.value;
-            const courseCards = document.querySelectorAll('.course-card');
-            
-            courseCards.forEach(card => {
-                if (selectedProgress === '' || card.dataset.progress === selectedProgress) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
+                courseCards.forEach(card => {
+                    const courseTitle = card.querySelector('.course-title').textContent.toLowerCase();
+                    const courseTeacher = card.querySelector('.course-teacher').textContent.toLowerCase();
+                    const courseSubject = card.getAttribute('data-subject');
+                    const courseProgress = card.getAttribute('data-progress');
 
-        // Key Stage filter
-        document.getElementById('keyStageFilter').addEventListener('change', function() {
-            const selectedKeyStage = this.value;
-            const courseCards = document.querySelectorAll('.course-card');
-            
-            courseCards.forEach(card => {
-                if (selectedKeyStage === '' || card.dataset.keystage === selectedKeyStage) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
-                }
-            });
-        });
+                    const matchesSearch = courseTitle.includes(searchTerm) || courseTeacher.includes(searchTerm);
+                    const matchesSubject = !selectedSubject || courseSubject === selectedSubject;
+                    const matchesProgress = !selectedProgress || courseProgress === selectedProgress;
 
-        // Emergency button functionality
-        document.querySelector('.emergency-btn').addEventListener('click', function() {
-            alert('Emergency support has been contacted. Help is on the way.');
-        });
-
-        // Notification icon functionality
-        document.querySelector('.notification-icon').addEventListener('click', function() {
-            alert('You have 3 new notifications:\n1. Assignment due tomorrow\n2. Science quiz on Friday\n3. New study guide available');
-        });
-
-        // Recording button functionality
-        document.querySelectorAll('.btn-success').forEach(button => {
-            if (button.textContent.includes('Recordings')) {
-                button.addEventListener('click', function() {
-                    const courseTitle = this.closest('.course-card').querySelector('.course-title').textContent;
-                    alert(`Opening ${courseTitle} recordings...`);
+                    if (matchesSearch && matchesSubject && matchesProgress) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
                 });
             }
-        });
 
-        // Assignment button functionality
-        document.querySelectorAll('.btn-info').forEach(button => {
-            if (button.textContent.includes('Assignments')) {
-                button.addEventListener('click', function() {
-                    const courseTitle = this.closest('.course-card').querySelector('.course-title').textContent;
-                    alert(`Viewing ${courseTitle} assignments...`);
+            // Add event listeners for filtering
+            searchInput.addEventListener('input', filterCourses);
+            subjectFilter.addEventListener('change', filterCourses);
+            progressFilter.addEventListener('change', filterCourses);
+
+            // Emergency button functionality
+            const emergencyBtn = document.querySelector('.emergency-btn');
+            emergencyBtn.addEventListener('click', function() {
+                alert('Emergency support has been contacted. A counselor will reach out to you shortly.');
+            });
+
+            // Course card interactions
+            courseCards.forEach(card => {
+                const buttons = card.querySelectorAll('.btn');
+                buttons.forEach(button => {
+                    button.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        const action = this.textContent.trim();
+                        console.log(`Action clicked: ${action} for course: ${card.querySelector('.course-title').textContent}`);
+                        
+                        // Add specific functionality based on button action
+                        if (action.includes('Continue Learning') || action.includes('Start Course')) {
+                            // Redirect to course content
+                            console.log('Redirecting to course content...');
+                        } else if (action.includes('View Progress')) {
+                            // Show progress details
+                            console.log('Showing progress details...');
+                        } else if (action.includes('Schedule')) {
+                            // Open schedule view
+                            console.log('Opening schedule...');
+                        } else if (action.includes('Discussion')) {
+                            // Open discussion forum
+                            console.log('Opening discussion forum...');
+                        }
+                    });
                 });
-            }
+            });
         });
     </script>
 </body>
