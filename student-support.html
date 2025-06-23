@@ -80,32 +80,29 @@
             display: flex;
             align-items: center;
             padding: 12px 20px;
-            color: rgba(255,255,255,0.8);
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            transition: all 0.3s ease;
-            border-radius: 8px;
-            margin: 0 10px;
+            border-radius: var(--border-radius);
+            transition: var(--transition);
             min-height: 44px;
-        }
-
-        .nav-link:hover,
-        .nav-link.active {
-            background-color: rgba(255,255,255,0.1);
-            color: white;
-            border-right: 3px solid white;
         }
 
         .nav-link i {
             margin-right: 10px;
+            font-size: 1.1rem;
             width: 20px;
             text-align: center;
-            font-size: 16px;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            border-right: 3px solid white;
         }
 
         .nav-link.active {
-            background-color: rgba(255,255,255,0.2);
-            color: white;
-            border-right: 3px solid white;
+            background-color: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
         }
 
         .user-profile {
@@ -608,32 +605,62 @@
                 grid-template-columns: 1fr;
             }
 
-            .form-row {
+            .contact-section {
                 grid-template-columns: 1fr;
             }
 
-            .contact-section {
+            .form-row {
                 grid-template-columns: 1fr;
             }
 
             .resources-grid {
                 grid-template-columns: 1fr;
             }
+
+            .faq-categories {
+                justify-content: center;
+            }
+        }
+
+        /* Mobile Menu Toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-toggle {
+                display: block;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-toggle" onclick="toggleSidebar()">
+            <i class="fas fa-bars"></i>
+        </button>
+
         <!-- Sidebar -->
-        <nav class="sidebar">
+        <div class="sidebar" id="sidebar">
             <div class="logo">
-                <h2>Student Portal</h2>
+                <h2>Purple Ruler Academy</h2>
             </div>
             
-            <div class="nav-menu">
+            <nav class="nav-menu">
                 <div class="nav-item">
                     <a href="student-dashboard.html" class="nav-link">
-                        <i class="fas fa-tachometer-alt"></i>
+                        <i class="fas fa-home"></i>
                         Dashboard
                     </a>
                 </div>
@@ -645,26 +672,14 @@
                 </div>
                 <div class="nav-item">
                     <a href="student-schedule.html" class="nav-link">
-                        <i class="fas fa-calendar-alt"></i>
+                        <i class="fas fa-calendar"></i>
                         Schedule
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="student-assignments.html" class="nav-link">
-                        <i class="fas fa-tasks"></i>
-                        Assignments
                     </a>
                 </div>
                 <div class="nav-item">
                     <a href="student-progress.html" class="nav-link">
                         <i class="fas fa-chart-line"></i>
                         Progress
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="student-support.html" class="nav-link active">
-                        <i class="fas fa-hands-helping"></i>
-                        Support
                     </a>
                 </div>
                 <div class="nav-item">
@@ -679,7 +694,13 @@
                         Safeguarding
                     </a>
                 </div>
-            </div>
+                <div class="nav-item">
+                    <a href="student-support.html" class="nav-link active">
+                        <i class="fas fa-hands-helping"></i>
+                        Get Support
+                    </a>
+                </div>
+            </nav>
             
             <div class="user-profile">
                 <div class="user-info">
@@ -687,104 +708,111 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div>
-                        <div style="font-weight: 600;">Alex Student</div>
-                        <div style="font-size: 0.8rem; opacity: 0.8;">Year 10</div>
+                        <div style="font-weight: 600;">Alex Chen</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Student</div>
                     </div>
                 </div>
             </div>
-        </nav>
-        
+        </div>
+
         <!-- Main Content -->
         <div class="main-content">
+            <!-- Header -->
             <div class="header">
                 <h1>Get Support</h1>
                 <div class="header-actions">
-                    <button class="emergency-btn" onclick="showEmergencyContact()">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        Emergency
-                    </button>
                     <button class="chat-btn" onclick="startLiveChat()">
                         <i class="fas fa-comments"></i>
                         Live Chat
                     </button>
+                    <button class="emergency-btn" onclick="showEmergencySupport()">
+                        <i class="fas fa-phone"></i>
+                        Emergency
+                    </button>
                 </div>
             </div>
-            
+
             <!-- Support Categories -->
             <div class="support-categories">
-                <div class="support-card academic" onclick="selectCategory('academic')">
+                <div class="support-card academic" onclick="showSupportType('academic')">
                     <div class="icon">
                         <i class="fas fa-graduation-cap"></i>
                     </div>
                     <h3>Academic Support</h3>
-                    <p>Get help with coursework, assignments, and study strategies</p>
+                    <p>Get help with your studies, assignments, and coursework from our tutoring team.</p>
                     <button class="btn">Get Academic Help</button>
                 </div>
                 
-                <div class="support-card technical" onclick="selectCategory('technical')">
+                <div class="support-card technical" onclick="showSupportType('technical')">
                     <div class="icon">
-                        <i class="fas fa-laptop"></i>
+                        <i class="fas fa-laptop-code"></i>
                     </div>
                     <h3>Technical Support</h3>
-                    <p>Resolve issues with technology, platforms, and digital tools</p>
-                    <button class="btn">Get Technical Help</button>
+                    <p>Having trouble with the platform? Our tech team is here to help you.</p>
+                    <button class="btn">Get Tech Help</button>
                 </div>
                 
-                <div class="support-card wellbeing" onclick="selectCategory('wellbeing')">
+                <div class="support-card wellbeing" onclick="showSupportType('wellbeing')">
                     <div class="icon">
                         <i class="fas fa-heart"></i>
                     </div>
                     <h3>Wellbeing Support</h3>
-                    <p>Access mental health resources and counseling services</p>
+                    <p>Access counseling services and mental health resources for your wellbeing.</p>
                     <button class="btn">Get Wellbeing Help</button>
                 </div>
                 
-                <div class="support-card emergency" onclick="selectCategory('emergency')">
+                <div class="support-card emergency" onclick="showSupportType('emergency')">
                     <div class="icon">
                         <i class="fas fa-exclamation-triangle"></i>
                     </div>
                     <h3>Emergency Support</h3>
-                    <p>Immediate assistance for urgent situations</p>
+                    <p>Immediate assistance for urgent situations and crisis support.</p>
                     <button class="btn">Get Emergency Help</button>
                 </div>
             </div>
-            
+
             <!-- Quick Actions -->
             <div class="quick-actions">
-                <h2>Quick Actions</h2>
+                <h2>Quick Support Actions</h2>
                 <div class="actions-grid">
                     <div class="action-btn" onclick="submitTicket()">
                         <i class="fas fa-ticket-alt"></i>
-                        <span>Submit Support Ticket</span>
+                        <div>
+                            <div style="font-weight: 600;">Submit Ticket</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">Report an issue</div>
+                        </div>
                     </div>
+                    
                     <div class="action-btn" onclick="bookAppointment()">
                         <i class="fas fa-calendar-plus"></i>
-                        <span>Book Appointment</span>
+                        <div>
+                            <div style="font-weight: 600;">Book Appointment</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">Schedule a meeting</div>
+                        </div>
                     </div>
+                    
+                    <div class="action-btn" onclick="viewTickets()">
+                        <i class="fas fa-list"></i>
+                        <div>
+                            <div style="font-weight: 600;">My Tickets</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">Track your requests</div>
+                        </div>
+                    </div>
+                    
                     <div class="action-btn" onclick="accessResources()">
                         <i class="fas fa-book-open"></i>
-                        <span>Access Resources</span>
-                    </div>
-                    <div class="action-btn" onclick="trackTickets()">
-                        <i class="fas fa-search"></i>
-                        <span>Track My Tickets</span>
-                    </div>
-                    <div class="action-btn" onclick="joinWorkshop()">
-                        <i class="fas fa-users"></i>
-                        <span>Join Workshop</span>
-                    </div>
-                    <div class="action-btn" onclick="downloadGuides()">
-                        <i class="fas fa-download"></i>
-                        <span>Download Guides</span>
+                        <div>
+                            <div style="font-weight: 600;">Help Resources</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">Guides and tutorials</div>
+                        </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- FAQ Section -->
             <div class="faq-section">
                 <h2>Frequently Asked Questions</h2>
-                
-                <input type="text" class="faq-search" placeholder="Search FAQs..." onkeyup="searchFAQ()">
+                <input type="text" class="faq-search" placeholder="Search for answers..." onkeyup="searchFAQ(this.value)">
                 
                 <div class="faq-categories">
                     <div class="faq-category active" onclick="filterFAQ('all')">All</div>
@@ -794,136 +822,115 @@
                     <div class="faq-category" onclick="filterFAQ('general')">General</div>
                 </div>
                 
-                <div class="faq-item" data-category="academic">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>How do I submit an assignment?</span>
-                        <i class="fas fa-chevron-down"></i>
+                <div class="faq-list">
+                    <div class="faq-item" data-category="academic">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How do I submit my assignments?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>To submit assignments, go to your Assignments page, click on the assignment you want to submit, and use the "Submit Assignment" button. You can upload files or type your response directly.</p>
+                        </div>
                     </div>
-                    <div class="faq-answer">
-                        <p>To submit an assignment, go to your course page, find the assignment section, and click "Submit Assignment". Upload your file and add any required comments before clicking "Submit".</p>
+                    
+                    <div class="faq-item" data-category="technical">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>I can't access my courses. What should I do?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>First, try refreshing your browser or clearing your cache. If the problem persists, check your internet connection. If you're still having issues, contact our technical support team.</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="faq-item" data-category="technical">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>I can't access my online classes. What should I do?</span>
-                        <i class="fas fa-chevron-down"></i>
+                    
+                    <div class="faq-item" data-category="account">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How do I reset my password?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Click on "Forgot Password" on the login page, enter your email address, and follow the instructions sent to your email to reset your password.</p>
+                        </div>
                     </div>
-                    <div class="faq-answer">
-                        <p>First, check your internet connection. If that's working, try refreshing the page or clearing your browser cache. If the problem persists, contact technical support.</p>
+                    
+                    <div class="faq-item" data-category="academic">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>How can I get extra help with my studies?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>You can book one-on-one tutoring sessions, join study groups, access our resource library, or contact your course instructor for additional support.</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="faq-item" data-category="account">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>How do I reset my password?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Click on "Forgot Password" on the login page, enter your email address, and follow the instructions sent to your email to reset your password.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-category="academic">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>How do I request an extension for an assignment?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Contact your instructor directly through the messaging system or submit a support ticket explaining your circumstances. Extensions are granted on a case-by-case basis.</p>
-                    </div>
-                </div>
-                
-                <div class="faq-item" data-category="general">
-                    <div class="faq-question" onclick="toggleFAQ(this)">
-                        <span>Where can I find my grades?</span>
-                        <i class="fas fa-chevron-down"></i>
-                    </div>
-                    <div class="faq-answer">
-                        <p>Your grades are available in the "Progress" section of your dashboard. You can view individual assignment grades and overall course progress there.</p>
+                    
+                    <div class="faq-item" data-category="general">
+                        <div class="faq-question" onclick="toggleFAQ(this)">
+                            <span>What are the support hours?</span>
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                        <div class="faq-answer">
+                            <p>Our support team is available Monday to Friday, 8:00 AM to 6:00 PM. Emergency support is available 24/7 for urgent situations.</p>
+                        </div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Contact Section -->
+
+            <!-- Contact Methods -->
             <div class="contact-section">
                 <div class="contact-card">
-                    <h3>Contact Information</h3>
-                    
-                    <div class="contact-method">
-                        <i class="fas fa-phone"></i>
-                        <div class="contact-info">
-                            <div class="title">Phone Support</div>
-                            <div class="details">+1 (555) 123-4567<br>Mon-Fri: 8AM-6PM</div>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <i class="fas fa-envelope"></i>
-                        <div class="contact-info">
-                            <div class="title">Email Support</div>
-                            <div class="details">support@purpleruler.edu<br>Response within 24 hours</div>
-                        </div>
-                    </div>
-                    
+                    <h3>Contact Methods</h3>
                     <div class="contact-method">
                         <i class="fas fa-comments"></i>
                         <div class="contact-info">
                             <div class="title">Live Chat</div>
-                            <div class="details">Available 24/7<br>Instant response</div>
+                            <div class="details">Available 24/7 for instant help</div>
                         </div>
                     </div>
-                    
                     <div class="contact-method">
-                        <i class="fas fa-map-marker-alt"></i>
+                        <i class="fas fa-envelope"></i>
                         <div class="contact-info">
-                            <div class="title">Office Location</div>
-                            <div class="details">123 Education St.<br>Learning City, LC 12345</div>
+                            <div class="title">Email Support</div>
+                            <div class="details">support@purpleruler.edu</div>
+                        </div>
+                    </div>
+                    <div class="contact-method">
+                        <i class="fas fa-phone"></i>
+                        <div class="contact-info">
+                            <div class="title">Phone Support</div>
+                            <div class="details">+1 (555) 123-4567</div>
                         </div>
                     </div>
                 </div>
                 
                 <div class="contact-card">
-                    <h3>Emergency Contacts</h3>
-                    
+                    <h3>Response Times</h3>
                     <div class="contact-method">
-                        <i class="fas fa-exclamation-triangle"></i>
+                        <i class="fas fa-bolt"></i>
                         <div class="contact-info">
-                            <div class="title">Emergency Hotline</div>
-                            <div class="details">+1 (555) 911-HELP<br>Available 24/7</div>
+                            <div class="title">Emergency</div>
+                            <div class="details">Immediate response</div>
                         </div>
                     </div>
-                    
                     <div class="contact-method">
-                        <i class="fas fa-user-md"></i>
+                        <i class="fas fa-clock"></i>
                         <div class="contact-info">
-                            <div class="title">Counseling Services</div>
-                            <div class="details">+1 (555) 123-CARE<br>Mon-Fri: 9AM-5PM</div>
+                            <div class="title">Urgent Issues</div>
+                            <div class="details">Within 2 hours</div>
                         </div>
                     </div>
-                    
                     <div class="contact-method">
-                        <i class="fas fa-shield-alt"></i>
+                        <i class="fas fa-calendar"></i>
                         <div class="contact-info">
-                            <div class="title">Campus Security</div>
-                            <div class="details">+1 (555) 123-SAFE<br>Available 24/7</div>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-method">
-                        <i class="fas fa-ambulance"></i>
-                        <div class="contact-info">
-                            <div class="title">Medical Emergency</div>
-                            <div class="details">Call 911<br>Or campus health center</div>
+                            <div class="title">General Inquiries</div>
+                            <div class="details">Within 24 hours</div>
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <!-- Support Ticket Form -->
             <div class="ticket-form">
-                <h2>Submit Support Ticket</h2>
-                
+                <h2>Submit a Support Ticket</h2>
                 <form onsubmit="submitSupportTicket(event)">
                     <div class="form-row">
                         <div class="form-group">
@@ -931,13 +938,12 @@
                             <select id="ticketType" required>
                                 <option value="">Select support type</option>
                                 <option value="academic">Academic Support</option>
-                                <option value="technical">Technical Support</option>
-                                <option value="account">Account Issues</option>
-                                <option value="billing">Billing Questions</option>
+                                <option value="technical">Technical Issue</option>
+                                <option value="account">Account Problem</option>
+                                <option value="wellbeing">Wellbeing Support</option>
                                 <option value="other">Other</option>
                             </select>
                         </div>
-                        
                         <div class="form-group">
                             <label for="priority">Priority Level</label>
                             <select id="priority" required>
@@ -960,24 +966,9 @@
                         <textarea id="description" placeholder="Please provide detailed information about your issue..." required></textarea>
                     </div>
                     
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label for="course">Related Course (if applicable)</label>
-                            <select id="course">
-                                <option value="">Select course</option>
-                                <option value="math">Mathematics</option>
-                                <option value="english">English Literature</option>
-                                <option value="science">Science</option>
-                                <option value="history">History</option>
-                                <option value="art">Art & Design</option>
-                                <option value="pe">Physical Education</option>
-                            </select>
-                        </div>
-                        
-                        <div class="form-group">
-                            <label for="attachment">Attachment (optional)</label>
-                            <input type="file" id="attachment" accept=".pdf,.doc,.docx,.jpg,.png">
-                        </div>
+                    <div class="form-group">
+                        <label for="attachment">Attachment (Optional)</label>
+                        <input type="file" id="attachment" accept=".jpg,.jpeg,.png,.pdf,.doc,.docx">
                     </div>
                     
                     <button type="submit" class="submit-btn">
@@ -986,49 +977,24 @@
                     </button>
                 </form>
             </div>
-            
-            <!-- Resources Section -->
+
+            <!-- Resources -->
             <div class="resources-section">
-                <h2>Helpful Resources</h2>
-                
+                <h2>Help Resources</h2>
                 <div class="resources-grid">
                     <a href="#" class="resource-item">
                         <i class="fas fa-book"></i>
                         <div class="resource-info">
-                            <div class="title">Student Handbook</div>
-                            <div class="description">Complete guide to student policies and procedures</div>
+                            <div class="title">User Guide</div>
+                            <div class="description">Complete platform guide</div>
                         </div>
                     </a>
                     
                     <a href="#" class="resource-item">
                         <i class="fas fa-video"></i>
                         <div class="resource-info">
-                            <div class="title">Tutorial Videos</div>
-                            <div class="description">Step-by-step guides for common tasks</div>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-question-circle"></i>
-                        <div class="resource-info">
-                            <div class="title">Knowledge Base</div>
-                            <div class="description">Searchable database of solutions</div>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-users"></i>
-                        <div class="resource-info">
-                            <div class="title">Student Forums</div>
-                            <div class="description">Connect with other students for help</div>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-calendar"></i>
-                        <div class="resource-info">
-                            <div class="title">Office Hours</div>
-                            <div class="description">Schedule one-on-one meetings with staff</div>
+                            <div class="title">Video Tutorials</div>
+                            <div class="description">Step-by-step videos</div>
                         </div>
                     </a>
                     
@@ -1036,49 +1002,82 @@
                         <i class="fas fa-download"></i>
                         <div class="resource-info">
                             <div class="title">Downloads</div>
-                            <div class="description">Forms, templates, and useful documents</div>
+                            <div class="description">Useful files and tools</div>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="resource-item">
+                        <i class="fas fa-question-circle"></i>
+                        <div class="resource-info">
+                            <div class="title">FAQ Database</div>
+                            <div class="description">Common questions</div>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="resource-item">
+                        <i class="fas fa-users"></i>
+                        <div class="resource-info">
+                            <div class="title">Community Forum</div>
+                            <div class="description">Student discussions</div>
+                        </div>
+                    </a>
+                    
+                    <a href="#" class="resource-item">
+                        <i class="fas fa-lightbulb"></i>
+                        <div class="resource-info">
+                            <div class="title">Tips & Tricks</div>
+                            <div class="description">Platform optimization</div>
                         </div>
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    
+
     <script>
-        // Support category selection
-        function selectCategory(category) {
-            showMessage(`Selected ${category} support category`, 'info');
-            // Scroll to ticket form
-            document.querySelector('.ticket-form').scrollIntoView({ behavior: 'smooth' });
-            // Pre-select the category in the form
-            document.getElementById('ticketType').value = category;
+        // Mobile sidebar toggle
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('active');
         }
-        
-        // Quick actions
+
+        // Support type selection
+        function showSupportType(type) {
+            const messages = {
+                academic: 'Academic Support: Get help with your studies, assignments, and coursework.',
+                technical: 'Technical Support: Resolve platform issues and technical problems.',
+                wellbeing: 'Wellbeing Support: Access counseling and mental health resources.',
+                emergency: 'Emergency Support: Immediate assistance for urgent situations.'
+            };
+            
+            alert(messages[type] + '\n\nYou can submit a ticket below or use live chat for immediate help.');
+        }
+
+        // Quick action functions
+        function startLiveChat() {
+            alert('Starting live chat...\n\nConnecting you with a support representative.');
+        }
+
         function submitTicket() {
             document.querySelector('.ticket-form').scrollIntoView({ behavior: 'smooth' });
         }
-        
+
         function bookAppointment() {
-            showMessage('Appointment booking system would open here', 'info');
+            alert('Booking appointment...\n\nYou will be redirected to the appointment scheduling system.');
         }
-        
+
+        function viewTickets() {
+            alert('My Support Tickets\n\nTicket #12345 - Technical Issue - In Progress\nTicket #12344 - Academic Help - Resolved\nTicket #12343 - Account Problem - Closed');
+        }
+
         function accessResources() {
             document.querySelector('.resources-section').scrollIntoView({ behavior: 'smooth' });
         }
-        
-        function trackTickets() {
-            showMessage('Ticket tracking system would open here', 'info');
+
+        function showEmergencySupport() {
+            alert('Emergency Support\n\nFor immediate assistance:\n• Call: +1 (555) 911-HELP\n• Text: HELP to 555-911\n• Email: emergency@purpleruler.edu\n\nIf this is a life-threatening emergency, call 911.');
         }
-        
-        function joinWorkshop() {
-            showMessage('Workshop registration would open here', 'info');
-        }
-        
-        function downloadGuides() {
-            showMessage('Download center would open here', 'info');
-        }
-        
+
         // FAQ functionality
         function toggleFAQ(element) {
             const answer = element.nextElementSibling;
@@ -1088,10 +1087,10 @@
             icon.classList.toggle('fa-chevron-down');
             icon.classList.toggle('fa-chevron-up');
         }
-        
-        function searchFAQ() {
-            const searchTerm = event.target.value.toLowerCase();
+
+        function searchFAQ(query) {
             const faqItems = document.querySelectorAll('.faq-item');
+            const searchTerm = query.toLowerCase();
             
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question span').textContent.toLowerCase();
@@ -1100,20 +1099,20 @@
                 if (question.includes(searchTerm) || answer.includes(searchTerm)) {
                     item.style.display = 'block';
                 } else {
-                    item.style.display = 'none';
+                    item.style.display = searchTerm === '' ? 'block' : 'none';
                 }
             });
         }
-        
+
         function filterFAQ(category) {
             const faqItems = document.querySelectorAll('.faq-item');
-            const categoryButtons = document.querySelectorAll('.faq-category');
+            const categories = document.querySelectorAll('.faq-category');
             
-            // Update active category button
-            categoryButtons.forEach(btn => btn.classList.remove('active'));
+            // Update active category
+            categories.forEach(cat => cat.classList.remove('active'));
             event.target.classList.add('active');
             
-            // Filter FAQ items
+            // Filter items
             faqItems.forEach(item => {
                 if (category === 'all' || item.dataset.category === category) {
                     item.style.display = 'block';
@@ -1122,97 +1121,63 @@
                 }
             });
         }
-        
+
         // Support ticket submission
         function submitSupportTicket(event) {
             event.preventDefault();
             
-            const btn = event.target.querySelector('.submit-btn');
-            const originalText = btn.innerHTML;
-            
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Submitting...';
-            btn.disabled = true;
-            
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                showMessage('Support ticket submitted successfully! You will receive a confirmation email shortly.', 'success');
-                event.target.reset();
-            }, 2000);
-        }
-        
-        // Header actions
-        function showEmergencyContact() {
-            showMessage('Emergency contact: +1 (555) 911-HELP - Available 24/7', 'warning');
-        }
-        
-        function startLiveChat() {
-            showMessage('Live chat window would open here', 'info');
-        }
-        
-        // Show message function
-        function showMessage(text, type = 'info') {
-            const message = document.createElement('div');
-            const colors = {
-                success: 'var(--success-color)',
-                error: 'var(--danger-color)',
-                warning: 'var(--warning-color)',
-                info: 'var(--info-color)'
+            const formData = {
+                type: document.getElementById('ticketType').value,
+                priority: document.getElementById('priority').value,
+                subject: document.getElementById('subject').value,
+                description: document.getElementById('description').value
             };
             
-            message.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${colors[type]};
-                color: white;
-                padding: 15px 20px;
-                border-radius: 8px;
-                z-index: 1000;
-                box-shadow: var(--shadow);
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-            `;
-            message.innerHTML = `<i class="fas fa-${type === 'success' ? 'check' : type === 'warning' ? 'exclamation-triangle' : 'info'}"></i> ${text}`;
-            document.body.appendChild(message);
+            // Simulate ticket submission
+            alert('Support ticket submitted successfully!\n\nTicket ID: #' + Math.floor(Math.random() * 100000) + '\n\nYou will receive an email confirmation shortly.');
             
-            // Animate in
-            setTimeout(() => {
-                message.style.transform = 'translateX(0)';
-            }, 100);
-            
-            // Remove after delay
-            setTimeout(() => {
-                message.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    message.remove();
-                }, 300);
-            }, 4000);
+            // Reset form
+            event.target.reset();
         }
-        
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to support cards
-            document.querySelectorAll('.support-card').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    this.style.transform = 'translateY(-5px)';
-                    this.style.boxShadow = '0 8px 25px rgba(0,0,0,0.15)';
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    this.style.transform = 'translateY(0)';
-                    this.style.boxShadow = 'var(--shadow)';
-                });
-            });
+
+        // Mobile responsiveness
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.getElementById('sidebar').classList.remove('active');
+            }
+        });
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
             
-            // Add click handlers to resource items
-            document.querySelectorAll('.resource-item').forEach(item => {
-                item.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const title = this.querySelector('.title').textContent;
-                    showMessage(`Opening ${title}...`, 'info');
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target) && 
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
+        });
+
+        // Auto-save form data
+        function autoSaveForm() {
+            const formElements = document.querySelectorAll('#ticketType, #priority, #subject, #description');
+            formElements.forEach(element => {
+                const savedValue = localStorage.getItem('support_' + element.id);
+                if (savedValue) {
+                    element.value = savedValue;
+                }
+                
+                element.addEventListener('input', function() {
+                    localStorage.setItem('support_' + element.id, element.value);
                 });
             });
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            autoSaveForm();
         });
     </script>
 </body>
