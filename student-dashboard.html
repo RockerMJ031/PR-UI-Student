@@ -78,7 +78,9 @@
             padding: 12px 20px;
             color: rgba(255,255,255,0.8);
             text-decoration: none;
+            border-radius: var(--border-radius);
             transition: all 0.3s ease;
+            min-height: 44px;
         }
 
         .nav-link:hover,
@@ -86,6 +88,11 @@
             background-color: rgba(255,255,255,0.1);
             color: white;
             border-right: 3px solid white;
+        }
+
+        .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
         }
 
         .nav-link i {
