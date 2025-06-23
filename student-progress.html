@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Growth - Student Portal</title>
+    <title>My Progress - Purple Ruler Academy</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -158,14 +158,11 @@
             background: var(--danger-color);
             color: white;
             border: none;
-            padding: 12px 20px;
+            padding: 10px 20px;
             border-radius: var(--border-radius);
-            font-weight: 600;
             cursor: pointer;
+            font-weight: 600;
             transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
         }
 
         .emergency-btn:hover {
@@ -175,17 +172,16 @@
 
         /* Growth Banner */
         .growth-banner {
-            background: linear-gradient(135deg, #28a745, #20c997);
+            background: linear-gradient(135deg, var(--success-color), #20c997);
             color: white;
             padding: 20px;
             border-radius: var(--border-radius);
+            margin-bottom: 20px;
             text-align: center;
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
         }
 
         .growth-banner h2 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-bottom: 10px;
         }
 
@@ -215,49 +211,44 @@
             transform: translateY(-5px);
         }
 
-        .overview-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+        .overview-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-size: 1.5rem;
+            color: white;
         }
 
-        .overview-card .number {
+        .overview-icon.growth {
+            background: linear-gradient(135deg, var(--success-color), #20c997);
+        }
+
+        .overview-icon.badges {
+            background: linear-gradient(135deg, var(--warning-color), #fd7e14);
+        }
+
+        .overview-icon.attendance {
+            background: linear-gradient(135deg, var(--info-color), #6f42c1);
+        }
+
+        .overview-icon.effort {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+        }
+
+        .overview-value {
             font-size: 2.5rem;
             font-weight: 700;
-            margin-bottom: 10px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
         }
 
-        .overview-card .label {
+        .overview-label {
             color: var(--text-light);
-            font-size: 1rem;
-            margin-bottom: 15px;
-        }
-
-        .overview-card .progress-ring {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto 15px;
-            position: relative;
-        }
-
-        .progress-ring svg {
-            width: 100%;
-            height: 100%;
-            transform: rotate(-90deg);
-        }
-
-        .progress-ring circle {
-            fill: none;
-            stroke-width: 8;
-        }
-
-        .progress-ring .bg {
-            stroke: var(--border-color);
-        }
-
-        .progress-ring .progress {
-            stroke: var(--primary-color);
-            stroke-linecap: round;
-            transition: stroke-dasharray 0.5s ease;
+            font-weight: 500;
         }
 
         /* Badge System */
@@ -270,31 +261,31 @@
         }
 
         .section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
             color: var(--primary-color);
+            font-size: 1.5rem;
             margin-bottom: 20px;
+            font-weight: 600;
             display: flex;
             align-items: center;
             gap: 10px;
         }
 
-        .badge-grid {
+        .badges-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
 
-        .badge-category {
+        .badge-card {
             border: 2px solid var(--border-color);
             border-radius: var(--border-radius);
             padding: 20px;
             transition: all 0.3s ease;
         }
 
-        .badge-category:hover {
+        .badge-card:hover {
             border-color: var(--primary-color);
-            box-shadow: var(--shadow);
+            transform: translateY(-3px);
         }
 
         .badge-header {
@@ -310,71 +301,63 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.5rem;
-            color: white;
             margin-right: 15px;
+            font-size: 1.3rem;
+            color: white;
+        }
+
+        .badge-icon.attendance {
+            background: linear-gradient(135deg, var(--success-color), #20c997);
+        }
+
+        .badge-icon.participation {
+            background: linear-gradient(135deg, var(--info-color), #6f42c1);
+        }
+
+        .badge-icon.effort {
+            background: linear-gradient(135deg, var(--warning-color), #fd7e14);
         }
 
         .badge-info h3 {
-            font-size: 1.2rem;
+            color: var(--text-color);
             margin-bottom: 5px;
         }
 
         .badge-level {
-            font-size: 0.9rem;
             color: var(--text-light);
+            font-size: 0.9rem;
         }
 
         .badge-progress {
-            margin: 15px 0;
+            margin-bottom: 15px;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9rem;
+            font-weight: 500;
         }
 
         .progress-bar {
-            width: 100%;
-            height: 12px;
-            background: var(--border-color);
-            border-radius: 6px;
+            height: 8px;
+            background-color: #f0f0f0;
+            border-radius: 4px;
             overflow: hidden;
-            margin-bottom: 10px;
         }
 
         .progress-fill {
             height: 100%;
-            border-radius: 6px;
-            transition: width 0.5s ease;
+            background: linear-gradient(90deg, var(--primary-color), var(--primary-light));
+            transition: width 0.3s ease;
         }
 
-        .progress-text {
+        .badge-reward {
+            background-color: var(--secondary-color);
+            padding: 10px;
+            border-radius: var(--border-radius);
             font-size: 0.9rem;
-            color: var(--text-light);
-            text-align: center;
-        }
-
-        .badge-rewards {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .reward-badge {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-            border: 2px solid var(--border-color);
-        }
-
-        .reward-badge.earned {
-            background: var(--success-color);
-            border-color: var(--success-color);
-            color: white;
-        }
-
-        .reward-badge.locked {
-            background: #f8f9fa;
             color: var(--text-light);
         }
 
@@ -387,75 +370,61 @@
             margin-bottom: 30px;
         }
 
-        .progress-item {
-            margin-bottom: 25px;
-            padding: 20px;
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+        }
+
+        .subject-card {
             border: 1px solid var(--border-color);
             border-radius: var(--border-radius);
+            overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        .progress-item:hover {
+        .subject-card:hover {
             border-color: var(--primary-color);
-            box-shadow: var(--shadow);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .progress-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .subject-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .subject-icon {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
+        .subject-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
             color: white;
+            padding: 15px 20px;
         }
 
-        .subject-details h3 {
+        .subject-name {
             font-size: 1.2rem;
             font-weight: 600;
             margin-bottom: 5px;
         }
 
-        .subject-details p {
-            color: var(--text-light);
+        .subject-teacher {
             font-size: 0.9rem;
+            opacity: 0.9;
         }
 
-        .progress-percentage {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary-color);
+        .subject-body {
+            padding: 20px;
         }
 
-        .progress-stats {
+        .subject-stats {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            grid-template-columns: repeat(2, 1fr);
             gap: 15px;
+            margin-bottom: 15px;
         }
 
         .stat-item {
             text-align: center;
             padding: 10px;
-            background: var(--secondary-color);
+            background-color: var(--secondary-color);
             border-radius: var(--border-radius);
         }
 
         .stat-value {
-            font-size: 1.2rem;
+            font-size: 1.5rem;
             font-weight: 600;
             color: var(--primary-color);
         }
@@ -463,7 +432,39 @@
         .stat-label {
             font-size: 0.8rem;
             color: var(--text-light);
-            margin-top: 5px;
+            margin-top: 2px;
+        }
+
+        .subject-achievements {
+            margin-bottom: 15px;
+        }
+
+        .achievement-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .achievement-item i {
+            color: var(--success-color);
+            margin-right: 8px;
+        }
+
+        .subject-rating {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .star {
+            color: #ffc107;
+            font-size: 1.2rem;
+        }
+
+        .star.empty {
+            color: #e0e0e0;
         }
 
         /* Growth Goals */
@@ -472,115 +473,103 @@
             padding: 25px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            margin-bottom: 30px;
+        }
+
+        .goals-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .goals-section h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.2rem;
         }
 
         .goal-item {
             display: flex;
             align-items: center;
-            padding: 15px;
+            padding: 12px;
             border: 1px solid var(--border-color);
             border-radius: var(--border-radius);
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             transition: all 0.3s ease;
         }
 
         .goal-item:hover {
             border-color: var(--primary-color);
+            background-color: var(--secondary-color);
         }
 
         .goal-checkbox {
-            width: 20px;
-            height: 20px;
-            border: 2px solid var(--border-color);
-            border-radius: 4px;
-            margin-right: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
+            margin-right: 12px;
+            transform: scale(1.2);
         }
 
-        .goal-checkbox.completed {
-            background: var(--success-color);
-            border-color: var(--success-color);
-            color: white;
-        }
-
-        .goal-content {
+        .goal-text {
             flex: 1;
+            font-size: 0.95rem;
         }
 
-        .goal-title {
-            font-weight: 600;
-            margin-bottom: 5px;
+        .goal-item.completed {
+            background-color: #f8f9fa;
+            opacity: 0.7;
         }
 
-        .goal-deadline {
-            font-size: 0.9rem;
+        .goal-item.completed .goal-text {
+            text-decoration: line-through;
             color: var(--text-light);
         }
 
-        .btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: var(--border-radius);
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow);
-        }
-
-        .btn-primary {
+        .add-goal-btn {
             background: var(--primary-color);
             color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
         }
 
-        .btn-secondary {
-            background: #6c757d;
-            color: white;
-        }
-
-        .btn-success {
-            background: var(--success-color);
-            color: white;
+        .add-goal-btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
             .sidebar {
-                width: 100%;
-                height: auto;
-                position: relative;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
             }
 
             .main-content {
                 margin-left: 0;
             }
 
-            .header {
-                flex-direction: column;
-                gap: 15px;
-                text-align: center;
-            }
-
             .progress-overview {
-                grid-template-columns: 1fr;
-            }
-
-            .progress-stats {
                 grid-template-columns: repeat(2, 1fr);
             }
 
-            .badge-grid {
+            .badges-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .subjects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .goals-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .progress-overview {
                 grid-template-columns: 1fr;
             }
         }
@@ -588,12 +577,11 @@
 </head>
 <body>
     <div class="container">
-        <!-- Sidebar -->
+        <!-- Sidebar Navigation -->
         <nav class="sidebar">
             <div class="logo">
-                <h2>Student Portal</h2>
+                <h2>Purple Ruler Academy</h2>
             </div>
-            
             <div class="nav-menu">
                 <div class="nav-item">
                     <a href="student-dashboard.html" class="nav-link">
@@ -638,7 +626,6 @@
                     </a>
                 </div>
             </div>
-            
             <div class="user-profile">
                 <div class="user-info">
                     <div class="user-avatar">
@@ -651,11 +638,15 @@
                 </div>
             </div>
         </nav>
-        
+
         <!-- Main Content -->
         <main class="main-content">
+            <!-- Header -->
             <div class="header">
-                <h1>Your Journey</h1>
+                <div>
+                    <h1>My Progress</h1>
+                    <p style="color: var(--text-light); margin: 5px 0 0 0;">Track your learning journey and celebrate your achievements</p>
+                </div>
                 <div class="header-actions">
                     <button class="emergency-btn">
                         <i class="fas fa-exclamation-triangle"></i>
@@ -666,153 +657,118 @@
 
             <!-- Growth Banner -->
             <div class="growth-banner">
-                <h2>🌱 Every Step Forward Counts!</h2>
-                <p>You're making progress every day. Keep growing, keep learning, keep believing in yourself!</p>
+                <h2>🎉 Excellent Progress This Month!</h2>
+                <p>You've completed 15 lessons and earned 3 new badges. Keep up the amazing work!</p>
             </div>
 
             <!-- Progress Overview -->
             <div class="progress-overview">
                 <div class="overview-card">
-                    <div class="progress-ring">
-                        <svg>
-                            <circle class="bg" cx="40" cy="40" r="32"></circle>
-                            <circle class="progress" cx="40" cy="40" r="32" 
-                                    stroke-dasharray="201" stroke-dashoffset="50"></circle>
-                        </svg>
+                    <div class="overview-icon growth">
+                        <i class="fas fa-chart-line"></i>
                     </div>
-                    <div class="number" style="color: var(--primary-color);">75%</div>
-                    <div class="label">Overall Growth</div>
+                    <div class="overview-value">+12%</div>
+                    <div class="overview-label">Overall Growth</div>
                 </div>
-                
                 <div class="overview-card">
-                    <div class="icon" style="color: var(--success-color);">
+                    <div class="overview-icon badges">
                         <i class="fas fa-medal"></i>
                     </div>
-                    <div class="number" style="color: var(--success-color);">12</div>
-                    <div class="label">Badges Earned</div>
+                    <div class="overview-value">8</div>
+                    <div class="overview-label">Badges Earned</div>
                 </div>
-                
                 <div class="overview-card">
-                    <div class="icon" style="color: var(--info-color);">
+                    <div class="overview-icon attendance">
                         <i class="fas fa-calendar-check"></i>
                     </div>
-                    <div class="number" style="color: var(--info-color);">18</div>
-                    <div class="label">Days Present</div>
+                    <div class="overview-value">94%</div>
+                    <div class="overview-label">Attendance Rate</div>
                 </div>
-                
                 <div class="overview-card">
-                    <div class="icon" style="color: var(--warning-color);">
+                    <div class="overview-icon effort">
                         <i class="fas fa-star"></i>
                     </div>
-                    <div class="number" style="color: var(--warning-color);">85%</div>
-                    <div class="label">Effort Score</div>
+                    <div class="overview-value">87</div>
+                    <div class="overview-label">Effort Score</div>
                 </div>
             </div>
 
             <!-- Badge System -->
             <div class="badge-system">
                 <h2 class="section-title">
-                    <i class="fas fa-award"></i>
-                    Your Badges
+                    <i class="fas fa-trophy"></i>
+                    Badge System
                 </h2>
-                
-                <div class="badge-grid">
-                    <!-- Attendance Badge -->
-                    <div class="badge-category">
+                <div class="badges-grid">
+                    <div class="badge-card">
                         <div class="badge-header">
-                            <div class="badge-icon" style="background: linear-gradient(135deg, #28a745, #20c997);">
+                            <div class="badge-icon attendance">
                                 <i class="fas fa-calendar-check"></i>
                             </div>
                             <div class="badge-info">
-                                <h3>Attendance Champion</h3>
-                                <div class="badge-level">Level 3 - Consistent</div>
+                                <h3>Perfect Attendance</h3>
+                                <div class="badge-level">Level 3 - Gold</div>
                             </div>
                         </div>
                         <div class="badge-progress">
+                            <div class="progress-label">
+                                <span>Progress to Next Level</span>
+                                <span>28/30 days</span>
+                            </div>
                             <div class="progress-bar">
-                                <div class="progress-fill" style="width: 85%; background: linear-gradient(90deg, #28a745, #20c997);"></div>
+                                <div class="progress-fill" style="width: 93%;"></div>
                             </div>
-                            <div class="progress-text">18 out of 20 days this month</div>
                         </div>
-                        <div class="badge-rewards">
-                            <div class="reward-badge earned">
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="reward-badge earned">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                            <div class="reward-badge earned">
-                                <i class="fas fa-medal"></i>
-                            </div>
-                            <div class="reward-badge locked">
-                                <i class="fas fa-crown"></i>
-                            </div>
+                        <div class="badge-reward">
+                            <strong>Next Reward:</strong> Platinum Badge + 50 bonus points
                         </div>
                     </div>
 
-                    <!-- Engagement Badge -->
-                    <div class="badge-category">
+                    <div class="badge-card">
                         <div class="badge-header">
-                            <div class="badge-icon" style="background: linear-gradient(135deg, #007bff, #0056b3);">
+                            <div class="badge-icon participation">
                                 <i class="fas fa-comments"></i>
                             </div>
                             <div class="badge-info">
-                                <h3>Engagement Star</h3>
-                                <div class="badge-level">Level 2 - Active</div>
+                                <h3>Active Participation</h3>
+                                <div class="badge-level">Level 2 - Silver</div>
                             </div>
                         </div>
                         <div class="badge-progress">
+                            <div class="progress-label">
+                                <span>Progress to Next Level</span>
+                                <span>15/25 contributions</span>
+                            </div>
                             <div class="progress-bar">
-                                <div class="progress-fill" style="width: 70%; background: linear-gradient(90deg, #007bff, #0056b3);"></div>
+                                <div class="progress-fill" style="width: 60%;"></div>
                             </div>
-                            <div class="progress-text">Great participation in class discussions</div>
                         </div>
-                        <div class="badge-rewards">
-                            <div class="reward-badge earned">
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="reward-badge earned">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                            <div class="reward-badge locked">
-                                <i class="fas fa-medal"></i>
-                            </div>
-                            <div class="reward-badge locked">
-                                <i class="fas fa-crown"></i>
-                            </div>
+                        <div class="badge-reward">
+                            <strong>Next Reward:</strong> Gold Badge + Class discussion leader privilege
                         </div>
                     </div>
 
-                    <!-- Hard Work Badge -->
-                    <div class="badge-category">
+                    <div class="badge-card">
                         <div class="badge-header">
-                            <div class="badge-icon" style="background: linear-gradient(135deg, #fd7e14, #e55a4e);">
+                            <div class="badge-icon effort">
                                 <i class="fas fa-dumbbell"></i>
                             </div>
                             <div class="badge-info">
-                                <h3>Hard Work Hero</h3>
-                                <div class="badge-level">Level 4 - Dedicated</div>
+                                <h3>Hard Worker</h3>
+                                <div class="badge-level">Level 4 - Platinum</div>
                             </div>
                         </div>
                         <div class="badge-progress">
+                            <div class="progress-label">
+                                <span>Progress to Next Level</span>
+                                <span>42/50 assignments</span>
+                            </div>
                             <div class="progress-bar">
-                                <div class="progress-fill" style="width: 90%; background: linear-gradient(90deg, #fd7e14, #e55a4e);"></div>
+                                <div class="progress-fill" style="width: 84%;"></div>
                             </div>
-                            <div class="progress-text">Outstanding effort in all assignments</div>
                         </div>
-                        <div class="badge-rewards">
-                            <div class="reward-badge earned">
-                                <i class="fas fa-star"></i>
-                            </div>
-                            <div class="reward-badge earned">
-                                <i class="fas fa-trophy"></i>
-                            </div>
-                            <div class="reward-badge earned">
-                                <i class="fas fa-medal"></i>
-                            </div>
-                            <div class="reward-badge earned">
-                                <i class="fas fa-crown"></i>
-                            </div>
+                        <div class="badge-reward">
+                            <strong>Next Reward:</strong> Diamond Badge + Priority support access
                         </div>
                     </div>
                 </div>
@@ -821,114 +777,150 @@
             <!-- Subject Progress -->
             <div class="subject-progress">
                 <h2 class="section-title">
-                    <i class="fas fa-chart-line"></i>
-                    Academic Growth
+                    <i class="fas fa-graduation-cap"></i>
+                    Subject Progress
                 </h2>
-                
-                <div class="progress-item">
-                    <div class="progress-header">
-                        <div class="subject-info">
-                            <div class="subject-icon" style="background: linear-gradient(135deg, #ff6b6b, #ee5a24);">
-                                <i class="fas fa-calculator"></i>
+                <div class="subjects-grid">
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <div class="subject-name">Mathematics</div>
+                            <div class="subject-teacher">Ms. Sarah Thompson</div>
+                        </div>
+                        <div class="subject-body">
+                            <div class="course-progress">
+                                <div class="progress-label">
+                                    <span>Course Progress</span>
+                                    <span>68%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 68%;"></div>
+                                </div>
                             </div>
-                            <div class="subject-details">
-                                <h3>Mathematics</h3>
-                                <p>Building strong foundations</p>
+                            <div class="subject-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">18</div>
+                                    <div class="stat-label">Completed</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-label">Assignments</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="progress-percentage">85%</div>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 85%; background: linear-gradient(90deg, #ff6b6b, #ee5a24);"></div>
-                    </div>
-                    <div class="progress-stats">
-                        <div class="stat-item">
-                            <div class="stat-value">17</div>
-                            <div class="stat-label">Lessons Completed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">Assignments Done</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">5</div>
-                            <div class="stat-label">Achievements</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">⭐⭐⭐</div>
-                            <div class="stat-label">Excellence Stars</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="progress-item">
-                    <div class="progress-header">
-                        <div class="subject-info">
-                            <div class="subject-icon" style="background: linear-gradient(135deg, #4834d4, #686de0);">
-                                <i class="fas fa-book-open"></i>
+                            <div class="subject-achievements">
+                                <div class="achievement-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    Algebra Mastery
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    Geometry Basics
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    Problem Solving Pro
+                                </div>
                             </div>
-                            <div class="subject-details">
-                                <h3>English Literature</h3>
-                                <p>Expressing your voice</p>
-                            </div>
-                        </div>
-                        <div class="progress-percentage">72%</div>
-                    </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 72%; background: linear-gradient(90deg, #4834d4, #686de0);"></div>
-                    </div>
-                    <div class="progress-stats">
-                        <div class="stat-item">
-                            <div class="stat-value">14</div>
-                            <div class="stat-label">Lessons Completed</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">2</div>
-                            <div class="stat-label">Essays Written</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">4</div>
-                            <div class="stat-label">Achievements</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">⭐⭐</div>
-                            <div class="stat-label">Excellence Stars</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="progress-item">
-                    <div class="progress-header">
-                        <div class="subject-info">
-                            <div class="subject-icon" style="background: linear-gradient(135deg, #00d2d3, #54a0ff);">
-                                <i class="fas fa-flask"></i>
-                            </div>
-                            <div class="subject-details">
-                                <h3>Science</h3>
-                                <p>Discovering the world</p>
+                            <div class="subject-rating">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star empty"></i>
                             </div>
                         </div>
-                        <div class="progress-percentage">68%</div>
                     </div>
-                    <div class="progress-bar">
-                        <div class="progress-fill" style="width: 68%; background: linear-gradient(90deg, #00d2d3, #54a0ff);"></div>
+
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <div class="subject-name">English Literature</div>
+                            <div class="subject-teacher">Mr. James Wilson</div>
+                        </div>
+                        <div class="subject-body">
+                            <div class="course-progress">
+                                <div class="progress-label">
+                                    <span>Course Progress</span>
+                                    <span>45%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 45%;"></div>
+                                </div>
+                            </div>
+                            <div class="subject-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">9</div>
+                                    <div class="stat-label">Completed</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">7</div>
+                                    <div class="stat-label">Assignments</div>
+                                </div>
+                            </div>
+                            <div class="subject-achievements">
+                                <div class="achievement-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    Creative Writer
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    Poetry Analysis
+                                </div>
+                            </div>
+                            <div class="subject-rating">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                            </div>
+                        </div>
                     </div>
-                    <div class="progress-stats">
-                        <div class="stat-item">
-                            <div class="stat-value">11</div>
-                            <div class="stat-label">Lessons Completed</div>
+
+                    <div class="subject-card">
+                        <div class="subject-header">
+                            <div class="subject-name">Combined Science</div>
+                            <div class="subject-teacher">Dr. Emily Chen</div>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-value">4</div>
-                            <div class="stat-label">Lab Reports</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">3</div>
-                            <div class="stat-label">Achievements</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-value">⭐⭐</div>
-                            <div class="stat-label">Excellence Stars</div>
+                        <div class="subject-body">
+                            <div class="course-progress">
+                                <div class="progress-label">
+                                    <span>Course Progress</span>
+                                    <span>52%</span>
+                                </div>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" style="width: 52%;"></div>
+                                </div>
+                            </div>
+                            <div class="subject-stats">
+                                <div class="stat-item">
+                                    <div class="stat-value">16</div>
+                                    <div class="stat-label">Completed</div>
+                                </div>
+                                <div class="stat-item">
+                                    <div class="stat-value">10</div>
+                                    <div class="stat-label">Assignments</div>
+                                </div>
+                            </div>
+                            <div class="subject-achievements">
+                                <div class="achievement-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    Lab Safety Expert
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    Chemistry Basics
+                                </div>
+                                <div class="achievement-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    Physics Fundamentals
+                                </div>
+                            </div>
+                            <div class="subject-rating">
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star"></i>
+                                <i class="fas fa-star star empty"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -937,133 +929,109 @@
             <!-- Growth Goals -->
             <div class="growth-goals">
                 <h2 class="section-title">
-                    <i class="fas fa-seedling"></i>
-                    Your Goals
+                    <i class="fas fa-target"></i>
+                    Growth Goals
                 </h2>
-                
-                <div class="goal-item">
-                    <div class="goal-checkbox completed">
-                        <i class="fas fa-check"></i>
+                <div class="goals-container">
+                    <div class="goals-section">
+                        <h3>Completed Goals</h3>
+                        <div class="goal-item completed">
+                            <input type="checkbox" class="goal-checkbox" checked disabled>
+                            <div class="goal-text">Complete 10 Math assignments this month</div>
+                        </div>
+                        <div class="goal-item completed">
+                            <input type="checkbox" class="goal-checkbox" checked disabled>
+                            <div class="goal-text">Improve English writing skills</div>
+                        </div>
+                        <div class="goal-item completed">
+                            <input type="checkbox" class="goal-checkbox" checked disabled>
+                            <div class="goal-text">Participate in 5 class discussions</div>
+                        </div>
                     </div>
-                    <div class="goal-content">
-                        <div class="goal-title">Attend 90% of classes this month</div>
-                        <div class="goal-deadline">Achieved on Dec 8, 2024 - Well done!</div>
+                    <div class="goals-section">
+                        <h3>Current Goals</h3>
+                        <div class="goal-item">
+                            <input type="checkbox" class="goal-checkbox">
+                            <div class="goal-text">Master quadratic equations</div>
+                        </div>
+                        <div class="goal-item">
+                            <input type="checkbox" class="goal-checkbox">
+                            <div class="goal-text">Read 2 classic literature books</div>
+                        </div>
+                        <div class="goal-item">
+                            <input type="checkbox" class="goal-checkbox">
+                            <div class="goal-text">Complete science lab project</div>
+                        </div>
+                        <div class="goal-item">
+                            <input type="checkbox" class="goal-checkbox">
+                            <div class="goal-text">Achieve 95% attendance this term</div>
+                        </div>
+                        <button class="add-goal-btn">
+                            <i class="fas fa-plus"></i>
+                            Set New Goal
+                        </button>
                     </div>
                 </div>
-                
-                <div class="goal-item">
-                    <div class="goal-checkbox">
-                    </div>
-                    <div class="goal-content">
-                        <div class="goal-title">Participate in 3 class discussions this week</div>
-                        <div class="goal-deadline">Target: Dec 15, 2024</div>
-                    </div>
-                </div>
-                
-                <div class="goal-item">
-                    <div class="goal-checkbox">
-                    </div>
-                    <div class="goal-content">
-                        <div class="goal-title">Complete all assignments on time</div>
-                        <div class="goal-deadline">Ongoing goal</div>
-                    </div>
-                </div>
-                
-                <div class="goal-item">
-                    <div class="goal-checkbox">
-                    </div>
-                    <div class="goal-content">
-                        <div class="goal-title">Improve Math grade to A level</div>
-                        <div class="goal-deadline">Target: End of December</div>
-                    </div>
-                </div>
-                
-                <button class="btn btn-primary" style="margin-top: 15px;">
-                    <i class="fas fa-plus"></i>
-                    Set New Goal
-                </button>
             </div>
         </main>
     </div>
 
     <script>
-        // Emergency support button
-        document.querySelector('.emergency-btn').addEventListener('click', () => {
-            alert('Emergency support contacted. Help is on the way.');
-        });
+        // Navigation active state
+        document.addEventListener('DOMContentLoaded', function() {
+            // Emergency button functionality
+            const emergencyBtn = document.querySelector('.emergency-btn');
+            emergencyBtn.addEventListener('click', function() {
+                alert('Emergency support has been contacted. A counselor will reach out to you shortly.');
+            });
 
-        // Goal checkbox functionality
-        document.querySelectorAll('.goal-checkbox').forEach(checkbox => {
-            checkbox.addEventListener('click', () => {
-                checkbox.classList.toggle('completed');
-                if (checkbox.classList.contains('completed')) {
-                    checkbox.innerHTML = '<i class="fas fa-check"></i>';
-                } else {
-                    checkbox.innerHTML = '';
+            // Goal checkbox functionality
+            const goalCheckboxes = document.querySelectorAll('.goal-checkbox:not([disabled])');
+            goalCheckboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const goalItem = this.closest('.goal-item');
+                    if (this.checked) {
+                        goalItem.classList.add('completed');
+                        // Add celebration effect
+                        setTimeout(() => {
+                            alert('🎉 Congratulations! Goal completed!');
+                        }, 300);
+                    } else {
+                        goalItem.classList.remove('completed');
+                    }
+                });
+            });
+
+            // Add new goal functionality
+            const addGoalBtn = document.querySelector('.add-goal-btn');
+            addGoalBtn.addEventListener('click', function() {
+                const goalText = prompt('Enter your new goal:');
+                if (goalText && goalText.trim()) {
+                    const currentGoalsSection = document.querySelector('.goals-section:last-child');
+                    const newGoalItem = document.createElement('div');
+                    newGoalItem.className = 'goal-item';
+                    newGoalItem.innerHTML = `
+                        <input type="checkbox" class="goal-checkbox">
+                        <div class="goal-text">${goalText.trim()}</div>
+                    `;
+                    
+                    // Insert before the add button
+                    currentGoalsSection.insertBefore(newGoalItem, addGoalBtn);
+                    
+                    // Add event listener to new checkbox
+                    const newCheckbox = newGoalItem.querySelector('.goal-checkbox');
+                    newCheckbox.addEventListener('change', function() {
+                        const goalItem = this.closest('.goal-item');
+                        if (this.checked) {
+                            goalItem.classList.add('completed');
+                            setTimeout(() => {
+                                alert('🎉 Congratulations! Goal completed!');
+                            }, 300);
+                        } else {
+                            goalItem.classList.remove('completed');
+                        }
+                    });
                 }
-            });
-        });
-
-        // Add new goal functionality
-        document.querySelector('.btn-primary').addEventListener('click', () => {
-            const goalTitle = prompt('What growth goal would you like to set?');
-            if (goalTitle) {
-                const goalDeadline = prompt('When would you like to achieve this? (optional):');
-                alert(`Growth goal "${goalTitle}" added successfully! You've got this!`);
-                // In a real application, this would add the goal to the list
-            }
-        });
-
-        // Progress ring animation
-        function animateProgressRing() {
-            const progressRing = document.querySelector('.progress-ring .progress');
-            const circumference = 2 * Math.PI * 32;
-            const progress = 75; // 75%
-            const offset = circumference - (progress / 100) * circumference;
-            
-            progressRing.style.strokeDasharray = circumference;
-            progressRing.style.strokeDashoffset = offset;
-        }
-
-        // Animate progress bars on page load
-        function animateProgressBars() {
-            const progressBars = document.querySelectorAll('.progress-fill');
-            progressBars.forEach((bar, index) => {
-                setTimeout(() => {
-                    bar.style.width = bar.style.width || '0%';
-                }, index * 200);
-            });
-        }
-
-        // Initialize animations
-        window.addEventListener('load', () => {
-            animateProgressRing();
-            animateProgressBars();
-        });
-
-        // Mobile sidebar toggle
-        function toggleSidebar() {
-            const sidebar = document.querySelector('.sidebar');
-            sidebar.classList.toggle('open');
-        }
-
-        // Add mobile menu button if needed
-        if (window.innerWidth <= 768) {
-            const header = document.querySelector('.header');
-            const menuButton = document.createElement('button');
-            menuButton.innerHTML = '<i class="fas fa-bars"></i>';
-            menuButton.className = 'btn btn-secondary';
-            menuButton.onclick = toggleSidebar;
-            header.insertBefore(menuButton, header.firstChild);
-        }
-
-        // Badge hover effects
-        document.querySelectorAll('.badge-category').forEach(badge => {
-            badge.addEventListener('mouseenter', () => {
-                badge.style.transform = 'translateY(-5px)';
-            });
-            badge.addEventListener('mouseleave', () => {
-                badge.style.transform = 'translateY(0)';
             });
         });
     </script>
