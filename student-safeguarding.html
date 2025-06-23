@@ -3,24 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safeguarding & Protection - Student Portal</title>
+    <title>Safeguarding - Student Portal</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #6c5ce7;
-            --primary-dark: #5a4fcf;
+            --primary-color: #663399;
+            --primary-dark: #4a2570;
+            --primary-light: #8a5bb8;
             --secondary-color: #f8f9fa;
-            --accent-color: #fd79a8;
-            --success-color: #00b894;
-            --warning-color: #fdcb6e;
-            --danger-color: #e17055;
-            --text-color: #2d3436;
-            --text-light: #636e72;
-            --border-color: #ddd;
+            --text-color: #333;
+            --text-light: #666;
+            --border-color: #e0e0e0;
+            --success-color: #28a745;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+            --info-color: #17a2b8;
+            --white: #ffffff;
             --shadow: 0 2px 10px rgba(0,0,0,0.1);
-            --border-radius: 12px;
+            --border-radius: 8px;
             --safeguarding-red: #e74c3c;
+            --safeguarding-orange: #f39c12;
             --safeguarding-blue: #3498db;
+            --safeguarding-green: #27ae60;
         }
 
         * {
@@ -31,9 +35,9 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            background-color: var(--secondary-color);
             color: var(--text-color);
+            line-height: 1.6;
         }
 
         .container {
@@ -41,28 +45,27 @@
             min-height: 100vh;
         }
 
-        /* Sidebar */
+        /* Sidebar - Aligned with student-dashboard.html */
         .sidebar {
-            width: 280px;
-            background: white;
-            box-shadow: var(--shadow);
+            width: 250px;
+            background: linear-gradient(135deg, var(--primary-color), var(--primary-dark));
+            color: white;
+            padding: 0;
             position: fixed;
             height: 100vh;
-            left: 0;
-            top: 0;
-            z-index: 1000;
             overflow-y: auto;
+            z-index: 1000;
         }
 
         .logo {
-            padding: 25px;
-            border-bottom: 1px solid var(--border-color);
+            padding: 20px;
             text-align: center;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .logo h2 {
-            color: var(--primary-color);
             font-size: 1.5rem;
+            font-weight: 600;
         }
 
         .nav-menu {
@@ -70,32 +73,35 @@
         }
 
         .nav-item {
-            margin-bottom: 5px;
+            margin: 5px 0;
         }
 
         .nav-link {
             display: flex;
             align-items: center;
-            padding: 15px 25px;
-            color: var(--text-color);
+            padding: 12px 20px;
+            color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
+            border-radius: var(--border-radius);
             transition: all 0.3s ease;
-            border-left: 4px solid transparent;
+            min-height: 44px;
         }
 
-        .nav-link:hover {
-            background: var(--secondary-color);
-            border-left-color: var(--primary-color);
+        .nav-link:hover,
+        .nav-link.active {
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            border-right: 3px solid white;
         }
 
         .nav-link.active {
-            background: var(--primary-color);
-            color: white;
-            border-left-color: var(--primary-dark);
+            background-color: rgba(255, 255, 255, 0.2);
+            font-weight: 600;
         }
 
         .nav-link i {
-            margin-right: 12px;
+            margin-right: 10px;
+            font-size: 1.1rem;
             width: 20px;
             text-align: center;
         }
@@ -103,11 +109,9 @@
         .user-profile {
             position: absolute;
             bottom: 0;
-            left: 0;
-            right: 0;
-            padding: 20px 25px;
-            border-top: 1px solid var(--border-color);
-            background: white;
+            width: 100%;
+            padding: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
         .user-info {
@@ -118,30 +122,27 @@
         .user-avatar {
             width: 40px;
             height: 40px;
-            background: var(--primary-color);
             border-radius: 50%;
+            background-color: rgba(255,255,255,0.2);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            margin-right: 12px;
+            margin-right: 10px;
         }
 
         /* Main Content */
         .main-content {
             flex: 1;
-            margin-left: 280px;
-            padding: 30px;
-            background: var(--secondary-color);
-            min-height: 100vh;
+            margin-left: 250px;
+            padding: 20px;
         }
 
         .header {
             background: white;
-            padding: 25px;
+            padding: 20px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow);
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -150,52 +151,51 @@
         .header h1 {
             color: var(--primary-color);
             font-size: 2rem;
-            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
         }
 
         .emergency-btn {
-            background: var(--safeguarding-red);
+            background: var(--danger-color);
             color: white;
             border: none;
             padding: 12px 20px;
             border-radius: var(--border-radius);
             cursor: pointer;
             font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
             transition: all 0.3s ease;
-            animation: pulse 2s infinite;
+            font-size: 1rem;
         }
 
         .emergency-btn:hover {
-            background: #c0392b;
+            background: #c82333;
             transform: translateY(-2px);
         }
 
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(231, 76, 60, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(231, 76, 60, 0); }
-        }
-
-        /* Important Notice */
+        /* Important Notice Banner */
         .important-notice {
-            background: linear-gradient(135deg, var(--safeguarding-red), #c0392b);
-            color: white;
-            padding: 20px 25px;
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 2px solid #ffc107;
             border-radius: var(--border-radius);
-            margin-bottom: 30px;
-            box-shadow: var(--shadow);
+            padding: 20px;
+            margin-bottom: 20px;
+            text-align: center;
         }
 
         .important-notice h2 {
+            color: #856404;
             margin-bottom: 10px;
-            font-size: 1.3rem;
+            font-size: 1.5rem;
         }
 
-        .important-notice i {
-            margin-right: 10px;
+        .important-notice p {
+            color: #856404;
+            font-size: 1.1rem;
+            font-weight: 500;
         }
 
         /* SAFE Guidelines */
@@ -1091,7 +1091,7 @@
                 
                 <div class="form-group">
                     <label for="concernDetails">Details of Concern:</label>
-                    <textarea id="concernDetails" name="concernDetails" required placeholder="Please provide as much detail as possible about your concern..."></textarea>
+                    <textarea id="concernDetails" name="concernDetails" required placeholder="Please provide as much detail as possible about the concern. Include when, where, who was involved, and what happened."></textarea>
                 </div>
                 
                 <div class="form-group">
