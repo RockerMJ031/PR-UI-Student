@@ -82,9 +82,8 @@
             padding: 12px 20px;
             color: rgba(255, 255, 255, 0.8);
             text-decoration: none;
-            border-radius: 8px;
+            border-radius: var(--border-radius);
             transition: all 0.3s ease;
-            margin: 0 10px;
             min-height: 44px;
         }
 
@@ -97,15 +96,14 @@
 
         .nav-link.active {
             background-color: rgba(255, 255, 255, 0.2);
-            color: white;
-            border-right: 3px solid white;
+            font-weight: 600;
         }
 
         .nav-link i {
             margin-right: 10px;
+            font-size: 1.1rem;
             width: 20px;
             text-align: center;
-            font-size: 16px;
         }
 
         .user-profile {
@@ -300,6 +298,7 @@
         }
 
         .action-btn i {
+            font-size: 2rem;
             margin-right: 15px;
             color: var(--primary-color);
             min-width: 40px;
@@ -612,21 +611,9 @@
                     </a>
                 </div>
                 <div class="nav-item">
-                    <a href="student-assignments.html" class="nav-link">
-                        <i class="fas fa-tasks"></i>
-                        Assignments
-                    </a>
-                </div>
-                <div class="nav-item">
                     <a href="student-progress.html" class="nav-link">
                         <i class="fas fa-chart-line"></i>
                         Progress
-                    </a>
-                </div>
-                <div class="nav-item">
-                    <a href="student-support.html" class="nav-link">
-                        <i class="fas fa-hands-helping"></i>
-                        Support
                     </a>
                 </div>
                 <div class="nav-item">
@@ -641,6 +628,12 @@
                         Safeguarding
                     </a>
                 </div>
+                <div class="nav-item">
+                    <a href="student-support.html" class="nav-link">
+                        <i class="fas fa-hands-helping"></i>
+                        Get Support
+                    </a>
+                </div>
             </div>
             
             <div class="user-profile">
@@ -649,32 +642,36 @@
                         <i class="fas fa-user"></i>
                     </div>
                     <div>
-                        <div style="font-weight: 600;">Alex Student</div>
-                        <div style="font-size: 0.8rem; opacity: 0.8;">Year 10</div>
+                        <div style="font-weight: 600;">Alex Johnson</div>
+                        <div style="font-size: 0.8rem; opacity: 0.8;">Year 10 Student</div>
                     </div>
                 </div>
             </div>
         </nav>
-        
+
         <!-- Main Content -->
         <div class="main-content">
+            <!-- Header -->
             <div class="header">
-                <h1>Wellbeing</h1>
+                <div>
+                    <h1>Your Wellbeing Journey</h1>
+                    <p style="color: var(--text-light); margin: 5px 0 0 0;">Taking care of yourself is the first step to success</p>
+                </div>
                 <div class="header-actions">
-                    <button class="emergency-btn" onclick="showEmergencyContact()">
+                    <button class="emergency-btn" onclick="showEmergencySupport()">
                         <i class="fas fa-phone"></i>
-                        Need Help?
+                        Emergency Support
                     </button>
                 </div>
             </div>
-            
+
             <!-- Supportive Banner -->
             <div class="support-banner">
-                <h2><i class="fas fa-heart"></i> Your Wellbeing Matters</h2>
-                <p>We're here to support you on your journey. Remember, asking for help is a sign of strength.</p>
+                <h2><i class="fas fa-heart"></i> You Matter</h2>
+                <p>Every step forward is progress. We're here to support you on your journey to success and wellbeing.</p>
             </div>
-            
-            <!-- Wellbeing Overview -->
+
+            <!-- Wellbeing Overview - Updated for Alternative Probation Students -->
             <div class="wellbeing-overview">
                 <div class="wellbeing-card mood">
                     <div class="icon">
@@ -682,236 +679,262 @@
                     </div>
                     <h3>Current Mood</h3>
                     <div class="wellbeing-score" style="color: var(--wellbeing-pink);">😊</div>
-                    <div class="wellbeing-status">Feeling Good</div>
+                    <div class="wellbeing-status">Feeling Positive</div>
                 </div>
                 
                 <div class="wellbeing-card today">
                     <div class="icon">
                         <i class="fas fa-calendar-day"></i>
                     </div>
-                    <h3>Today's Check-in</h3>
-                    <div class="wellbeing-score" style="color: var(--wellbeing-blue);">8/10</div>
-                    <div class="wellbeing-status">Great Day</div>
+                    <h3>Today</h3>
+                    <div class="wellbeing-score" style="color: var(--wellbeing-blue);">Good</div>
+                    <div class="wellbeing-status">3 positive moments</div>
                 </div>
                 
                 <div class="wellbeing-card week">
                     <div class="icon">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-calendar-week"></i>
                     </div>
                     <h3>This Week</h3>
-                    <div class="wellbeing-score" style="color: var(--wellbeing-orange);">7.2/10</div>
-                    <div class="wellbeing-status">Steady Progress</div>
+                    <div class="wellbeing-score" style="color: var(--wellbeing-orange);">85%</div>
+                    <div class="wellbeing-status">Positive days</div>
                 </div>
                 
                 <div class="wellbeing-card month">
                     <div class="icon">
-                        <i class="fas fa-trophy"></i>
+                        <i class="fas fa-calendar"></i>
                     </div>
-                    <h3>Monthly Goal</h3>
-                    <div class="wellbeing-score" style="color: var(--wellbeing-green);">85%</div>
-                    <div class="wellbeing-status">On Track</div>
+                    <h3>This Month</h3>
+                    <div class="wellbeing-score" style="color: var(--wellbeing-green);">78%</div>
+                    <div class="wellbeing-status">Overall progress</div>
                 </div>
             </div>
-            
-            <!-- Quick Actions -->
+
+            <!-- Quick Actions - Supportive for Alternative Probation -->
             <div class="quick-actions">
-                <h2>Quick Actions</h2>
+                <h2>Support & Coping Tools</h2>
                 <div class="actions-grid">
-                    <a href="#" class="action-btn" onclick="openMoodTracker()">
-                        <i class="fas fa-heart"></i>
-                        <div>
-                            <div style="font-weight: 600;">Log Your Mood</div>
-                            <div style="font-size: 0.9rem; color: var(--text-light);">Track how you're feeling today</div>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="action-btn" onclick="startBreathingExercise()">
+                    <div class="action-btn" onclick="startBreathingExercise()">
                         <i class="fas fa-wind"></i>
                         <div>
                             <div style="font-weight: 600;">Breathing Exercise</div>
-                            <div style="font-size: 0.9rem; color: var(--text-light);">5-minute relaxation session</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">5-minute calm session</div>
                         </div>
-                    </a>
+                    </div>
                     
-                    <a href="#" class="action-btn" onclick="viewGoals()">
-                        <i class="fas fa-bullseye"></i>
+                    <div class="action-btn" onclick="startMeditation()">
+                        <i class="fas fa-leaf"></i>
                         <div>
-                            <div style="font-weight: 600;">Personal Goals</div>
-                            <div style="font-size: 0.9rem; color: var(--text-light);">Set and track your objectives</div>
+                            <div style="font-weight: 600;">Mindfulness Break</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">Reset and refocus</div>
                         </div>
-                    </a>
+                    </div>
                     
-                    <a href="#" class="action-btn" onclick="contactCounselor()">
-                        <i class="fas fa-user-md"></i>
+                    <div class="action-btn" onclick="bookCounseling()">
+                        <i class="fas fa-comments"></i>
                         <div>
-                            <div style="font-weight: 600;">Talk to Counselor</div>
-                            <div style="font-size: 0.9rem; color: var(--text-light);">Schedule a support session</div>
+                            <div style="font-weight: 600;">Talk to Someone</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">Confidential support</div>
                         </div>
-                    </a>
+                    </div>
+                    
+                    <div class="action-btn" onclick="accessResources()">
+                        <i class="fas fa-hands-helping"></i>
+                        <div>
+                            <div style="font-weight: 600;">Coping Strategies</div>
+                            <div style="font-size: 0.9rem; color: var(--text-light);">Tools that help</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            
-            <!-- Mood Tracker -->
-            <div class="mood-tracker" id="moodTracker">
-                <h2>How are you feeling today?</h2>
-                <p style="color: var(--text-light); margin-bottom: 20px;">Your feelings are valid. Select the mood that best describes how you're feeling right now.</p>
+
+            <!-- Mood Tracker - Simplified and Supportive -->
+            <div class="mood-tracker">
+                <h2>Daily Check-in</h2>
+                <p style="margin-bottom: 20px; color: var(--text-light);">How are you feeling right now? There's no wrong answer - we're here to support you.</p>
                 
                 <div class="mood-selector">
-                    <div class="mood-option" data-mood="amazing" onclick="selectMood(this)">
-                        <span class="mood-emoji">😄</span>
-                        <div class="mood-label">Amazing</div>
+                    <div class="mood-option" onclick="selectMood(this, 'struggling')">
+                        <span class="mood-emoji">😔</span>
+                        <div class="mood-label">Struggling</div>
                     </div>
-                    <div class="mood-option" data-mood="good" onclick="selectMood(this)">
-                        <span class="mood-emoji">😊</span>
-                        <div class="mood-label">Good</div>
-                    </div>
-                    <div class="mood-option" data-mood="okay" onclick="selectMood(this)">
+                    <div class="mood-option" onclick="selectMood(this, 'okay')">
                         <span class="mood-emoji">😐</span>
                         <div class="mood-label">Okay</div>
                     </div>
-                    <div class="mood-option" data-mood="down" onclick="selectMood(this)">
-                        <span class="mood-emoji">😔</span>
-                        <div class="mood-label">Down</div>
+                    <div class="mood-option selected" onclick="selectMood(this, 'good')">
+                        <span class="mood-emoji">😊</span>
+                        <div class="mood-label">Good</div>
                     </div>
-                    <div class="mood-option" data-mood="struggling" onclick="selectMood(this)">
-                        <span class="mood-emoji">😢</span>
-                        <div class="mood-label">Struggling</div>
+                    <div class="mood-option" onclick="selectMood(this, 'great')">
+                        <span class="mood-emoji">😄</span>
+                        <div class="mood-label">Great</div>
                     </div>
                 </div>
                 
-                <textarea class="mood-note" placeholder="What's on your mind? (Optional - your thoughts are private)"></textarea>
+                <textarea class="mood-note" placeholder="What's on your mind today? Share anything you'd like - your thoughts, feelings, or what's been helpful. (Optional and confidential)"></textarea>
                 
                 <button class="save-mood-btn" onclick="saveMood()">
                     <i class="fas fa-save"></i>
-                    Save Mood Entry
+                    Save Check-in
                 </button>
             </div>
-            
-            <!-- Progress Section -->
+
+            <!-- Progress Tracking - Encouraging -->
             <div class="progress-section">
-                <h2>Your Progress</h2>
+                <h2>Your Progress Journey</h2>
                 <div class="progress-grid">
                     <div class="progress-item">
                         <div class="progress-circle">
-                            <div class="progress-value">70%</div>
+                            <div class="progress-value">12</div>
                         </div>
-                        <div class="progress-label">Wellbeing Goals</div>
-                        <div class="progress-description">Keep up the great work!</div>
+                        <div class="progress-label">Check-in Streak</div>
+                        <div class="progress-description">Days in a row</div>
                     </div>
                     
                     <div class="progress-item">
                         <div class="progress-circle" style="background: conic-gradient(var(--wellbeing-green) 0deg, var(--wellbeing-green) 288deg, var(--border-color) 288deg);">
                             <div class="progress-value">80%</div>
                         </div>
-                        <div class="progress-label">Daily Check-ins</div>
-                        <div class="progress-description">Excellent consistency</div>
+                        <div class="progress-label">Positive Days</div>
+                        <div class="progress-description">This month</div>
                     </div>
                     
                     <div class="progress-item">
                         <div class="progress-circle" style="background: conic-gradient(var(--wellbeing-blue) 0deg, var(--wellbeing-blue) 216deg, var(--border-color) 216deg);">
-                            <div class="progress-value">60%</div>
+                            <div class="progress-value">6</div>
                         </div>
-                        <div class="progress-label">Coping Strategies</div>
-                        <div class="progress-description">Building resilience</div>
+                        <div class="progress-label">Support Sessions</div>
+                        <div class="progress-description">This month</div>
                     </div>
                     
                     <div class="progress-item">
                         <div class="progress-circle" style="background: conic-gradient(var(--wellbeing-orange) 0deg, var(--wellbeing-orange) 324deg, var(--border-color) 324deg);">
                             <div class="progress-value">90%</div>
                         </div>
-                        <div class="progress-label">Support Network</div>
-                        <div class="progress-description">Strong connections</div>
+                        <div class="progress-label">Coping Skills</div>
+                        <div class="progress-description">Usage rate</div>
                     </div>
                 </div>
             </div>
-            
-            <!-- Resources Section -->
+
+            <!-- Resources - Support Focused -->
             <div class="resources-section">
                 <div class="resource-card">
-                    <h3>Coping Strategies</h3>
+                    <h3>Emotional Support</h3>
                     <ul class="resource-list">
                         <li>
-                            <a href="#" class="resource-link" onclick="showResource('breathing')">
-                                <i class="fas fa-wind"></i>
-                                Breathing Exercises
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-heart"></i>
+                                Emotional Regulation Guide
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="resource-link" onclick="showResource('mindfulness')">
-                                <i class="fas fa-leaf"></i>
-                                Mindfulness Techniques
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-video"></i>
+                                Calming Techniques Videos
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="resource-link" onclick="showResource('grounding')">
-                                <i class="fas fa-anchor"></i>
-                                Grounding Exercises
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-headphones"></i>
+                                Relaxation Audio
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="resource-link" onclick="showResource('journaling')">
-                                <i class="fas fa-pen"></i>
-                                Journaling Prompts
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="resource-card">
-                    <h3>Support & Help</h3>
-                    <ul class="resource-list">
-                        <li>
-                            <a href="#" class="resource-link" onclick="contactCounselor()">
-                                <i class="fas fa-user-md"></i>
-                                School Counselor
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="resource-link" onclick="showResource('crisis')">
-                                <i class="fas fa-phone"></i>
-                                Crisis Helplines
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#" class="resource-link" onclick="showResource('peer')">
+                            <a href="#" class="resource-link">
                                 <i class="fas fa-users"></i>
                                 Peer Support Groups
                             </a>
                         </li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Behavioral Support</h3>
+                    <ul class="resource-list">
                         <li>
-                            <a href="#" class="resource-link" onclick="showResource('family')">
-                                <i class="fas fa-home"></i>
-                                Family Resources
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-brain"></i>
+                                Coping Strategies Toolkit
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-clipboard-list"></i>
+                                Daily Routine Planner
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-chart-line"></i>
+                                Progress Tracking Tools
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-lightbulb"></i>
+                                Problem-Solving Techniques
                             </a>
                         </li>
                     </ul>
                 </div>
                 
                 <div class="resource-card">
-                    <h3>Educational Resources</h3>
+                    <h3>Crisis Support</h3>
                     <ul class="resource-list">
                         <li>
-                            <a href="#" class="resource-link" onclick="showResource('mental-health')">
-                                <i class="fas fa-brain"></i>
-                                Understanding Mental Health
+                            <a href="tel:988" class="resource-link">
+                                <i class="fas fa-phone"></i>
+                                Crisis Helpline: 988
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="resource-link" onclick="showResource('stress')">
-                                <i class="fas fa-shield-alt"></i>
-                                Managing Stress
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-comments"></i>
+                                24/7 Text Support
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="resource-link" onclick="showResource('sleep')">
-                                <i class="fas fa-bed"></i>
-                                Healthy Sleep Habits
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-user-md"></i>
+                                Emergency Counselor
                             </a>
                         </li>
                         <li>
-                            <a href="#" class="resource-link" onclick="showResource('nutrition')">
-                                <i class="fas fa-apple-alt"></i>
-                                Nutrition & Wellbeing
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-map-marker-alt"></i>
+                                Local Support Centers
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="resource-card">
+                    <h3>Educational Support</h3>
+                    <ul class="resource-list">
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-graduation-cap"></i>
+                                Academic Accommodations
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-clock"></i>
+                                Time Management Skills
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-book-reader"></i>
+                                Study Strategies
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#" class="resource-link">
+                                <i class="fas fa-chalkboard-teacher"></i>
+                                Tutoring Services
                             </a>
                         </li>
                     </ul>
@@ -919,166 +942,73 @@
             </div>
         </div>
     </div>
-    
+
     <script>
-        let selectedMood = null;
-        
-        // Toggle sidebar for mobile
+        // Mobile sidebar toggle
         function toggleSidebar() {
             const sidebar = document.getElementById('sidebar');
             sidebar.classList.toggle('active');
         }
-        
-        // Mood tracking functions
-        function selectMood(element) {
-            // Remove previous selection
+
+        // Emergency support function
+        function showEmergencySupport() {
+            alert('Emergency Support Activated\n\nIf this is a life-threatening emergency, please call 911 immediately.\n\nFor crisis support:\n• Crisis Helpline: 988\n• Text HOME to 741741\n• Your school counselor is available during school hours\n\nYou are not alone. Help is available.');
+        }
+
+        // Mood selection
+        function selectMood(element, mood) {
+            // Remove selected class from all mood options
             document.querySelectorAll('.mood-option').forEach(option => {
                 option.classList.remove('selected');
             });
             
-            // Select current mood
+            // Add selected class to clicked option
             element.classList.add('selected');
-            selectedMood = element.dataset.mood;
+            
+            // Store selected mood
+            window.selectedMood = mood;
         }
-        
+
+        // Save mood function
         function saveMood() {
-            if (!selectedMood) {
-                showMessage('Please select a mood first', 'warning');
-                return;
-            }
-            
+            const mood = window.selectedMood || 'good';
             const note = document.querySelector('.mood-note').value;
-            const btn = document.querySelector('.save-mood-btn');
-            const originalText = btn.innerHTML;
             
-            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Saving...';
-            btn.disabled = true;
+            // In a real application, this would save to a database
+            alert(`Thank you for checking in!\n\nYour mood: ${mood}\nNote: ${note || 'No additional notes'}\n\nRemember: Every day is a new opportunity for growth and positive change.`);
             
-            setTimeout(() => {
-                btn.innerHTML = originalText;
-                btn.disabled = false;
-                
-                showMessage('Mood entry saved successfully!', 'success');
-                
-                // Reset form
-                document.querySelectorAll('.mood-option').forEach(option => {
-                    option.classList.remove('selected');
-                });
-                document.querySelector('.mood-note').value = '';
-                selectedMood = null;
-            }, 1500);
+            // Clear the note
+            document.querySelector('.mood-note').value = '';
         }
-        
+
         // Quick action functions
-        function openMoodTracker() {
-            document.getElementById('moodTracker').scrollIntoView({ behavior: 'smooth' });
-        }
-        
         function startBreathingExercise() {
-            showMessage('Starting 5-minute breathing exercise...', 'info');
-            // Here you would implement the breathing exercise
+            alert('Starting 5-minute breathing exercise...\n\n1. Breathe in slowly for 4 counts\n2. Hold for 4 counts\n3. Breathe out slowly for 6 counts\n4. Repeat\n\nYou\'re doing great by taking time for yourself!');
         }
-        
-        function viewGoals() {
-            showMessage('Opening personal goals tracker...', 'info');
+
+        function startMeditation() {
+            alert('Starting mindfulness break...\n\nFind a comfortable position and focus on:\n• Your breathing\n• The present moment\n• Letting go of worries\n\nTake as much time as you need.');
         }
-        
-        function contactCounselor() {
-            showMessage('Connecting you with counseling services...', 'info');
+
+        function bookCounseling() {
+            alert('Booking counseling session...\n\nYour counselor will contact you within 24 hours.\n\nRemember: Asking for help is a sign of strength, not weakness.');
         }
-        
-        function showEmergencyContact() {
-            showMessage('Emergency support: Call 1-800-HELP or text HELP to 741741', 'warning');
+
+        function accessResources() {
+            alert('Opening coping strategies toolkit...\n\nYou\'ll find helpful techniques for:\n• Managing stress\n• Dealing with difficult emotions\n• Building resilience\n• Creating positive habits');
         }
-        
-        function showResource(type) {
-            const messages = {
-                'breathing': 'Opening breathing exercise guide...',
-                'mindfulness': 'Loading mindfulness techniques...',
-                'grounding': 'Accessing grounding exercises...',
-                'journaling': 'Opening journaling prompts...',
-                'crisis': 'Crisis Helpline: 988 (Suicide & Crisis Lifeline)',
-                'peer': 'Connecting to peer support groups...',
-                'family': 'Loading family resources...',
-                'mental-health': 'Opening mental health education...',
-                'stress': 'Loading stress management guide...',
-                'sleep': 'Accessing sleep hygiene tips...',
-                'nutrition': 'Opening nutrition and wellbeing guide...'
-            };
+
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', function(event) {
+            const sidebar = document.getElementById('sidebar');
+            const toggle = document.querySelector('.mobile-menu-toggle');
             
-            showMessage(messages[type] || 'Loading resource...', 'info');
-        }
-        
-        // Show message function
-        function showMessage(text, type = 'info') {
-            const message = document.createElement('div');
-            const colors = {
-                success: 'var(--success-color)',
-                error: 'var(--danger-color)',
-                warning: 'var(--warning-color)',
-                info: 'var(--info-color)'
-            };
-            
-            message.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: ${colors[type]};
-                color: white;
-                padding: 15px 20px;
-                border-radius: 8px;
-                z-index: 1000;
-                box-shadow: var(--shadow);
-                transform: translateX(100%);
-                transition: transform 0.3s ease;
-                max-width: 300px;
-            `;
-            message.innerHTML = `<i class="fas fa-${type === 'success' ? 'check' : type === 'warning' ? 'exclamation-triangle' : 'info'}"></i> ${text}`;
-            document.body.appendChild(message);
-            
-            // Animate in
-            setTimeout(() => {
-                message.style.transform = 'translateX(0)';
-            }, 100);
-            
-            // Remove after delay
-            setTimeout(() => {
-                message.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    message.remove();
-                }, 300);
-            }, 5000);
-        }
-        
-        // Initialize page
-        document.addEventListener('DOMContentLoaded', function() {
-            // Add hover effects to cards
-            document.querySelectorAll('.wellbeing-card, .action-btn').forEach(card => {
-                card.addEventListener('mouseenter', function() {
-                    if (!this.style.transform) {
-                        this.style.transform = 'translateY(-5px)';
-                    }
-                });
-                
-                card.addEventListener('mouseleave', function() {
-                    if (this.style.transform === 'translateY(-5px)') {
-                        this.style.transform = 'translateY(0)';
-                    }
-                });
-            });
-            
-            // Close sidebar when clicking outside on mobile
-            document.addEventListener('click', function(event) {
-                const sidebar = document.getElementById('sidebar');
-                const toggle = document.querySelector('.mobile-menu-toggle');
-                
-                if (window.innerWidth <= 768 && 
-                    !sidebar.contains(event.target) && 
-                    !toggle.contains(event.target) && 
-                    sidebar.classList.contains('active')) {
-                    sidebar.classList.remove('active');
-                }
-            });
+            if (window.innerWidth <= 768 && 
+                !sidebar.contains(event.target) && 
+                !toggle.contains(event.target) && 
+                sidebar.classList.contains('active')) {
+                sidebar.classList.remove('active');
+            }
         });
     </script>
 </body>
