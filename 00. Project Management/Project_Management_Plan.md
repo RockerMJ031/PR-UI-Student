@@ -3,7 +3,7 @@
 ## Project Overview
 
 **Project Name**: Student Portal System Development  
-**Project Timeline**: December 2024 - February 2025  
+**Project Timeline**: August 2025 - September 2025 (2-Month Project)  
 **Project Type**: Web Application Development (Student-Facing Platform)  
 
 ## Team Members & Responsibilities
@@ -18,7 +18,7 @@
 
 ## Milestones & Deliverables
 
-### Milestone 1: Project Kick-off & Requirements Freeze (July 22, 2025)
+### Milestone 1: Project Kick-off & Requirements Freeze (April 18, 2025)
 **Deliverables:**
 - Project Management Plan (Project_Management_Plan.md)
 - Requirements Documentation (Requirements_Specification.md)
@@ -26,7 +26,7 @@
 - Wix CMS Database Configuration Guide (CMS_数据库配置指南.md)
 - Project Charter & Scope Definition
 
-### Milestone 2: High-fidelity Responsive Mock-up Approved (July 28, 2025)
+### Milestone 2: Wireframe & User-flow Sign-off (August 19, 2025)
 **Deliverables:**
 - Complete UI/UX Design System
 - High-fidelity Responsive Mockups (All Pages)
@@ -34,7 +34,7 @@
 - Interactive Prototypes
 - Design Approval Documentation
 
-### Milestone 3: Wix CMS Schema + API Mapping Completed (August 4, 2025)
+### Milestone 3: CMS Schema Replicated & Access Controls Configured (August 29, 2025)
 **Deliverables:**
 - Wix CMS Schema Implementation
 - API Mapping Documentation
@@ -51,7 +51,7 @@
   - Student Support Module (Student_Support_Code.js)
   - Student Wellbeing Module (Student_Wellbeing_Code.js)
 
-### Milestone 4: Staging Site Passes Internal QA (August 14, 2025)
+### Milestone 4: Feature-complete Build on Staging (September 8, 2025)
 **Deliverables:**
 - Complete Frontend Implementation:
   - student-assignments.html
@@ -68,7 +68,7 @@
 - Bug Fix Documentation
 - Performance Optimization Report
 
-### Milestone 5: UAT with Schools & Local Authorities Completed (August 20, 2025)
+### Milestone 5: UAT with Pilot AP Cohort Finished (September 15, 2025)
 **Deliverables:**
 - User Acceptance Testing Results
 - Stakeholder Feedback Documentation
@@ -76,7 +76,7 @@
 - Final Bug Fixes & Improvements
 - User Training Materials
 
-### Milestone 6: Production Go-live (August 23, 2025)
+### Milestone 6: Public Release (September 21, 2025)
 **Deliverables:**
 - Production Deployment Package
 - Go-live Checklist Completion
@@ -103,11 +103,11 @@
 2. UI design (Shihaam) → Page implementation (MJ + Shihaam)
 3. Functionality development completion → System testing (Edi)
 
-## Task Decomposition & Owners (6-Week Project Timeline)
+## Task Decomposition & Owners (6-Month Project Timeline)
 
 ### MJ Quan - Technical Lead & Development
 
-#### Week 1 (July 15-22): Project Setup & Architecture
+#### Phase 1 (August 1-19, 2025): Project Setup & Architecture
 | Task | Description |
 |------|-------------|
 | Technical Architecture Design | System architecture, data flow design, API planning |
@@ -115,7 +115,7 @@
 | Wix CMS Schema Design | Database collections, relationships, data modeling |
 | Development Environment Setup | Project structure, development tools, CI/CD setup |
 
-#### Week 2-3 (July 23-Aug 4): Backend Development
+#### Phase 2 (August 20 - September 8, 2025): Backend Development
 | Task | Description |
 |------|-------------|
 | Backend API Implementation | Database collections setup, API endpoints, authentication |
@@ -129,31 +129,27 @@
 | Student Support Backend | Ticket system, communication tools, help resources |
 | Student Wellbeing Backend | Wellbeing tracking, mood monitoring, support resources |
 
-#### Week 4-5 (Aug 5-18): Frontend Integration & QA
+#### Phase 3 (September 9-21, 2025): Integration & Deployment
 | Task | Description |
 |------|-------------|
 | Frontend-Backend Integration | API integration, data binding, error handling |
 | Reports System Development | Data aggregation, report generation, export functionality |
 | Performance Optimization | Code optimization, caching, load time improvements |
 | Internal QA Support | Bug fixes, code reviews, testing support |
-
-#### Week 6 (Aug 19-23): Final Integration & Deployment
-| Task | Description |
-|------|-------------|
 | Production Deployment | Deployment setup, environment configuration |
 | Final Bug Fixes | UAT feedback implementation, critical fixes |
 | Documentation & Handover | Technical documentation, code comments, handover |
 
 ### Shihaam - UI/UX Designer
 
-#### Week 1 (July 15-22): Design Foundation
+#### Phase 1 (August 1-19, 2025): Design Foundation
 | Task | Description |
 |------|-------------|
 | Design System Creation | Color schemes, typography, component library |
 | User Research & Wireframes | User journey mapping, low-fidelity wireframes |
 | Responsive Design Planning | Breakpoint strategy, mobile-first approach |
 
-#### Week 2 (July 23-28): High-Fidelity Mockups
+#### Phase 2 (August 20 - September 8, 2025): High-Fidelity Mockups & Wireframes
 | Task | Description |
 |------|-------------|
 | Student Dashboard Design | Dashboard layout, progress charts, navigation design |
@@ -166,7 +162,7 @@
 | Student Support Interface | Support ticket system, chat interface, help resources |
 | Student Wellbeing Design | Wellbeing dashboard, mood tracking, support tools |
 
-#### Week 3-4 (July 29-Aug 11): Implementation Support
+#### Phase 3 (September 9-21, 2025): Implementation Support
 | Task | Description |
 |------|-------------|
 | Design Implementation Support | Developer collaboration, design adjustments |
@@ -175,14 +171,14 @@
 
 ### Edi - QA
 
-#### Week 1-2 (July 15-29): Test Planning
+#### Phase 1 (August 1-19, 2025): Test Planning
 | Task | Description |
 |------|-------------|
 | Test Strategy Development | Test approach, scope, risk assessment |
 | Test Case Design | Functional, integration, performance test cases |
 | Test Environment Setup | Testing tools, automation setup, data preparation |
 
-#### Week 3-4 (July 30-Aug 13): Testing Execution
+#### Phase 2 (August 20 - September 8, 2025): Testing Execution
 | Task | Description |
 |------|-------------|
 | Functional Testing | Module testing, feature validation, boundary testing |
@@ -190,7 +186,7 @@
 | Performance Testing | Load testing, response time validation |
 | Regression Testing | Bug fix validation, system stability |
 
-#### Week 5-6 (Aug 14-23): UAT & Final Testing
+#### Phase 3 (September 9-21, 2025): UAT & Final Testing
 | Task | Description |
 |------|-------------|
 | Internal QA Coordination | QA process management, stakeholder communication |
@@ -198,7 +194,7 @@
 | Final Testing & Sign-off | Production readiness validation, final reports |
 | Documentation & Reporting | Test results compilation, lessons learned |
 
-## Resource Allocation (6-Week Project Timeline)
+## Resource Allocation (2-Month Project Timeline)
 
 ### Team Member Responsibilities
 
@@ -210,26 +206,26 @@
 
 ### Resource Distribution by Phase
 
-#### Phase 1: Planning & Design (Weeks 1-2)
+#### Phase 1: Planning & Design (August 1-19, 2025)
 - **MJ Quan**: Architecture & Setup
-- **Shihaam**: Design Foundation & Mockups
+- **Shihaam**: Wireframes & User-flow Design
 - **Edi**: Test Planning
 
-#### Phase 2: Development (Weeks 3-4)
-- **MJ Quan**: Backend Development
+#### Phase 2: Development (August 20 - September 8, 2025)
+- **MJ Quan**: CMS Schema & Backend Development
 - **Shihaam**: Design Implementation Support
 - **Edi**: Testing Execution
 
-#### Phase 3: Integration & QA (Weeks 5-6)
+#### Phase 3: Integration & QA (September 9-21, 2025)
 - **MJ Quan**: Integration & Deployment
 - **Shihaam**: Final Optimization
-- **Edi**: UAT & Final Testing
+- **Edi**: UAT & Public Release Support
 
 ### Resource Risk Analysis
 - **High Utilization**: All team members working at full capacity - requires careful monitoring
 - **Critical Path**: MJ Quan's technical work is on critical path - backup support needed
 - **Collaboration Time**: Built into individual allocations (no separate meeting time)
-- **Buffer Strategy**: Milestone flexibility rather than time buffers due to tight schedule
+- **Buffer Strategy**: Built-in time buffers between phases to accommodate complexity
 
 ## Risk Management (Top 3 Risks & Mitigation)
 

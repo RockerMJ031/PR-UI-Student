@@ -32,7 +32,7 @@ class CommunicationService {
    */
   async initializeEmail() {
     try {
-      this.emailTransporter = nodemailer.createTransporter({
+      this.emailTransporter = nodemailer.createTransport({
         host: process.env.SMTP_HOST || 'smtp.gmail.com',
         port: parseInt(process.env.SMTP_PORT) || 587,
         secure: false,
@@ -282,6 +282,10 @@ class CommunicationService {
   async sendPushNotification(pushData) {
     try {
       const { subscription, payload } = pushData;
+      
+      if (!process.env.VAPID_PUBLIC_KEY || !process.env.VAPID_PRIVATE_KEY) {
+        throw new Error('推送通知服务未配置');
+      }
       
       const result = await webpush.sendNotification(
         subscription,
