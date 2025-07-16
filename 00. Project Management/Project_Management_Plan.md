@@ -1,10 +1,10 @@
-# Mentor database and function ready
+# Student Portal System Development
 
 ## Project Overview
 
-**Project Name**: Mentor database and function ready  
-**Project Timeline**: July 15, 2025 - August 23, 2025  
-**Project Type**: Web Application Development  
+**Project Name**: Student Portal System Development  
+**Project Timeline**: December 2024 - February 2025  
+**Project Type**: Web Application Development (Student-Facing Platform)  
 
 ## Team Members & Responsibilities
 
@@ -41,20 +41,29 @@
 - Database Collections Setup
 - Data Flow Architecture
 - Backend Integration Code:
-  - Mentor Dashboard Module (Wix_Mentor_Dashboard_Code.js)
-  - Finance Management Module (Wix_Finance_Code.js)
-  - Student Management Module (Wix_Students_Code.js)
-  - Session Management Module (Wix_Sessions_Code.js)
+  - Student Assignments Module (Student_Assignments_Code.js)
+  - Student Courses Module (Student_Courses_Code.js)
+  - Student Dashboard Module (Student_Dashboard_Code.js)
+  - Student Progress Module (Student_Progress_Code.js)
+  - Student Resources Module (Student_Resources_Code.js)
+  - Student Safeguarding Module (Student_Safeguarding_Code.js)
+  - Student Schedule Module (Student_Schedule_Code.js)
+  - Student Support Module (Student_Support_Code.js)
+  - Student Wellbeing Module (Student_Wellbeing_Code.js)
 
 ### Milestone 4: Staging Site Passes Internal QA (August 14, 2025)
 **Deliverables:**
 - Complete Frontend Implementation:
-  - mentor-dashboard.html
-  - finance.html
-  - students-enhanced.html
-  - sessions-enhanced.html
-- Reports System Implementation (Wix_Reports_Code.js)
-- Index/Main Page Integration (Wix_Index_Code.js)
+  - student-assignments.html
+  - student-courses.html
+  - student-dashboard.html
+  - student-progress.html
+  - student-resources.html
+  - student-safeguarding.html
+  - student-schedule.html
+  - student-support.html
+  - student-wellbeing.html
+- Main Page Integration (index.html)
 - Internal QA Test Results
 - Bug Fix Documentation
 - Performance Optimization Report
@@ -78,9 +87,10 @@
 ## Dependencies & Predecessors
 
 ### External Dependencies
-- **Wix Platform Access**: Requires Wix developer account and CMS configuration permissions
-- **Database Architecture**: Depends on existing CMS database configuration guide
+- **Backend API Services**: Requires backend server setup and database configuration
+- **Database Architecture**: Depends on existing CMS database configuration guide and supplementary guide
 - **Design Resources**: UI component library and design specifications
+- **Student Data Integration**: Integration with existing mentor system database
 
 ### Internal Dependencies
 - Technical architecture design → Code development
@@ -108,11 +118,16 @@
 #### Week 2-3 (July 23-Aug 4): Backend Development
 | Task | Description |
 |------|-------------|
-| Wix CMS Implementation | Database collections setup, API endpoints |
-| Mentor Dashboard Backend | Dashboard logic, statistics, data aggregation |
-| Student Management Backend | Student CRUD, data binding, filtering, search |
-| Session Management Backend | Session scheduling, status management, notifications |
-| Finance Management Backend | Fee calculation, payment tracking, report generation |
+| Backend API Implementation | Database collections setup, API endpoints, authentication |
+| Student Dashboard Backend | Dashboard logic, statistics, progress tracking |
+| Student Assignments Backend | Assignment CRUD, submission tracking, grading integration |
+| Student Courses Backend | Course enrollment, materials access, progress tracking |
+| Student Progress Backend | Progress analytics, performance metrics, goal tracking |
+| Student Resources Backend | Resource management, file access, learning materials |
+| Student Safeguarding Backend | Incident reporting, safety monitoring, alert system |
+| Student Schedule Backend | Calendar integration, session booking, reminder system |
+| Student Support Backend | Ticket system, communication tools, help resources |
+| Student Wellbeing Backend | Wellbeing tracking, mood monitoring, support resources |
 
 #### Week 4-5 (Aug 5-18): Frontend Integration & QA
 | Task | Description |
@@ -141,11 +156,15 @@
 #### Week 2 (July 23-28): High-Fidelity Mockups
 | Task | Description |
 |------|-------------|
-| Mentor Dashboard Design | Dashboard layout, charts, navigation design |
-| Student Management Interface | Student lists, detail pages, form designs |
-| Session Management UI | Calendar views, session cards, status indicators |
-| Finance Management Design | Financial reports, payment interfaces, statistics |
-| Reports System Interface | Report layouts, data visualization, export options |
+| Student Dashboard Design | Dashboard layout, progress charts, navigation design |
+| Student Assignments Interface | Assignment lists, submission forms, grade displays |
+| Student Courses UI | Course cards, materials access, progress indicators |
+| Student Progress Interface | Progress tracking, analytics, goal setting |
+| Student Resources Design | Resource library, search functionality, categorization |
+| Student Safeguarding Interface | Reporting forms, safety information, contact options |
+| Student Schedule Design | Calendar views, booking interface, reminder system |
+| Student Support Interface | Support ticket system, chat interface, help resources |
+| Student Wellbeing Design | Wellbeing dashboard, mood tracking, support tools |
 
 #### Week 3-4 (July 29-Aug 11): Implementation Support
 | Task | Description |
@@ -223,14 +242,14 @@
 - Increase MJ Quan's technical support time
 - Simplify non-core functionality requirements
 
-### Risk 2: Wix Platform Limitations Affect Feature Implementation
+### Risk 2: Backend Integration Complexity
 **Risk Level**: Medium  
-**Impact**: Some advanced features may need adjusted implementation approaches  
+**Impact**: Student data integration with mentor system may require complex API design  
 **Mitigation Measures**:
-- Thoroughly research Wix API documentation and limitations
-- Prepare alternative implementation solutions
-- Maintain communication with Wix technical support
-- Prioritize core functionality implementation
+- Thoroughly analyze existing mentor system database structure
+- Design robust API endpoints for student data access
+- Implement proper authentication and authorization
+- Create comprehensive data synchronization mechanisms
 
 ### Risk 3: Team Member Time Conflicts
 **Risk Level**: Medium  
@@ -274,54 +293,79 @@
 
 ### Technical Documentation Structure
 
-#### 01. Mentor Dashboard
-- **Implementation Guide**: `01. Mentor Dashboard/Wix_Mentor_Dashboard_Guide.md`
-- **Source Code**: `01. Mentor Dashboard/Wix_Mentor_Dashboard_Code.js`
-- **Testing Documentation**: `01. Mentor Dashboard/Wix_Mentor_Dashboard_Testing.md`
-- **Frontend Implementation**: `mentor-dashboard.html`
+#### 01. Student Assignments
+- **Design Guide**: `01. student-assignments/Student_Assignments_Design_Guide.md`
+- **Source Code**: `01. student-assignments/Student_Assignments_Code.js`
+- **Testing Documentation**: `01. student-assignments/Student_Assignments_Testing_Guide.md`
+- **Frontend Implementation**: `student-assignments.html`
 
-#### 02. Finance Management
-- **Implementation Guide**: `02. Finance/Wix_Finance_Guide.md`
-- **Source Code**: `02. Finance/Wix_Finance_Code.js`
-- **Testing Documentation**: `02. Finance/Wix_Finance_Testing.md`
-- **Frontend Implementation**: `finance.html`
+#### 02. Student Courses
+- **Design Guide**: `02. student-courses/Student_Courses_Design_Guide.md`
+- **Source Code**: `02. student-courses/Student_Courses_Code.js`
+- **Testing Documentation**: `02. student-courses/Student_Courses_Testing_Guide.md`
+- **Frontend Implementation**: `student-courses.html`
 
-#### 03. Student Management
-- **Implementation Guide**: `03. Students/Wix_Students_Guide.md`
-- **Source Code**: `03. Students/Wix_Students_Code.js`
-- **Testing Documentation**: `03. Students/Wix_Students_Testing.md`
-- **Frontend Implementation**: `students-enhanced.html`
+#### 03. Student Dashboard
+- **Design Guide**: `03. student-dashboard/Student_Dashboard_Design_Guide.md`
+- **Source Code**: `03. student-dashboard/Student_Dashboard_Code.js`
+- **Testing Documentation**: `03. student-dashboard/Student_Dashboard_Testing_Guide.md`
+- **Frontend Implementation**: `student-dashboard.html`
 
-#### 04. Session Management
-- **Implementation Guide**: `04. Sessions/Wix_Sessions_Guide.md`
-- **Source Code**: `04. Sessions/Wix_Sessions_Code.js`
-- **Testing Documentation**: `04. Sessions/Wix_Sessions_Testing.md`
-- **Frontend Implementation**: `sessions-enhanced.html`
+#### 04. Student Progress
+- **Design Guide**: `04. student-progress/Student_Progress_Design_Guide.md`
+- **Source Code**: `04. student-progress/Student_Progress_Code.js`
+- **Testing Documentation**: `04. student-progress/Student_Progress_Testing_Guide.md`
+- **Frontend Implementation**: `student-progress.html`
 
-#### 05. Reports System
-- **Implementation Guide**: `05. Reports/Wix_Reports_Guide.md`
-- **Source Code**: `05. Reports/Wix_Reports_Code.js`
-- **Testing Documentation**: `05. Reports/Wix_Reports_Testing.md`
-- **Frontend Implementation**: `reports-enhanced.html`
+#### 05. Student Resources
+- **Design Guide**: `05. student-resources/Student_Resources_Design_Guide.md`
+- **Source Code**: `05. student-resources/Student_Resources_Code.js`
+- **Testing Documentation**: `05. student-resources/Student_Resources_Testing_Guide.md`
+- **Frontend Implementation**: `student-resources.html`
 
-#### 06. Index/Main Page
-- **Implementation Guide**: `06. Index/Wix_Index_Guide.md`
-- **Source Code**: `06. Index/Wix_Index_Code.js`
-- **Testing Documentation**: `06. Index/Wix_Index_Testing.md`
+#### 06. Student Safeguarding
+- **Design Guide**: `06. student-safeguarding/Student_Safeguarding_Design_Guide.md`
+- **Source Code**: `06. student-safeguarding/Student_Safeguarding_Code.js`
+- **Testing Documentation**: `06. student-safeguarding/Student_Safeguarding_Testing_Guide.md`
+- **Frontend Implementation**: `student-safeguarding.html`
+
+#### 07. Student Schedule
+- **Design Guide**: `07. student-schedule/Student_Schedule_Design_Guide.md`
+- **Source Code**: `07. student-schedule/Student_Schedule_Code.js`
+- **Testing Documentation**: `07. student-schedule/Student_Schedule_Testing_Guide.md`
+- **Frontend Implementation**: `student-schedule.html`
+
+#### 08. Student Support
+- **Design Guide**: `08. student-support/Student_Support_Design_Guide.md`
+- **Source Code**: `08. student-support/Student_Support_Code.js`
+- **Testing Documentation**: `08. student-support/Student_Support_Testing_Guide.md`
+- **Frontend Implementation**: `student-support.html`
+
+#### 09. Student Wellbeing
+- **Design Guide**: `09. student-wellbeing/Student_Wellbeing_Design_Guide.md`
+- **Source Code**: `09. student-wellbeing/Student_Wellbeing_Code.js`
+- **Testing Documentation**: `09. student-wellbeing/Student_Wellbeing_Testing_Guide.md`
+- **Frontend Implementation**: `student-wellbeing.html`
+
+#### 10. Main Page
 - **Frontend Implementation**: `index.html`
 
 ### Database & Architecture
 - **CMS Database Configuration**: `00. Project Management/CMS_数据库配置指南.md`
+- **CMS Database Supplementary Guide**: `00. Project Management/CMS_数据库配置补充指南.md`
 - **Project Management Plan**: `00. Project Management/Project_Management_Plan.md`
+- **Backend Services**: `backend/` directory with authentication, database, file, and communication services
 
 ### External Resources
-- **Wix Developer Documentation**: https://dev.wix.com/
-- **Wix Data API Reference**: https://www.wix.com/velo/reference/wix-data
-- **Wix CMS Collections**: https://support.wix.com/en/article/about-your-sites-database-collections
-- **Responsive Design Guidelines**: https://www.wix.com/encyclopedia/definition/responsive-design
+- **Node.js Documentation**: https://nodejs.org/en/docs/
+- **Express.js Framework**: https://expressjs.com/
+- **MongoDB Documentation**: https://docs.mongodb.com/
+- **JWT Authentication**: https://jwt.io/
+- **Responsive Design Guidelines**: https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Responsive_Design
 
 ---
 
-**Document Version**: v2.0  
-**Last Updated**: July 15, 2025  
-**Updated By**: MJ Quan
+**Document Version**: v3.0  
+**Last Updated**: December 2024  
+**Updated By**: MJ Quan  
+**Project Focus**: Student Portal System Development
