@@ -231,8 +231,27 @@ async function loadProgressData() {
         
         const progressData = await query.find();
         
+        // 查询同一时间段的测验数据
+        let quizQuery = wixData.query('StudentQuizzes')
+            .eq('studentId', currentUser.id)
+            .ge('date', dateRange.start)
+            .le('date', dateRange.end)
+            .ascending('date');
+            
+        // 应用科目筛选到测验数据
+        if (selectedSubject && selectedSubject !== 'all') {
+            quizQuery = quizQuery.eq('subject', selectedSubject);
+        }
+        
+        const quizResults = await quizQuery.find();
+        
         // 处理进度数据
         userProgress = processProgressData(progressData.items);
+        
+        // 处理测验数据
+        if (quizResults.items.length > 0) {
+            processQuizData(quizResults.items);
+        }
         
         // 更新进度统计
         updateProgressStatistics();
@@ -383,6 +402,84 @@ function updateSubjectStatistics() {
     
     // 更新科目统计表格
     $w('#subjectStatsRepeater').data = subjectData;
+}
+
+// ==================== 测验数据处理 ====================
+function processQuizData(quizItems) {
+    console.log('处理测验数据...');
+    
+    // 计算测验统计数据
+    const totalQuizzes = quizItems.length;
+    let totalScore = 0;
+    let perfectScores = 0;
+    
+    // 获取即将到来的测验（计划在未来）
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+    const upcomingQuizzes = quizItems.filter(quiz => new Date(quiz.scheduledDate) > today).length;
+    
+    // 计算平均分数和满分次数
+    quizItems.forEach(quiz => {
+        if (quiz.completed) {
+            totalScore += quiz.score;
+            if (quiz.score === 100) {
+                perfectScores++;
+            }
+        }
+    });
+    
+    // 计算平均分数（仅针对已完成的测验）
+    const completedQuizzes = quizItems.filter(quiz => quiz.completed).length;
+    const averageScore = completedQuizzes > 0 ? Math.round(totalScore / completedQuizzes) : 0;
+    
+    // 更新测验概览统计
+    $w('#completedQuizzesText').text = completedQuizzes.toString();
+    $w('#averageScoreText').text = `${averageScore}%`;
+    $w('#perfectScoresText').text = perfectScores.toString();
+    $w('#upcomingQuizzesText').text = upcomingQuizzes.toString();
+    
+    // 更新最近测验结果
+    updateRecentQuizResults(quizItems);
+    
+    console.log('测验数据处理完成');
+}
+
+// ==================== 最近测验结果更新 ====================
+function updateRecentQuizResults(quizItems) {
+    // 按日期排序（最近的优先）并仅获取已完成的测验
+    const completedQuizzes = quizItems
+        .filter(quiz => quiz.completed)
+        .sort((a, b) => new Date(b.date) - new Date(a.date))
+        .slice(0, 3); // 仅显示最近的3次测验
+    
+    if (completedQuizzes.length === 0) {
+        // 如果没有已完成的测验，显示一条消息
+        $w('#recentQuizzesRepeater').hide();
+        $w('#noQuizzesMessage').show();
+        return;
+    }
+    
+    // 准备测验数据用于重复器
+    const quizData = completedQuizzes.map(quiz => ({
+        _id: quiz._id,
+        title: `${quiz.subject}: ${quiz.title}`,
+        date: formatDate(new Date(quiz.date)),
+        score: `${quiz.score}%`,
+        scoreColor: getScoreColor(quiz.score)
+    }));
+    
+    // 更新重复器数据
+    $w('#recentQuizzesRepeater').data = quizData;
+    $w('#recentQuizzesRepeater').show();
+    $w('#noQuizzesMessage').hide();
+}
+
+// 根据分数获取颜色
+function getScoreColor(score) {
+    if (score >= 90) return CONFIG.CHART_COLORS.success;
+    if (score >= 70) return CONFIG.CHART_COLORS.primary;
+    if (score >= 60) return CONFIG.CHART_COLORS.warning;
+    return CONFIG.CHART_COLORS.danger;
 }
 
 // ==================== 图表初始化 ====================

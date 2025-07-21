@@ -498,26 +498,50 @@
         }
 
         .resource-card h3 {
-            color: var(--primary-color);
-            margin-bottom: 15px;
+            color: var(--text-color);
+            margin-bottom: 20px;
             font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            font-weight: 600;
         }
 
-        .resource-list {
-            list-style: none;
+        .resource-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            margin-right: 12px;
+            color: white;
         }
 
-        .resource-list li {
-            margin-bottom: 10px;
+        .resource-icon i {
+            font-size: 1rem;
+        }
+
+        .resource-items {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .resource-item {
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .resource-item:last-child {
+            border-bottom: none;
         }
 
         .resource-link {
             display: flex;
             align-items: center;
-            padding: 10px;
+            justify-content: space-between;
             color: var(--text-color);
             text-decoration: none;
-            border-radius: var(--border-radius);
+            padding: 12px 0;
             transition: all 0.3s ease;
         }
 
@@ -526,10 +550,24 @@
             color: var(--primary-color);
         }
 
-        .resource-link i {
-            margin-right: 10px;
-            width: 20px;
-            color: var(--primary-color);
+        .resource-content {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .resource-title {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+
+        .resource-description {
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+
+        .resource-link i.fa-chevron-right {
+            color: #ccc;
+            font-size: 0.8rem;
         }
 
         /* Mobile Responsiveness */
@@ -635,12 +673,7 @@
                         Schedule
                     </a>
                 </div>
-                <div class="nav-item">
-                    <a href="student-progress.html" class="nav-link">
-                        <i class="fas fa-chart-line"></i>
-                        Progress
-                    </a>
-                </div>
+                <!-- Progress link removed -->
                 <div class="nav-item">
                     <a href="student-resources.html" class="nav-link">
                         <i class="fas fa-folder-open"></i>
@@ -704,15 +737,6 @@
 
             <!-- Wellbeing Overview - Updated for Alternative Probation Students -->
             <div class="wellbeing-overview">
-                <div class="wellbeing-card mood">
-                    <div class="icon">
-                        <i class="fas fa-smile"></i>
-                    </div>
-                    <h3>Current Mood</h3>
-                    <div class="wellbeing-score" style="color: var(--wellbeing-pink);">😊</div>
-                    <div class="wellbeing-status">Feeling Positive</div>
-                </div>
-                
                 <div class="wellbeing-card today">
                     <div class="icon">
                         <i class="fas fa-calendar-day"></i>
@@ -741,48 +765,44 @@
                 </div>
             </div>
 
-            <!-- Quick Actions - Supportive for Alternative Probation -->
+            <!-- Support & Coping Tools - Updated Style -->
             <div class="quick-actions">
-                <h2>Support & Coping Tools</h2>
-                <div class="actions-grid">
-                    <a href="#" class="action-btn" onclick="openBreathingExercise()">
-                        <i class="fas fa-wind"></i>
-                        <div>
-                            <strong>Breathing Exercise</strong>
-                            <p>Quick relaxation technique</p>
+                <h2><i class="fas fa-heart" style="color: var(--primary-color); margin-right: 10px;"></i> Support & Coping Tools</h2>
+                <div class="actions-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
+                    <div class="action-btn" style="flex-direction: column; align-items: center; text-align: center; padding: 30px 20px;" onclick="openBreathingExercise()">
+                        <div style="background-color: #e8f0fe; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                            <i class="fas fa-wind" style="font-size: 1.8rem; color: var(--primary-color);"></i>
                         </div>
-                    </a>
-                    
-                    <a href="#" class="action-btn" onclick="openMindfulnessTimer()">
-                        <i class="fas fa-clock"></i>
-                        <div>
-                            <strong>Mindfulness Timer</strong>
-                            <p>5-minute meditation</p>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="action-btn" onclick="openGratitudeJournal()">
-                        <i class="fas fa-heart"></i>
-                        <div>
-                            <strong>Gratitude Journal</strong>
-                            <p>Write positive thoughts</p>
-                        </div>
-                    </a>
-                    
-                    <div class="action-btn" onclick="bookCounseling()">
-                        <i class="fas fa-comments"></i>
-                        <div>
-                            <div style="font-weight: 600;">Talk to Someone</div>
-                            <div style="font-size: 0.9rem; color: var(--text-light);">Confidential support</div>
-                        </div>
+                        <div style="font-weight: 600; font-size: 1.1rem; margin-bottom: 8px;">Breathe Easy</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Slow your breath to slow your thoughts</div>
+                        <button style="margin-top: 15px; background-color: var(--primary-color); color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer;">Try Now</button>
                     </div>
                     
-                    <div class="action-btn" onclick="accessResources()">
-                        <i class="fas fa-hands-helping"></i>
-                        <div>
-                            <div style="font-weight: 600;">Coping Strategies</div>
-                            <div style="font-size: 0.9rem; color: var(--text-light);">Tools that help</div>
+                    <div class="action-btn" style="flex-direction: column; align-items: center; text-align: center; padding: 30px 20px;" onclick="openMindfulnessTimer()">
+                        <div style="background-color: #fce8fb; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                            <i class="fas fa-clock" style="font-size: 1.8rem; color: #e83e8c;"></i>
                         </div>
+                        <div style="font-weight: 600; font-size: 1.1rem; margin-bottom: 8px;">Focus Time</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Gentle ways to focus and feel more settled</div>
+                        <button style="margin-top: 15px; background-color: #e83e8c; color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer;">Start Session</button>
+                    </div>
+                    
+                    <div class="action-btn" style="flex-direction: column; align-items: center; text-align: center; padding: 30px 20px;" onclick="bookCounseling()">
+                        <div style="background-color: #e8f7fc; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                            <i class="fas fa-comments" style="font-size: 1.8rem; color: #17a2b8;"></i>
+                        </div>
+                        <div style="font-weight: 600; font-size: 1.1rem; margin-bottom: 8px;">Talk to Someone</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Connect with support when you need it</div>
+                        <button style="margin-top: 15px; background-color: #17a2b8; color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer;">Get Help</button>
+                    </div>
+                    
+                    <div class="action-btn" style="flex-direction: column; align-items: center; text-align: center; padding: 30px 20px;" onclick="openCalmSpace()">
+                        <div style="background-color: #e8fcf5; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-bottom: 15px;">
+                            <i class="fas fa-cloud" style="font-size: 1.8rem; color: #28a745;"></i>
+                        </div>
+                        <div style="font-weight: 600; font-size: 1.1rem; margin-bottom: 8px;">Calm Space</div>
+                        <div style="font-size: 0.9rem; color: var(--text-light);">Peaceful virtual environment</div>
+                        <button style="margin-top: 15px; background-color: #28a745; color: white; border: none; padding: 8px 20px; border-radius: 20px; cursor: pointer;">Explore</button>
                     </div>
                 </div>
             </div>
@@ -793,37 +813,25 @@
                 <p style="margin-bottom: 20px; color: var(--text-light);">How are you feeling right now? There's no wrong answer - we're here to support you.</p>
                 
                 <div class="mood-selector">
-                    <div class="mood-option" onclick="selectMood(this, 'excited')">
+                    <div class="mood-option" onclick="selectMood(this, 'great')">
                         <span class="mood-emoji">🤩</span>
-                        <div class="mood-label">Excited</div>
+                        <div class="mood-label">Great</div>
                     </div>
-                    <div class="mood-option" onclick="selectMood(this, 'happy')">
+                    <div class="mood-option" onclick="selectMood(this, 'good')">
                         <span class="mood-emoji">😊</span>
-                        <div class="mood-label">Happy</div>
+                        <div class="mood-label">Good</div>
                     </div>
-                    <div class="mood-option" onclick="selectMood(this, 'content')">
+                    <div class="mood-option" onclick="selectMood(this, 'okay')">
                         <span class="mood-emoji">😌</span>
-                        <div class="mood-label">Content</div>
+                        <div class="mood-label">Okay</div>
                     </div>
-                    <div class="mood-option" onclick="selectMood(this, 'neutral')">
-                        <span class="mood-emoji">😐</span>
-                        <div class="mood-label">Neutral</div>
+                    <div class="mood-option" onclick="selectMood(this, 'low')">
+                        <span class="mood-emoji">😔</span>
+                        <div class="mood-label">Low</div>
                     </div>
-                    <div class="mood-option" onclick="selectMood(this, 'tired')">
-                        <span class="mood-emoji">😴</span>
-                        <div class="mood-label">Tired</div>
-                    </div>
-                    <div class="mood-option" onclick="selectMood(this, 'worried')">
-                        <span class="mood-emoji">😟</span>
-                        <div class="mood-label">Worried</div>
-                    </div>
-                    <div class="mood-option" onclick="selectMood(this, 'sad')">
+                    <div class="mood-option" onclick="selectMood(this, 'struggling')">
                         <span class="mood-emoji">😢</span>
-                        <div class="mood-label">Sad</div>
-                    </div>
-                    <div class="mood-option" onclick="selectMood(this, 'angry')">
-                        <span class="mood-emoji">😠</span>
-                        <div class="mood-label">Angry</div>
+                        <div class="mood-label">Struggling</div>
                     </div>
                 </div>
                 
@@ -854,145 +862,201 @@
                         <div class="progress-label">Positive Days</div>
                         <div class="progress-description">This month</div>
                     </div>
-                    
-                    <div class="progress-item">
-                        <div class="progress-circle" style="background: conic-gradient(var(--wellbeing-blue) 0deg, var(--wellbeing-blue) 216deg, var(--border-color) 216deg);">
-                            <div class="progress-value">6</div>
-                        </div>
-                        <div class="progress-label">Support Sessions</div>
-                        <div class="progress-description">This month</div>
-                    </div>
-                    
-                    <div class="progress-item">
-                        <div class="progress-circle" style="background: conic-gradient(var(--wellbeing-orange) 0deg, var(--wellbeing-orange) 324deg, var(--border-color) 324deg);">
-                            <div class="progress-value">90%</div>
-                        </div>
-                        <div class="progress-label">Coping Skills</div>
-                        <div class="progress-description">Usage rate</div>
-                    </div>
                 </div>
             </div>
 
-            <!-- Resources - Support Focused -->
+            <!-- Resources - Support Focused (Updated Style) -->
             <div class="resources-section">
+                <!-- Emotional Support Card -->
                 <div class="resource-card">
-                    <h3>Emotional Support</h3>
-                    <ul class="resource-list">
-                        <li>
+                    <h3>
+                        <span class="resource-icon" style="background-color: #9c6ade;">
+                            <i class="fas fa-heart"></i>
+                        </span>
+                        Emotional Support
+                    </h3>
+                    <div class="resource-items">
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-heart"></i>
-                                Emotional Regulation Guide
+                                <div class="resource-content">
+                                    <div class="resource-title">Emotional Regulation Guide</div>
+                                    <div class="resource-description">Understanding your emotions</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-video"></i>
-                                Calming Techniques Videos
+                                <div class="resource-content">
+                                    <div class="resource-title">Calming Techniques Videos</div>
+                                    <div class="resource-description">Guided meditation sessions</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-headphones"></i>
-                                Relaxation Audio
+                                <div class="resource-content">
+                                    <div class="resource-title">Relaxation Audio</div>
+                                    <div class="resource-description">Nature sounds and calming music</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-users"></i>
-                                Peer Support Groups
+                                <div class="resource-content">
+                                    <div class="resource-title">Peer Support Groups</div>
+                                    <div class="resource-description">Connect with others who understand</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
                 
+                <!-- Behavioral Support Card -->
                 <div class="resource-card">
-                    <h3>Behavioral Support</h3>
-                    <ul class="resource-list">
-                        <li>
+                    <h3>
+                        <span class="resource-icon" style="background-color: #50b83c;">
+                            <i class="fas fa-brain"></i>
+                        </span>
+                        Behavioral Support
+                    </h3>
+                    <div class="resource-items">
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-brain"></i>
-                                Coping Strategies Toolkit
+                                <div class="resource-content">
+                                    <div class="resource-title">Coping Strategies Toolkit</div>
+                                    <div class="resource-description">Practical tools for challenging moments</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-clipboard-list"></i>
-                                Daily Routine Planner
+                                <div class="resource-content">
+                                    <div class="resource-title">Daily Routine Planner</div>
+                                    <div class="resource-description">Structure your day for success</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-chart-line"></i>
-                                Progress Tracking Tools
+                                <div class="resource-content">
+                                    <div class="resource-title">Progress Tracking Tools</div>
+                                    <div class="resource-description">Monitor and celebrate your growth</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-lightbulb"></i>
-                                Problem-Solving Techniques
+                                <div class="resource-content">
+                                    <div class="resource-title">Problem-Solving Techniques</div>
+                                    <div class="resource-description">Step-by-step approaches to challenges</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
                 
+                <!-- Crisis Support Card -->
                 <div class="resource-card">
-                    <h3>Crisis Support</h3>
-                    <ul class="resource-list">
-                        <li>
+                    <h3>
+                        <span class="resource-icon" style="background-color: #de3618;">
+                            <i class="fas fa-phone"></i>
+                        </span>
+                        Crisis Support
+                    </h3>
+                    <div class="resource-items">
+                        <div class="resource-item">
                             <a href="tel:988" class="resource-link">
-                                <i class="fas fa-phone"></i>
-                                Crisis Helpline: 988
+                                <div class="resource-content">
+                                    <div class="resource-title">Crisis Helpline: 988</div>
+                                    <div class="resource-description">24/7 professional support</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-comments"></i>
-                                24/7 Text Support
+                                <div class="resource-content">
+                                    <div class="resource-title">24/7 Text Support</div>
+                                    <div class="resource-description">Text HOME to 741741</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-user-md"></i>
-                                Emergency Counselor
+                                <div class="resource-content">
+                                    <div class="resource-title">Emergency Counselor</div>
+                                    <div class="resource-description">Immediate professional assistance</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-map-marker-alt"></i>
-                                Local Support Centers
+                                <div class="resource-content">
+                                    <div class="resource-title">Local Support Centers</div>
+                                    <div class="resource-description">Find help near you</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
                 
+                <!-- Educational Support Card -->
                 <div class="resource-card">
-                    <h3>Educational Support</h3>
-                    <ul class="resource-list">
-                        <li>
+                    <h3>
+                        <span class="resource-icon" style="background-color: #47c1bf;">
+                            <i class="fas fa-graduation-cap"></i>
+                        </span>
+                        Educational Support
+                    </h3>
+                    <div class="resource-items">
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-graduation-cap"></i>
-                                Academic Accommodations
+                                <div class="resource-content">
+                                    <div class="resource-title">Academic Accommodations</div>
+                                    <div class="resource-description">Support for your learning needs</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-clock"></i>
-                                Time Management Skills
+                                <div class="resource-content">
+                                    <div class="resource-title">Time Management Skills</div>
+                                    <div class="resource-description">Strategies to optimize your study time</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-book-reader"></i>
-                                Study Strategies
+                                <div class="resource-content">
+                                    <div class="resource-title">Study Strategies</div>
+                                    <div class="resource-description">Effective learning techniques</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                        <li>
+                        </div>
+                        <div class="resource-item">
                             <a href="#" class="resource-link">
-                                <i class="fas fa-chalkboard-teacher"></i>
-                                Tutoring Services
+                                <div class="resource-content">
+                                    <div class="resource-title">Tutoring Services</div>
+                                    <div class="resource-description">One-on-one academic support</div>
+                                </div>
+                                <i class="fas fa-chevron-right"></i>
                             </a>
-                        </li>
-                    </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
