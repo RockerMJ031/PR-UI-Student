@@ -44,7 +44,6 @@
   - Student Assignments Module (Student_Assignments_Code.js)
   - Student Courses Module (Student_Courses_Code.js)
   - Student Dashboard Module (Student_Dashboard_Code.js)
-  - Student Progress Module (Student_Progress_Code.js)
   - Student Resources Module (Student_Resources_Code.js)
   - Student Safeguarding Module (Student_Safeguarding_Code.js)
   - Student Schedule Module (Student_Schedule_Code.js)
@@ -57,7 +56,6 @@
   - student-assignments.html
   - student-courses.html
   - student-dashboard.html
-  - student-progress.html
   - student-resources.html
   - student-safeguarding.html
   - student-schedule.html
@@ -119,10 +117,9 @@
 | Task | Description |
 |------|-------------|
 | Backend API Implementation | Database collections setup, API endpoints, authentication |
-| Student Dashboard Backend | Dashboard logic, statistics, progress tracking |
+| Student Dashboard Backend | Dashboard logic, statistics |
 | Student Assignments Backend | Assignment CRUD, submission tracking, grading integration |
-| Student Courses Backend | Course enrollment, materials access, progress tracking |
-| Student Progress Backend | Progress analytics, performance metrics, goal tracking |
+| Student Courses Backend | Course enrollment, materials access |
 | Student Resources Backend | Resource management, file access, learning materials |
 | Student Safeguarding Backend | Incident reporting, safety monitoring, alert system |
 | Student Schedule Backend | Calendar integration, session booking, reminder system |
@@ -152,10 +149,9 @@
 #### Phase 2 (August 20 - September 8, 2025): High-Fidelity Mockups & Wireframes
 | Task | Description |
 |------|-------------|
-| Student Dashboard Design | Dashboard layout, progress charts, navigation design |
+| Student Dashboard Design | Dashboard layout, navigation design |
 | Student Assignments Interface | Assignment lists, submission forms, grade displays |
-| Student Courses UI | Course cards, materials access, progress indicators |
-| Student Progress Interface | Progress tracking, analytics, goal setting |
+| Student Courses UI | Course cards, materials access |
 | Student Resources Design | Resource library, search functionality, categorization |
 | Student Safeguarding Interface | Reporting forms, safety information, contact options |
 | Student Schedule Design | Calendar views, booking interface, reminder system |
@@ -307,11 +303,7 @@
 - **Testing Documentation**: `03. student-dashboard/Student_Dashboard_Testing_Guide.md`
 - **Frontend Implementation**: `student-dashboard.html`
 
-#### 04. Student Progress
-- **Design Guide**: `04. student-progress/Student_Progress_Design_Guide.md`
-- **Source Code**: `04. student-progress/Student_Progress_Code.js`
-- **Testing Documentation**: `04. student-progress/Student_Progress_Testing_Guide.md`
-- **Frontend Implementation**: `student-progress.html`
+
 
 #### 05. Student Resources
 - **Design Guide**: `05. student-resources/Student_Resources_Design_Guide.md`

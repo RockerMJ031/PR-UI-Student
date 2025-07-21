@@ -71,7 +71,7 @@ The Student Assignments & Exams page serves as a comprehensive dashboard for stu
 
 - **Navigation Menu** (`#navigationMenu`)
   - Type: Menu
-  - Items: Dashboard, My Courses, Schedule, Assignments (active), Progress, Resources, Wellbeing, Safeguarding, Get Support
+  - Items: Dashboard, My Courses, Schedule, Assignments (active), Resources, Wellbeing, Safeguarding, Get Support
   - Icon font: Font Awesome 5
 
 - **User Profile Section** (`#userProfileSection`)

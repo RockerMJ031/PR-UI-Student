@@ -2,7 +2,7 @@
 
 ## 项目概述
 
-本项目是一个全面的学生管理系统，旨在为教育机构提供完整的学生信息管理、课程管理、进度跟踪和支持服务解决方案。
+本项目是一个全面的学生管理系统，旨在为教育机构提供完整的学生信息管理、课程管理和支持服务解决方案。
 
 ### 项目信息
 - **项目名称**: 学生管理系统 (Student Management System)
@@ -16,12 +16,11 @@
 1. **学生作业管理** (`01. student-assignments/`)
 2. **学生课程管理** (`02. student-courses/`)
 3. **学生仪表板** (`03. student-dashboard/`)
-4. **学生进度跟踪** (`04. student-progress/`)
-5. **学生资源管理** (`05. student-resources/`)
-6. **学生安全保护** (`06. student-safeguarding/`)
-7. **学生日程管理** (`07. student-schedule/`)
-8. **学生支持服务** (`08. student-support/`)
-9. **学生健康管理** (`09. student-wellbeing/`)
+4. **学生资源管理** (`05. student-resources/`)
+5. **学生安全保护** (`06. student-safeguarding/`)
+6. **学生日程管理** (`07. student-schedule/`)
+7. **学生支持服务** (`08. student-support/`)
+8. **学生健康管理** (`09. student-wellbeing/`)
 
 ### 技术架构
 - **前端**: HTML5, CSS3, JavaScript
@@ -47,7 +46,6 @@
 ### Phase 2: 核心功能开发 (August 20 - September 10, 2025)
 - 学生管理模块
 - 课程管理系统
-- 进度跟踪功能
 - 通信服务集成
 
 ### Phase 3: 高级功能与部署 (September 11-21, 2025)
@@ -81,7 +79,6 @@
 - 学生仪表板: `student-dashboard.html`
 - 课程管理: `student-courses.html`
 - 作业管理: `student-assignments.html`
-- 进度跟踪: `student-progress.html`
 - 资源中心: `student-resources.html`
 - 日程管理: `student-schedule.html`
 - 支持服务: `student-support.html`

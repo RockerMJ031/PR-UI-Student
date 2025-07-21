@@ -307,92 +307,7 @@
             text-align: center;
         }
 
-        /* FAQ Section */
-        .faq-section {
-            background: white;
-            padding: 25px;
-            border-radius: var(--border-radius);
-            box-shadow: var(--shadow);
-            margin-bottom: 30px;
-        }
 
-        .faq-section h2 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            font-size: 1.5rem;
-        }
-
-        .faq-search {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid var(--border-color);
-            border-radius: var(--border-radius);
-            font-family: inherit;
-            margin-bottom: 20px;
-            font-size: 1rem;
-        }
-
-        .faq-search:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .faq-categories {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .faq-category {
-            padding: 8px 16px;
-            background: var(--secondary-color);
-            border: 2px solid var(--border-color);
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .faq-category.active,
-        .faq-category:hover {
-            background: var(--primary-color);
-            color: white;
-            border-color: var(--primary-color);
-        }
-
-        .faq-item {
-            border: 1px solid var(--border-color);
-            border-radius: var(--border-radius);
-            margin-bottom: 10px;
-            overflow: hidden;
-        }
-
-        .faq-question {
-            padding: 15px;
-            background: var(--secondary-color);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 600;
-            transition: background 0.3s ease;
-        }
-
-        .faq-question:hover {
-            background: #e9ecef;
-        }
-
-        .faq-answer {
-            padding: 15px;
-            background: white;
-            display: none;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .faq-answer.active {
-            display: block;
-        }
 
         /* Contact Section */
         .contact-section {
@@ -617,9 +532,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .faq-categories {
-                justify-content: center;
-            }
         }
 
         /* Mobile Menu Toggle */
@@ -789,71 +701,7 @@
                 </div>
             </div>
 
-            <!-- FAQ Section -->
-            <div class="faq-section">
-                <h2>Frequently Asked Questions</h2>
-                <input type="text" class="faq-search" placeholder="Search for answers..." onkeyup="searchFAQ(this.value)">
-                
-                <div class="faq-categories">
-                    <div class="faq-category active" onclick="filterFAQ('all')">All</div>
-                    <div class="faq-category" onclick="filterFAQ('academic')">Academic</div>
-                    <div class="faq-category" onclick="filterFAQ('technical')">Technical</div>
-                    <div class="faq-category" onclick="filterFAQ('account')">Account</div>
-                    <div class="faq-category" onclick="filterFAQ('general')">General</div>
-                </div>
-                
-                <div class="faq-list">
-                    <div class="faq-item" data-category="academic">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>How do I submit my assignments?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>To submit assignments, go to your Assignments page, click on the assignment you want to submit, and use the "Submit Assignment" button. You can upload files or type your response directly.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item" data-category="technical">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>I can't access my courses. What should I do?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>First, try refreshing your browser or clearing your cache. If the problem persists, check your internet connection. If you're still having issues, contact our technical support team.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item" data-category="account">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>How do I reset my password?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Click on "Forgot Password" on the login page, enter your email address, and follow the instructions sent to your email to reset your password.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item" data-category="academic">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>How can I get extra help with my studies?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>You can book one-on-one tutoring sessions, join study groups, access our resource library, or contact your course instructor for additional support.</p>
-                        </div>
-                    </div>
-                    
-                    <div class="faq-item" data-category="general">
-                        <div class="faq-question" onclick="toggleFAQ(this)">
-                            <span>What are the support hours?</span>
-                            <i class="fas fa-chevron-down"></i>
-                        </div>
-                        <div class="faq-answer">
-                            <p>Our support team is available Monday to Friday, 8:00 AM to 6:00 PM. Emergency support is available 24/7 for urgent situations.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
 
             <!-- Contact Methods -->
             <div class="contact-section">
@@ -909,59 +757,7 @@
                 </form>
             </div>
 
-            <!-- Resources -->
-            <div class="resources-section">
-                <h2>Help Resources</h2>
-                <div class="resources-grid">
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-book"></i>
-                        <div class="resource-info">
-                            <div class="title">User Guide</div>
-                            <div class="description">Complete platform guide</div>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-video"></i>
-                        <div class="resource-info">
-                            <div class="title">Video Tutorials</div>
-                            <div class="description">Step-by-step videos</div>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-download"></i>
-                        <div class="resource-info">
-                            <div class="title">Downloads</div>
-                            <div class="description">Useful files and tools</div>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-question-circle"></i>
-                        <div class="resource-info">
-                            <div class="title">FAQ Database</div>
-                            <div class="description">Common questions</div>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-users"></i>
-                        <div class="resource-info">
-                            <div class="title">Community Forum</div>
-                            <div class="description">Student discussions</div>
-                        </div>
-                    </a>
-                    
-                    <a href="#" class="resource-item">
-                        <i class="fas fa-lightbulb"></i>
-                        <div class="resource-info">
-                            <div class="title">Tips & Tricks</div>
-                            <div class="description">Platform optimization</div>
-                        </div>
-                    </a>
-                </div>
-            </div>
+
         </div>
     </div>
 
@@ -1001,49 +797,7 @@
             window.location.href = 'student-safeguarding.html';
         }
 
-        // FAQ functionality
-        function toggleFAQ(element) {
-            const answer = element.nextElementSibling;
-            const icon = element.querySelector('i');
-            
-            answer.classList.toggle('active');
-            icon.classList.toggle('fa-chevron-down');
-            icon.classList.toggle('fa-chevron-up');
-        }
 
-        function searchFAQ(query) {
-            const faqItems = document.querySelectorAll('.faq-item');
-            const searchTerm = query.toLowerCase();
-            
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question span').textContent.toLowerCase();
-                const answer = item.querySelector('.faq-answer p').textContent.toLowerCase();
-                
-                if (question.includes(searchTerm) || answer.includes(searchTerm)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = searchTerm === '' ? 'block' : 'none';
-                }
-            });
-        }
-
-        function filterFAQ(category) {
-            const faqItems = document.querySelectorAll('.faq-item');
-            const categories = document.querySelectorAll('.faq-category');
-            
-            // Update active category
-            categories.forEach(cat => cat.classList.remove('active'));
-            event.target.classList.add('active');
-            
-            // Filter items
-            faqItems.forEach(item => {
-                if (category === 'all' || item.dataset.category === category) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
 
         // Support ticket submission
         function submitSupportTicket(event) {

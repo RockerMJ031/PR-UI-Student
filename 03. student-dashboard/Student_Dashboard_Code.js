@@ -618,7 +618,6 @@ function updateCoursesList() {
             ...course,
             formattedDate: formatDate(course.startTime),
             formattedTime: formatTime(course.startTime),
-            progressPercentage: calculateCourseProgress(course),
             statusColor: getCourseStatusColor(course.status)
         }));
         
@@ -639,13 +638,7 @@ function updateCoursesList() {
     }
 }
 
-// 计算课程进度
-function calculateCourseProgress(course) {
-    if (!course.totalLessons || course.totalLessons === 0) return 0;
-    
-    const completedLessons = course.completedLessons || 0;
-    return Math.round((completedLessons / course.totalLessons) * 100);
-}
+
 
 // 获取课程状态颜色
 function getCourseStatusColor(status) {
@@ -742,7 +735,6 @@ function updateNavigationState() {
             { title: "Dashboard", icon: "fas fa-tachometer-alt", url: "/student-dashboard", active: true },
             { title: "My Courses", icon: "fas fa-book", url: "/student-courses", active: false },
             { title: "Schedule", icon: "fas fa-calendar-alt", url: "/student-schedule", active: false },
-            { title: "Progress", icon: "fas fa-chart-line", url: "/student-progress", active: false },
             { title: "Resources", icon: "fas fa-folder-open", url: "/student-resources", active: false },
             { title: "Wellbeing", icon: "fas fa-heart", url: "/student-wellbeing", active: false },
             { title: "Safeguarding", icon: "fas fa-shield-alt", url: "/student-safeguarding", active: false },

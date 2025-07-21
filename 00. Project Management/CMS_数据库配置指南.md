@@ -131,28 +131,7 @@
 }
 ```
 
-### StudentProgress 集合
-**使用页面**: 学生管理页面、报表系统  
-**代码调用**: `wixData.query('StudentProgress')`
 
-```javascript
-{
-  _id: "string",
-  progressId: "string",
-  studentId: "string", // 关联Students
-  courseId: "string", // 关联Courses
-  moduleId: "string", // 模块ID
-  completionPercentage: "number", // 完成百分比
-  grade: "string", // 成绩等级
-  assessmentScores: "text", // JSON格式的评估分数
-  lastActivity: "date", // 最后活动日期
-  timeSpent: "number", // 花费时间（分钟）
-  status: "string", // not_started, in_progress, completed
-  notes: "text", // 备注
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
 
 ### APStudents 集合
 **使用页面**: 导师仪表盘（AP学生专用）、学生管理页面  
@@ -770,14 +749,12 @@
 - **Sessions**: 读取权限（仅自己的课程）
 - **SessionMaterials**: 读取权限（仅自己的课程）
 - **SessionFeedback**: 创建、读取权限（仅自己的反馈）
-- **StudentProgress**: 读取权限（仅自己的进度）
 - **Payments**: 读取权限（仅自己的支付记录）
 - **Invoices**: 读取权限（仅自己的发票）
 
 #### 家长权限 (Parent)
 - **Students**: 读取权限（仅自己的孩子）
 - **Sessions**: 读取权限（仅孩子的课程）
-- **StudentProgress**: 读取权限（仅孩子的进度）
 - **Payments**: 读取权限（仅相关支付）
 - **Invoices**: 读取权限（仅相关发票）
 
@@ -866,7 +843,6 @@
 - ✅ `Students` - 学生基本信息
 - ✅ `Courses` - 课程信息
 - ✅ `Mentors` - 导师信息
-- ✅ `StudentProgress` - 学生进度
 - ✅ `StudentCommunication` - 学生沟通记录
 
 #### 04. 会话管理 (Sessions)
