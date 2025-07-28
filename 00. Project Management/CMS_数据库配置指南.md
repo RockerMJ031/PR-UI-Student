@@ -1,964 +1,862 @@
-# CMS 数据库配置指南
+# CMS Database Configuration Guide
 
-本文档详细说明了整个导师管理系统所需的所有数据库集合（Collections）配置。每个集合都标注了对应的使用页面和功能模块。
+> **Document Version**: 3.0  
+> **Last Updated**: July 21, 2025  
+> **Maintainer**: System Administrator  
+> **Architecture Design**: Based on four core CMS systems  
+> **Consistency Check**: Completed ✅  
+> **Implementation Status**: Running 🚀
 
-## 目录
+This document details the database collection configuration required for the tutor management system, designed and optimized based on a four-CMS architecture approach.
 
-- [核心用户集合](#核心用户集合)
-- [学生管理集合](#学生管理集合)
-- [课程会话集合](#课程会话集合)
-- [财务管理集合](#财务管理集合)
-- [报表系统集合](#报表系统集合)
-- [系统管理集合](#系统管理集合)
-- [权限配置](#权限配置)
-- [索引优化](#索引优化)
-- [代码一致性检查结果](#代码一致性检查结果)
+## 📋 Table of Contents
 
----
+### English Contents
+1. [Introduction](#cms-database-configuration-guide)
+2. [Student Management](#student-management-collections)
+   - [CMS-1: Student Registration Information Collection](#cms-1-student-registration-information-collection)
+   - [CMS-2: Student Course Assignment Collection](#cms-2-student-course-assignment-collection)
+   - [CMS-7: Students Collection](#cms-7-students-collection)
+   - [CMS-8: StudentCommunication Collection](#cms-8-studentcommunication-collection)
+3. [Course Management](#course-management)
+   - [CMS-3: Course Information Management Collection](#cms-3-course-information-management-collection)
+4. [Reporting](#reporting)
+   - [CMS-4: Student Report Collection](#cms-4-student-report-collection)
+   - [CMS-9: PR-Statistics Collection](#cms-9-pr-statistics-collection)
+5. [Administration](#administration)
+   - [CMS-5: CMS Data Sync Log Collection](#cms-5-cms-data-sync-log-collection)
+   - [CMS-6: Admins Collection](#cms-6-admins-collection)
+   - [CMS-10: Tickets Collection](#cms-10-tickets-collection)
+6. [Data Flow Diagram](#data-flow-diagram)
 
-## 核心用户集合
+### 中文目录
+1. [介绍](#cms-database-configuration-guide)
+2. [学生管理](#student-management-collections)
+   - [CMS-1: 学生注册信息集合](#cms-1-student-registration-information-collection)
+   - [CMS-2: 学生课程分配集合](#cms-2-student-course-assignment-collection)
+   - [CMS-7: 学生集合](#cms-7-students-collection)
+   - [CMS-8: 学生沟通集合](#cms-8-studentcommunication-collection)
+3. [课程管理](#course-management)
+   - [CMS-3: 课程信息管理集合](#cms-3-course-information-management-collection)
+4. [报告](#reporting)
+   - [CMS-4: 学生报告集合](#cms-4-student-report-collection)
+   - [CMS-9: PR-统计集合](#cms-9-pr-statistics-collection)
+5. [管理](#administration)
+   - [CMS-5: CMS数据同步日志集合](#cms-5-cms-data-sync-log-collection)
+   - [CMS-6: 管理员集合](#cms-6-admins-collection)
+   - [CMS-10: 工单集合](#cms-10-tickets-collection)
+6. [数据流程图](#data-flow-diagram)
 
-### Users 集合
-**使用页面**: 所有页面（用户认证和权限管理）  
-**代码调用**: `wixData.query('Users')`
+
+### CMS-1: Student Registration Information Collection
+**Used in Pages**: Admin Dashboard Page  
+**Code Call**: `wixData.query('StudentRegistrations')`  
+**Notes**: Already established in Wix CMS, collection ID is `StudentRegistrations`
 
 ```javascript
 {
-  _id: "string", // 自动生成
-  firstName: "string", // 名字
-  lastName: "string", // 姓氏
-  email: "string", // 邮箱地址
-  phone: "string", // 电话号码
-  role: "string", // 角色: admin, mentor, student, parent, staff
-  avatar: "string", // 头像URL
-  preferences: {
-    theme: "string", // light, dark
-    language: "string", // en, zh, fr
-    notifications: {
-      email: "boolean",
-      push: "boolean",
-      sms: "boolean"
-    },
-    dashboard: {
-      layout: "string", // default, compact, detailed
-      widgets: ["string"] // 显示的小部件列表
-    }
-  },
-  lastLogin: "datetime", // 最后登录时间
-  isActive: "boolean", // 是否激活
-  createdDate: "datetime", // 创建时间
-  _createdDate: "datetime", // Wix自动字段
-  _updatedDate: "datetime" // Wix自动字段
+  _id: "text", // Auto-generated
+  registrationId: "text", // Registration Number
+  firstName: "text", // First Name
+  lastName: "text", // Last Name
+  email: "text", // Email Address
+  phone: "text", // Phone Number
+  dateOfBirth: "text", // Date of Birth
+  guardianParentName: "text", // Guardian/Parent Name
+  guardianEmail: "text", // Guardian Email
+  guardianPhone: "text", // Guardian Phone
+  product: "text", // "Tutoring", "PRA - Core Subject", "PRA - All Subject", "PRA - All Subject + Therapy", "Purple Ruler Blueprint"
+  subjects: ["text"], // Subjects of Interest
+  preferredSchedule: "text", // Preferred Schedule
+  send: "text", // Special Requirements
+  classId: "text", // Selected Course Group ID, chosen from existing groups with future classes
+  registrationStatus: "text", // pending, approved, rejected, Activated
+  ehcpDocument: "text", // EHCP Document Attachment URL
+  
+  // EHCP Status - Multi-select field (RAdded into Wix)
+  ehcpStatus: ["text"], // EHCP Status options: - Added into Wix
+  // - SpLD - Specific Learning Difficulties
+  // - SLCN - Speech, Language and Communication Needs
+  // - SEMH - Social, Emotional and Mental Health
+  // - ASD - Autistic Spectrum Disorder
+  // - VI - Visual Impairment
+  // - HI - Hearing Impairment
+  // - MSI - Multisensory Impairment
+  // - PD - Physical Disability
+  // - NSA - SEN support but no specialist assessment
+  // - OTH - Other Difficulty/Disorder
+  // - DS - Down Syndrome
+  
+  ehcpDetails: "text", // EHCP Details (Added into Wix)
+  caseworkerName: "text", // EHCP Officer/Caseworker Name (Added into Wix)
+  caseworkerEmail: "text", // EHCP Officer/Caseworker Email (Added into Wix)
+  
+  // Additional Student Information Fields (REQUIRED TO ADD TO CMS-1)
+  emergencyContact: "text", // Emergency Contact Information
+  emergencyName: "text", // Emergency Contact Person Name
+  previousEducation: "text", // Previous Education Background
+  homeAddress: "text", // Home Address
+  homeLessonsWithoutSupervision: "text", // Whether student will access lessons at home without supervision (yes/no)
+  supportLongerThanFourWeeks: "text", // Whether Purple Ruler support is expected longer than four weeks (yes/no)
+  
+  // Educational Plan Selection (Added into Wix)
+  selectedPlan: "text", // Educational Plan options:
+  // - Core Subjects
+  // - Core Subjects + PSHE Careers + PE and Art
+  // - All Subjects + Therapy
+  // - Purple Ruler Blueprint
+  
+  // Additional Lark-specific fields
+  startDate: "text", // Start Date
+  examBoard: "text", // Examination Board
+  caseworkerContact: "text", // Caseworker Contact Information
+  school: "text", // School
+  
+  /* Data Flow Description:
+   * 数据流程说明：
+   * 1. 学生注册页面（Student Registration Page）或管理员页面（Admin Dashboard）中添加/编辑学生信息时，
+   *    数据首先保存到CMS-1（StudentRegistrations集合）。
+   * 2. 保存成功后，系统会直接同步到Lark Base。
+   * 3. 系统调用backend_larkBaseSync.jsw中的syncStudentFromWixToLark函数，
+   *    将学生数据转换为Lark格式并通过HTTP请求发送到Lark Anycross。
+   * 4. 同步状态和结果会更新到CMS-1的larkTransferStatus和相关字段中。
+   * 5. 同步历史记录在Development Kit V1.0的Wix Sync Record中。
+   * 6. 具体数据更新在PRT Operation的ST0 Website Enrollment中。
+   * 7. 在Lark Base中，会创建一条记录，跟踪数据是从哪个CMS ID同步过来的，
+   *    记录同步成功和失败的情况。
+   * 
+   * Data Flow Description:
+   * 1. When adding/editing student information in the Student Registration Page or Admin Dashboard,
+   *    data is first saved to CMS-1 (StudentRegistrations collection).
+   * 2. After successful saving, the system directly synchronizes to Lark Base.
+   * 3. The system calls the syncStudentFromWixToLark function in backend_larkBaseSync.jsw,
+   *    converts student data to Lark format and sends it to Lark Anycross via HTTP request.
+   * 4. Synchronization status and results are updated to larkTransferStatus and related fields in CMS-1.
+   * 5. Synchronization history is recorded in the Wix Sync Record of Development Kit V1.0.
+   * 6. The actual data is updated in ST0 Website Enrollment of PRT Operation.
+   * 7. In Lark Base, a record is created that tracks which CMS ID the data was synchronized from,
+   *    recording both successful and failed synchronizations.
+   */
+  
+  larkTransferStatus: "text", // not_sent, sending, sent, confirmed, failed
+  larkStudentId: "text", // Student ID in Lark System
+  transferAttempts: "number", // Number of Transfer Attempts
+  lastTransferAttempt: "text", // Last Transfer Attempt Time
+  transferError: "text", // Transfer Error Information
+  approvedBy: "text", // Approver ID
+  approvedDate: "text", // Approval Time
+  notes: "text", // Notes
+  _createdDate: "text",
+  _updatedDate: "text"
 }
 ```
 
-### Mentors 集合
-**使用页面**: 导师仪表盘、会话管理、学生管理  
-**代码调用**: `wixData.query('Mentors')`
+### CMS-2: Student Course Assignment Collection
+**Used in Pages**: Course Assignment Page, Student Management Page  
+**Code Call**: `wixData.query('Import74')`
+
+/* Data Flow Description:
+ * 数据流程说明：
+ * 1. Lark中的PRT Operation的ST1通过HTTP请求将数据写入此CMS-2集合。
+ * 2. 数据从Lark发送后，通过API端点接收并处理请求。
+ * 3. 系统验证数据格式和必填字段后，将数据保存到Import74集合中。
+ * 4. 同步状态记录在syncStatus字段中，最后同步时间记录在lastSyncWithLark字段中。
+ * 
+ * Data Flow Description:
+ * 1. Data from ST1 in PRT Operation of Lark is written to this CMS-2 collection via HTTP request.
+ * 2. After data is sent from Lark, it is received and processed through an API endpoint.
+ * 3. The system validates the data format and required fields before saving it to the Import74 collection.
+ * 4. Synchronization status is recorded in the syncStatus field, and the last synchronization time is recorded in the lastSyncWithLark field.
+ */
 
 ```javascript
 {
-  _id: "string",
-  userId: "string", // 关联Users集合
-  mentorId: "string", // 导师编号
-  firstName: "string",
-  lastName: "string",
-  email: "string",
-  phone: "string",
-  specializations: ["string"], // 专业领域
-  qualifications: ["string"], // 资质证书
-  experience: "number", // 工作年限
-  hourlyRate: "number", // 时薪
-  availability: {
-    monday: ["string"], // 时间段数组
-    tuesday: ["string"],
-    wednesday: ["string"],
-    thursday: ["string"],
-    friday: ["string"],
-    saturday: ["string"],
-    sunday: ["string"]
+  _id: "text",
+  no: "text", // Assignment Number
+  wix_id: "text", // Wix System Student ID
+  student_name: "text", // Student Name
+  student_email: "text", // Student Email
+  role: "text", // Student Role
+  larkStudentId: "text", // Lark System Student ID
+  cleverId: "text", // Clever System Student ID
+  class_id: "text", // Class ID
+  courseId: "text", // Class Name
+  subject: "text", // Subject
+  schoolName: "text", // School Name
+  ls_link: "text", // Online Classroom Link
+  lark_link: "text", // Zoom Meeting ID
+  larkPassword: "text", // Zoom Password
+  status: "text", // Activated or deactivated
+  assignedDate: "text", // Assignment Date
+  startDate: "text", // Start Date
+  endDate: "text", // End Date
+  assignedBy: "text", // Assigner ID
+  lastSyncWithLark: "text", // Last Sync Time With Lark
+  syncStatus: "text", // synced, pending, failed
+  notes: "text", // Notes
+  _createdDate: "text",
+  _updatedDate: "text"
+}
+```
+
+## Course Management
+
+### CMS-3: Course Information Management Collection
+**Used on Pages**: Course Management Page, Schedule Management  
+**Code Call**: `wixData.query('Import86')`
+
+> Note: This collection has been established in Wix, Collection ID is `Import86`, can be used directly in code.
+
+/* Data Flow Description:
+ * 数据流程说明：
+ * 1. Lark的PRT Logistic的C4通过HTTP请求将数据写入此CMS-3集合。
+ * 2. 数据从Lark发送后，通过专用API端点接收并处理请求。
+ * 3. 系统验证课程信息的完整性和有效性后，将数据保存到Import86集合中。
+ * 4. 课程信息更新后，相关的课程安排和教师分配也会相应更新。
+ * 
+ * Data Flow Description:
+ * 1. Data from C4 in PRT Logistic of Lark is written to this CMS-3 collection via HTTP request.
+ * 2. After data is sent from Lark, it is received and processed through a dedicated API endpoint.
+ * 3. The system validates the completeness and validity of course information before saving it to the Import86 collection.
+ * 4. After course information is updated, related course schedules and instructor assignments are also updated accordingly.
+ */
+
+```javascript
+{
+  _id: "text",
+  scheduleId: "text", // Course schedule number
+  class_id: "text", // Class ID
+  courseId: "text", // Course name
+  subject: "text", // Subject
+  instructorName: "text", // Instructor name
+  instructorId: "text", // Instructor ID
+  scheduledDate: "text", // What is this used for
+  startTime: "text", // Start time
+  endTime: "text", // End time
+  duration: "number", // Course duration (minutes)
+  courseType: "text", // individual, group, workshop, assessment
+  maxStudents: "number", // Maximum number of students
+  enrolledStudents: "number", // Number of enrolled students
+  status: "text", // scheduled, in_progress, completed, cancelled, rescheduled
+  onlineClassroomLink: "text", // Online classroom link
+  courseMaterials: ["text"], // Course material links
+  agenda: "text", // Course agenda
+  prerequisites: ["text"], // Prerequisites
+  c4No: "text", // Lark system course ID
+  lastSyncWithLark: "text", // Last sync time with Lark
+  syncStatus: "text", // synced, pending, failed
+  _createdDate: "text",
+  _updatedDate: "text"
+}
+```
+
+## Reporting
+
+### CMS-4: Student Report Collection
+**Used on Pages**: Student Report Page, Parent Portal  
+**Code Call**: `wixData.query('StudentReports')`
+
+> Note: This collection has been established in Wix CMS, Collection ID is `StudentReports`, can be used directly in code.
+
+**数据流程**：
+- 数据由Lark的PRT Operation的R2通过HTTP请求写入CMS-4集合
+- 当教师在Lark的PRT Operation的R2中提交学生报告时，数据会通过HTTP请求发送到Wix系统
+- 然后，数据会被处理并写入到`StudentReports`集合中
+- 每次数据同步时，系统会记录同步状态和时间
+
+**Data Flow**:
+- Data is written to the CMS-4 collection from Lark's PRT Operation R2 via HTTP requests
+- When teachers submit student reports in Lark's PRT Operation R2, the data is sent to the Wix system via HTTP requests
+- The data is then processed and written to the `StudentReports` collection
+- The system records the synchronization status and time with each data sync
+
+```javascript
+{
+  _id: "text",
+  reportId: "text", // Report number
+  wix_id: "text", // Wix student ID
+  student_name: "text", // Student name
+  student_email: "text", // Student email
+  role: "text", // Student role
+  larkStudentId: "text", // Lark student ID
+  classId: "text", // Class ID
+  courseId: "text", // Course ID
+  reportType: "text", // daily, weekly, monthly, assessment, final, session - session is a report for each class
+  
+  // Lark Base transfer fields
+  lessonTime: "text", // Lesson time
+  status: "text", // Attendance status: Attended or Missed
+  quizStart: "text", // Quiz at the beginning of the lesson
+  quizEnd: "text", // Quiz at the end of the lesson
+  lessonContent: "text", // Lesson content
+  studentNote: "text", // Note for students if they are absent
+  internalNote: "text", // Note for the school, e.g., which knowledge points teachers can help with
+  behavior: "text", // If the student has bad behavior
+  examType: "text", // Exam type
+  baselineComment: "text", // Baseline exam comments
+  studentEmail: "text", // Student email
+  subject: "text", // Subject
+  school: "text", // School
+  
+  academicPerformance: {
+    overallGrade: "text", // Overall grade
+    subjectGrades: [{
+      subject: "text",
+      grade: "text",
+      score: "number"
+    }],
+    attendance: "number", // Attendance rate
+    participation: "text", // Participation evaluation
+    homework: "text" // Homework completion
   },
-  status: "string", // active, inactive, on_leave
-  rating: "number", // 评分 1-5
-  totalSessions: "number", // 总课程数
-  joinDate: "date", // 入职日期
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
+  reportStatus: "text", // draft, pending_review, approved, sent_to_parent
+  _createdDate: "text",
+  _updatedDate: "text"
+}
+```
+
+## Administration
+
+### CMS-5 :CMS Data Sync Log Collection
+**Used on Pages**: System Management Page, Data Sync Monitoring  
+**Code Call**: `wixData.query('DataSyncLogs')`
+
+> Note: This collection has been established in Wix CMS, Collection ID is `DataSyncLogs`, can be used directly in code. 此集合主要用于记录Wix向Lark写入数据的日志，不包含Lark到Wix的数据流程。
+
+**数据流程**：
+- 当Wix系统向Lark发送数据时（如学生注册、课程分配、课程安排、学生报告等），会自动记录同步日志
+- 每次数据同步操作都会创建一条新的日志记录，包含同步类型、方向、源系统、目标系统等信息
+- 系统会记录请求数据、响应数据、同步状态以及任何错误信息
+- 如果同步失败，系统会记录错误信息并可能尝试重新同步
+- 日志记录还包括同步开始时间、结束时间和持续时间，用于性能监控和问题排查
+
+**Data Flow**:
+- When the Wix system sends data to Lark (such as student registrations, course assignments, course schedules, student reports, etc.), synchronization logs are automatically recorded
+- Each data synchronization operation creates a new log entry, including sync type, direction, source system, target system, and other information
+- The system records request data, response data, sync status, and any error messages
+- If synchronization fails, the system records error information and may attempt to resynchronize
+- Log entries also include sync start time, end time, and duration for performance monitoring and troubleshooting
+
+```javascript
+{
+  _id: "text",
+  logId: "text", // Log number
+  syncType: "text", // student_registration, course_assignment, course_schedule, student_report
+  direction: "text", // wix_to_lark（仅记录Wix到Lark的数据同步）
+  sourceSystem: "text", // wix（源系统始终为Wix）
+  targetSystem: "text", // lark（目标系统始终为Lark）
+  recordId: "text", // Related record ID
+  syncStatus: "text", // success, failed, pending, retrying
+  requestData: "text", // Request data in JSON format
+  responseData: "text", // Response data in JSON format
+  errorMessage: "text", // Error message
+  retryCount: "number", // Retry count
+  syncStartTime: "text", // Sync start time
+  syncEndTime: "text", // Sync end time
+  duration: "number", // Sync duration (milliseconds)
+  _createdDate: "text",
+  _updatedDate: "text"
 }
 ```
 
 ---
 
-## 学生管理集合
+### CMS-6: Admins Collection
+**Used on Pages**: Admin Dashboard, Session Management, Student Management  
+**Code Call**: `wixData.query('Admins')`  
+**Lark Integration**: Synchronized with admin data in Lark Base, report links and student counts from C01.Client Info
 
-### Students 集合
-**使用页面**: 学生管理页面、导师仪表盘、会话管理  
-**代码调用**: `wixData.query('Students')`
+/* Data Flow Description:
+ * 数据流程说明：
+ * 1. 管理员信息首先保存在CMS-6（Admins集合）中。
+ * 2. 当新学生注册并在Lark的ST0 Website Enrollment中创建记录后，系统会检查ST0 Student SCR中是否有相同clientId和Email的记录。
+ * 3. 如果找到匹配记录，系统识别为同一学生，并将CMS中学生状态更新为pending。
+ * 4. 然后系统会在Lark的C01.Client Info中更新相应管理员管理的学生数量。
+ * 5. 最后，更新的学生数量会同步到CMS-6的managedStudents字段中。
+ * 6. 报告链接和密码信息也从Lark的PRT Operation的C01.Client Info更新到CMS-6中。
+ * 
+ * Data Flow Description:
+ * 1. Admin information is first saved in CMS-6 (Admins collection).
+ * 2. When a new student registers and a record is created in ST0 Website Enrollment in Lark, the system checks if there is a record with the same clientId and Email in ST0 Student SCR.
+ * 3. If a matching record is found, the system identifies it as the same student and updates the student status in CMS to pending.
+ * 4. Then the system updates the number of students managed by the respective admin in C01.Client Info in Lark.
+ * 5. Finally, the updated student count is synchronized to the managedStudents field in CMS-6.
+ * 6. Report links and password information are also updated from C01.Client Info in Lark PRT Operation to CMS-6.
+ */
 
 ```javascript
 {
-  _id: "string",
-  studentId: "string", // 学生编号
-  firstName: "string",
-  lastName: "string",
-  email: "string",
-  phone: "string",
-  dateOfBirth: "date",
-  enrollmentDate: "date", // 入学日期
-  status: "string", // active, inactive, graduated, suspended
-  studentType: "string", // "alternative" (AP学生) 或 "tutoring" (普通辅导学生)
-  grade: "string", // 年级
-  school: "string", // 学校名称
-  parentName: "string", // 家长姓名
-  parentEmail: "string", // 家长邮箱
-  parentPhone: "string", // 家长电话
+  _id: "text", // CMS6 - Wix native field
+  userId: "text", // Related to Users collection
+  adminId: "text", // Admin ID
+  firstName: "text",
+  lastName: "text",
+  email: "text",
+  phone: "text",
+  department: "text", // Department
+  position: "text", // Position
+  permissions: ["text"], // Permission list - Already implemented in Wix
+  status: "text", // active, inactive, on_leave
+  lastLogin: "text", // Last login time
+  managedStudents: "number", // Number of managed students
+  joinDate: "text", // Join date
+  
+  // Report links and passwords - Updated from Lark PRT Operation C01.Client Info
+  studentSessionReportUrl: "text", // Student Session Report URL
+  studentSessionReportPassword: "text", // Default: StudentSession2024
+  
+  attendanceReportUrl: "text", // Attendance Report URL
+  attendanceReportPassword: "text", // Default: Attendance2024
+  
+  safeguardingReportUrl: "text", // Safeguarding Report URL
+  safeguardingReportPassword: "text", // Default: Safeguarding2024
+  
+  studentTermlyReportUrl: "text", // Student Termly Report URL
+  studentTermlyReportPassword: "text", // Default: Termly2024
+  
+  behaviourReportUrl: "text", // Behaviour Report URL
+  behaviourReportPassword: "text", // Default: Behaviour2024
+  
+  teacherSCRReportUrl: "text", // Teacher SCR Report URL
+  teacherSCRReportPassword: "text", // Default: TeacherSCR2024
+  
+  
+  _createdDate: "text",
+  _updatedDate: "text"
+}
+```
+
+---
+
+## 🧑‍🎓 Student Management Collections
+
+### CMS-7: Students Collection
+**Used on Pages**: Student Management Page, Mentor Dashboard, Session Management, Admin Dashboard  
+**Code Call**: `wixData.query('Students')`  
+**Related CMS**: Related to CMS-1, CMS-2  
+**Lark Integration**: Synchronized with student records in Lark Base  
+**Description**: This collection merges the original Students and APStudents collections, distinguishing different types of students through studentType and isAP fields
+
+/* Data Flow Description:
+ * 数据流程说明：
+ * 1. 新学生注册数据首先保存在CMS-1（StudentRegistrations集合）中。
+ * 2. 注册数据同步到Lark的ST0 Website Enrollment。
+ * 3. 系统检查Lark的ST0 Student SCR中是否有相同clientId和Email的记录。
+ * 4. 如果找到匹配记录，系统将其识别为同一学生，并在CMS-7中创建或更新学生记录，状态设为pending。
+ * 5. 学生数据从ST0 Student SCR同步到CMS-7，包括个人信息、学习信息和其他相关字段。
+ * 6. 同步完成后，系统更新Lark的C01.Client Info中相应管理员的学生数量。
+ * 7. 最后，更新的学生数量同步到CMS-6的managedStudents字段。
+ * 
+ * Data Flow Description:
+ * 1. New student registration data is first saved in CMS-1 (StudentRegistrations collection).
+ * 2. Registration data is synchronized to ST0 Website Enrollment in Lark.
+ * 3. The system checks if there is a record with the same clientId and Email in ST0 Student SCR in Lark.
+ * 4. If a matching record is found, the system identifies it as the same student and creates or updates a student record in CMS-7 with status set to pending.
+ * 5. Student data is synchronized from ST0 Student SCR to CMS-7, including personal information, learning information, and other relevant fields.
+ * 6. After synchronization, the system updates the number of students managed by the respective admin in C01.Client Info in Lark.
+ * 7. Finally, the updated student count is synchronized to the managedStudents field in CMS-6.
+ */
+
+> Note: This collection has been established in Wix CMS, Collection ID is `Students`, can be used directly in code.
+
+```javascript
+{
+  _id: "text",
+  studentId: "text", // Student ID
+  registrationId: "text", // Related to CMS-1 registration record
+  firstName: "text",
+  lastName: "text",
+  email: "text",
+  phone: "text",
+  dateOfBirth: "text",
+  enrollmentDate: "text", // Enrollment date
+  status: "text", // active, inactive, graduated, suspended
+  studentType: "text", // "alternative" (AP student) or "tutoring" (regular tutoring student) - compatible with old code, new code should use product field
+  product: "text", // "Tutoring"(regular tutoring), "PRA - Core Subject", "PRA - All Subject", "PRA - All Subject + Therapy", "Purple Ruler Blueprint"
+  grade: "text", // Grade
+  school: "text", // School name
+  guardianParentName: "text", // Parent/guardian name
+  guardianEmail: "text", // Parent/guardian email
+  guardianPhone: "text", // Parent/guardian phone
   emergencyContact: {
-    name: "string",
-    phone: "string",
-    relationship: "string"
+    name: "text",
+    phone: "text",
+    relationship: "text"
   },
-  medicalInfo: "text", // 医疗信息
-  specialNeeds: "text", // 特殊需求
-  subject: "string", // 单个科目（普通学生）或课程分类（AP学生）
-  subjects: ["string"], // 学习科目列表（兼容性保留）
-  currentMentor: "string", // 当前导师ID
-  totalSessions: "number", // 总课程数
-  attendanceRate: "number", // 出勤率
-  averageGrade: "number", // 平均成绩
-  isAP: "boolean", // 是否AP学生（兼容性保留）
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-
-
-### APStudents 集合
-**使用页面**: 导师仪表盘（AP学生专用）、学生管理页面  
-**代码调用**: `wixData.query('APStudents')`
-
-```javascript
-{
-  _id: "string",
-  studentId: "string", // AP学生编号
-  firstName: "string",
-  lastName: "string",
-  email: "string",
-  phone: "string",
-  dateOfBirth: "date",
-  enrollmentDate: "date", // 入学日期
-  status: "string", // active, inactive, graduated, suspended
-  grade: "string", // 年级
-  school: "string", // 学校名称
-  parentName: "string", // 家长姓名
-  parentEmail: "string", // 家长邮箱
-  parentPhone: "string", // 家长电话
-  curriculum: "string", // 课程分类: "Core Subjects", "Core Subjects + PSHE Careers + PE and Art", "All Subjects + Therapy", "Purple Ruler Blueprint"
-  apCourses: ["string"], // AP课程列表
+  medicalInfo: "text", // Medical information
+  specialNeeds: "text", // Special needs
+  
+  // Basic learning information
+  subject: "text", // Single subject (regular student) or course category (AP student)
+  subjects: ["text"], // List of study subjects
+  
+  // AP student specific fields
+  curriculum: "text", // Course category: "Core Subjects", "Core Subjects + PSHE Careers + PE and Art", "All Subjects + Therapy", "Purple Ruler Blueprint"
+  apCourses: ["text"], // AP course list
   apExamDates: [{
-    subject: "string", // AP科目
-    examDate: "date", // 考试日期
-    registrationDeadline: "date", // 报名截止日期
-    status: "string" // registered, pending, completed
+    subject: "text", // AP subject
+    examDate: "text", // Exam date
+    registrationDeadline: "text", // Registration deadline
+    status: "text" // registered, pending, completed
   }],
-  targetColleges: ["string"], // 目标大学列表
-  gpa: "number", // GPA成绩
-  satScore: "number", // SAT分数
-  actScore: "number", // ACT分数
-  extracurriculars: ["string"], // 课外活动
-  counselorNotes: "text", // 顾问备注
-  currentMentor: "string", // 当前导师ID
-  totalSessions: "number", // 总课程数
-  attendanceRate: "number", // 出勤率
-  averageGrade: "number", // 平均成绩
-  ehcpDocument: "string", // EHCP文档URL
-  medicalInfo: "text", // 医疗信息
-  specialNeeds: "text", // 特殊需求
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
+  targetColleges: ["text"], // Target college list
+  gpa: "number", // GPA score
+  satScore: "number", // SAT score
+  actScore: "number", // ACT score
+  extracurriculars: ["text"], // Extracurricular activities
+  counselorNotes: "text", // Counselor notes
+  ehcpDocument: "text", // EHCP document URL
+  
+  // EHCP Status - Multi-select field (REQUIRED TO ADD TO CMS-7)
+  ehcpStatus: ["text"], // EHCP Status options:
+  // - SpLD - Specific Learning Difficulties
+  // - SLCN - Speech, Language and Communication Needs
+  // - SEMH - Social, Emotional and Mental Health
+  // - ASD - Autistic Spectrum Disorder
+  // - VI - Visual Impairment
+  // - HI - Hearing Impairment
+  // - MSI - Multisensory Impairment
+  // - PD - Physical Disability
+  // - NSA - SEN support but no specialist assessment
+  // - OTH - Other Difficulty/Disorder
+  // - DS - Down Syndrome
+  
+  ehcpDetails: "text", // EHCP Details (REQUIRED TO ADD TO CMS-7)
+  caseworkerName: "text", // EHCP Officer/Caseworker Name (REQUIRED TO ADD TO CMS-7)
+  caseworkerEmail: "text", // EHCP Officer/Caseworker Email (REQUIRED TO ADD TO CMS-7)
+  
+  // Additional Student Information Fields (REQUIRED TO ADD TO CMS-7)
+  emergencyContact: "text", // Emergency Contact Information
+  emergencyName: "text", // Emergency Contact Person Name
+  previousEducation: "text", // Previous Education Background
+  homeAddress: "text", // Home Address
+  
+  // Educational Plan Selection (REQUIRED TO ADD TO CMS-7)
+  selectedPlan: "text", // Educational Plan options:
+  // - Core Subjects
+  // - Core Subjects + PSHE Careers + PE and Art
+  // - All Subjects + Therapy
+  // - Purple Ruler Blueprint
+  
+  // Additional Information fields
+  homeLessonsWithoutSupervision: "text", // Whether student can have home lessons without supervision (Yes/No)
+  supportLongerThanFourWeeks: "text", // Whether student needs support longer than four weeks (Yes/No)
+  
+  // Management and statistics fields
+  currentAdmin: "text", // Current admin ID
+  totalSessions: "number", // Total number of sessions
+  attendanceRate: "number", // Attendance rate
+  averageGrade: "number", // Average grade
+  isAP: "boolean", // Whether AP student (kept for compatibility)
+  
+  // Lark integration fields
+   larkStudentId: "text", // Lark system student ID
+   larkBaseRecordId: "text", // Record ID in Lark Base
+   lastSyncWithLark: "text", // Last sync time with Lark
+   syncStatus: "text", // synced, pending, failed
+   larkSyncData: {
+     lastPushDate: "text", // Last push time to Lark
+     lastPullDate: "text", // Last pull time from Lark
+     syncErrors: ["text"] // Sync error records
+   },
+  
+  // System fields
+   _createdDate: "text",
+   _updatedDate: "text"
 }
 ```
 
-### StudentCommunication 集合
-**使用页面**: 学生管理页面  
-**代码调用**: `wixData.query('StudentCommunication')`
+### CMS-8: StudentCommunication Collection
+**Used on Pages**: Student Management Page  
+**Code Call**: `wixData.query('StudentCommunication')`
 
 ```javascript
 {
-  _id: "string",
-  communicationId: "string",
-  studentId: "string", // 关联Students
-  mentorId: "string", // 关联Mentors
-  type: "string", // email, phone, meeting, note
-  subject: "string", // 主题
-  content: "text", // 内容
-  priority: "string", // low, normal, high, urgent
-  status: "string", // sent, delivered, read, replied
-  sentDate: "datetime", // 发送时间
-  responseDate: "datetime", // 回复时间
-  attachments: ["string"], // 附件URL列表
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
----
-
-## 课程会话集合
-
-### Courses 集合
-**使用页面**: 导师仪表盘、会话管理、学生管理  
-**代码调用**: `wixData.query('Courses')`
-
-```javascript
-{
-  _id: "string",
-  courseId: "string", // 课程编号
-  title: "string", // 课程标题
-  description: "text", // 课程描述
-  subject: "string", // 科目
-  level: "string", // 难度级别: beginner, intermediate, advanced
-  duration: "number", // 课程时长（小时）
-  price: "number", // 课程价格
-  maxStudents: "number", // 最大学生数
-  currentStudents: "number", // 当前学生数
-  mentorId: "string", // 关联Mentors
-  syllabus: "text", // 教学大纲
-  materials: ["string"], // 教材列表
-  prerequisites: ["string"], // 先修要求
-  status: "string", // active, inactive, completed, cancelled
-  startDate: "date", // 开始日期
-  endDate: "date", // 结束日期
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### Sessions 集合
-**使用页面**: 会话管理页面、导师仪表盘、日历组件  
-**代码调用**: `wixData.query('Sessions')`
-
-```javascript
-{
-  _id: "string",
-  sessionId: "string", // 会话编号
-  title: "string", // 会话标题
-  description: "text", // 会话描述
-  mentorId: "string", // 关联Mentors
-  studentId: "string", // 关联Students（单个学生）
-  students: ["string"], // 关联Students（多个学生）
-  courseId: "string", // 关联Courses
-  subjectId: "string", // 关联Subjects
-  sessionType: "string", // individual, group, workshop, assessment
-  status: "string", // scheduled, in_progress, completed, cancelled, rescheduled
-  scheduledDate: "date", // 计划日期
-  startTime: "datetime", // 开始时间
-  endTime: "datetime", // 结束时间
-  actualStartTime: "datetime", // 实际开始时间
-  actualEndTime: "datetime", // 实际结束时间
-  location: "string", // 地点
-  meetingLink: "string", // 在线会议链接
-  agenda: "text", // 议程
-  materials: ["string"], // 教材链接
-  homework: "text", // 作业
-  notes: "text", // 课堂笔记
-  rating: "number", // 评分 1-5
-  feedback: "text", // 反馈
-  cost: "number", // 费用
-  paymentStatus: "string", // pending, paid, overdue
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### SessionAttendance 集合
-**使用页面**: 会话管理页面、报表系统  
-**代码调用**: `wixData.query('SessionAttendance')`
-
-```javascript
-{
-  _id: "string",
-  sessionId: "string", // 关联Sessions
-  studentId: "string", // 关联Students
-  attendanceStatus: "string", // present, absent, late, excused
-  checkInTime: "datetime", // 签到时间
-  checkOutTime: "datetime", // 签退时间
-  notes: "text", // 备注
-  recordedBy: "string", // 记录人
-  attendanceDate: "date", // 出勤日期
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### SessionMaterials 集合
-**使用页面**: 会话管理页面  
-**代码调用**: `wixData.query('SessionMaterials')`
-
-```javascript
-{
-  _id: "string",
-  sessionId: "string", // 关联Sessions
-  fileName: "string", // 文件名
-  fileUrl: "string", // 文件URL
-  fileType: "string", // pdf, doc, ppt, video, audio
-  fileSize: "number", // 文件大小（字节）
-  description: "text", // 文件描述
-  uploadedBy: "string", // 上传者ID
-  isPublic: "boolean", // 是否公开
-  downloadCount: "number", // 下载次数
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### SessionFeedback 集合
-**使用页面**: 会话管理页面、报表系统  
-**代码调用**: `wixData.query('SessionFeedback')`
-
-```javascript
-{
-  _id: "string",
-  sessionId: "string", // 关联Sessions
-  studentId: "string", // 关联Students
-  mentorId: "string", // 关联Mentors
-  rating: "number", // 评分 1-5
-  feedback: "text", // 文字反馈
-  categories: {
-    teaching_quality: "number", // 教学质量
-    communication: "number", // 沟通能力
-    preparation: "number", // 准备充分度
-    helpfulness: "number" // 帮助程度
-  },
-  submittedDate: "datetime", // 提交时间
-  isAnonymous: "boolean", // 是否匿名
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### Subjects 集合
-**使用页面**: 会话管理页面、学生管理页面  
-**代码调用**: `wixData.query('Subjects')`
-
-```javascript
-{
-  _id: "string",
-  subjectId: "string", // 科目编号
-  name: "string", // 科目名称
-  description: "text", // 科目描述
-  category: "string", // 科目分类: STEM, Languages, Arts, Social_Studies, AP_Curriculum
-  level: "string", // 级别: Elementary, Middle, High, University, AP
-  studentType: "string", // 适用学生类型: "alternative", "tutoring", "both"
-  isActive: "boolean", // 是否激活
-  color: "string", // 显示颜色（用于日历等）
-  icon: "string", // 图标URL
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-
-// 预定义科目数据示例：
-// AP学生课程分类 (studentType: "alternative"):
-// - "Core Subjects"
-// - "Core Subjects + PSHE Careers + PE and Art"
-// - "All Subjects + Therapy"
-// - "Purple Ruler Blueprint"
-//
-// 普通辅导学生科目 (studentType: "tutoring"):
-// - "Mathematics", "English", "Science", "History", "Geography", "Art", "Physics", "Chemistry", "Biology"
-```
-
----
-
-## 财务管理集合
-
-### Payments 集合
-**使用页面**: 财务管理页面、导师仪表盘  
-**代码调用**: `wixData.query('Payments')`
-
-```javascript
-{
-  _id: "string",
-  paymentId: "string", // 支付编号
-  studentId: "string", // 关联Students
-  invoiceId: "string", // 关联Invoices
-  amount: "number", // 支付金额
-  currency: "string", // 货币类型
-  paymentDate: "datetime", // 支付日期
-  paymentMethod: "string", // credit_card, debit_card, bank_transfer, cash, cheque
-  transactionId: "string", // 交易ID
-  status: "string", // pending, completed, failed, refunded
-  description: "text", // 支付描述
-  processingFee: "number", // 手续费
-  netAmount: "number", // 净金额
-  gateway: "string", // 支付网关
-  receiptUrl: "string", // 收据URL
-  notes: "text", // 备注
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### Invoices 集合
-**使用页面**: 财务管理页面  
-**代码调用**: `wixData.query('Invoices')`
-
-```javascript
-{
-  _id: "string",
-  invoiceId: "string", // 发票编号
-  studentId: "string", // 关联Students
-  issueDate: "date", // 开票日期
-  dueDate: "date", // 到期日期
-  amount: "number", // 发票金额
-  tax: "number", // 税额
-  totalAmount: "number", // 总金额
-  currency: "string", // 货币
-  status: "string", // draft, sent, paid, overdue, cancelled
-  description: "text", // 发票描述
-  lineItems: [{
-    description: "string", // 项目描述
-    quantity: "number", // 数量
-    unitPrice: "number", // 单价
-    total: "number" // 小计
-  }],
-  paymentTerms: "string", // 付款条款
-  notes: "text", // 备注
-  pdfUrl: "string", // PDF文件URL
-  sentDate: "datetime", // 发送日期
-  paidDate: "datetime", // 支付日期
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### Expenses 集合
-**使用页面**: 财务管理页面  
-**代码调用**: `wixData.query('Expenses')`
-
-```javascript
-{
-  _id: "string",
-  expenseId: "string", // 支出编号
-  date: "date", // 支出日期
-  amount: "number", // 支出金额
-  currency: "string", // 货币
-  category: "string", // 支出类别: office_supplies, marketing, utilities, salaries, training
-  description: "text", // 支出描述
-  vendor: "string", // 供应商
-  paymentMethod: "string", // 支付方式
-  receiptUrl: "string", // 收据URL
-  isRecurring: "boolean", // 是否定期支出
-  recurringPeriod: "string", // 定期周期: monthly, quarterly, yearly
-  approvedBy: "string", // 批准人
-  status: "string", // pending, approved, rejected, paid
-  tags: ["string"], // 标签
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### FinancialReports 集合
-**使用页面**: 财务管理页面、报表系统  
-**代码调用**: `wixData.query('FinancialReports')`
-
-```javascript
-{
-  _id: "string",
-  reportId: "string", // 报表编号
-  reportType: "string", // revenue, expenses, profit_loss, cash_flow
-  period: "string", // daily, weekly, monthly, quarterly, yearly
-  startDate: "date", // 开始日期
-  endDate: "date", // 结束日期
-  totalRevenue: "number", // 总收入
-  totalExpenses: "number", // 总支出
-  netProfit: "number", // 净利润
-  data: "text", // JSON格式的详细数据
-  generatedBy: "string", // 生成人
-  generatedDate: "datetime", // 生成日期
-  status: "string", // draft, final, archived
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### PricingPlans 集合
-**使用页面**: 导师仪表盘、财务管理页面  
-**代码调用**: `wixData.query('PricingPlans')`
-
-```javascript
-{
-  _id: "string",
-  planId: "string", // 计划编号
-  name: "string", // 计划名称
-  description: "text", // 计划描述
-  price: "number", // 价格
-  currency: "string", // 货币
-  billingPeriod: "string", // monthly, quarterly, yearly
-  features: ["string"], // 功能列表
-  maxSessions: "number", // 最大课程数
-  maxStudents: "number", // 最大学生数
-  isActive: "boolean", // 是否激活
-  isPopular: "boolean", // 是否热门
-  discountPercentage: "number", // 折扣百分比
-  validFrom: "date", // 有效开始日期
-  validTo: "date", // 有效结束日期
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
+  _id: "text",
+  communicationId: "text",
+  studentId: "text", // Related to Students
+  adminId: "text", // Related to Admins
+  type: "text", // email, phone, meeting, note
+  subject: "text", // Subject
+  content: "text", // Content
+  priority: "text", // low, normal, high, urgent
+  status: "text", // sent, delivered, read, replied
+  sentDate: "text", // Sent date
+  responseDate: "text", // Response date
+  attachments: ["text"], // Attachment URL list
+  _createdDate: "text",
+  _updatedDate: "text"
 }
 ```
 
 ---
+### CMS-9: PR-Statistics Collection
+**Used on Pages**: Mentor Dashboard  
+**Code Call**: `wixData.query('PR-Statistics')`
+**Lark Integration**: Data synchronized from Lark's C01.Client Info via HTTP request
 
-## 报表系统集合
+> **Note**: This collection has been established in Wix CMS with Collection ID `PR-Statistics` and can be used directly in code.
 
-### Reports 集合
-**使用页面**: 报表系统页面  
-**代码调用**: `wixData.query('Reports')`
+**Data Flow**:
+- Statistics data is synchronized from Lark's C01.Client Info through HTTP requests
+- When changes occur in Lark, the system automatically updates this collection
+- The synchronization process ensures real-time statistics are available on the Mentor Dashboard
 
 ```javascript
 {
-  _id: "string",
-  reportId: "string", // 报表编号
-  reportName: "string", // 报表名称
-  reportType: "string", // performance, financial, attendance, custom
-  description: "text", // 报表描述
-  parameters: "text", // JSON格式的参数
-  query: "text", // 查询语句
-  generatedBy: "string", // 生成人ID
-  generatedDate: "datetime", // 生成日期
-  status: "string", // generating, completed, failed
-  isScheduled: "boolean", // 是否定时报表
-  scheduleFrequency: "string", // daily, weekly, monthly
-  nextRunDate: "datetime", // 下次运行日期
-  recipients: ["string"], // 接收人邮箱列表
-  format: "string", // pdf, excel, csv
-  fileUrl: "string", // 文件URL
-  isActive: "boolean", // 是否激活
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
+  _id: "text",
+  totalStudents: "number", // Total number of students
+  activeStudents: "number", // Number of active students
+  securityAlerts: "number", // Number of security alerts
+  pendingInvoices: "number", // Number of pending invoices
+  totalSessions: "number", // Total number of sessions
+  completedSessions: "number", // Number of completed sessions
+  totalRevenue: "number", // Total revenue
+  monthlyRevenue: "number", // Monthly revenue
+  lastUpdated: "text", // Last update time
+  _createdDate: "text",
+  _updatedDate: "text"
 }
 ```
 
-### ReportData 集合
-**使用页面**: 报表系统页面  
-**代码调用**: `wixData.query('ReportData')`
+### CMS-10: Tickets Collection
+**Used on Pages**: Admin Dashboard, System Management  
+**Code Call**: `wixData.query('Tickets')`
+**Lark Integration**: Data synchronized from Lark's C01.Client Info via HTTP request
+**UI Components**: Includes student dropdown menu for admin selection
+
+**Data Flow**:
+
+1. 当用户创建新工单时，系统首先将工单信息保存到CMS-10 Tickets Collection中。
+2. 保存后，系统会通过后端API将工单的关键信息（包括client_id、name、Email等）同步到Lark的PRT-UI的T01.Ticket System表格中。
+3. 同步过程通过`backend_larkIntegration.jsw`中的`syncTicketToLark`函数实现。
+4. 同步完成后，系统会更新CMS-10中工单的`larkSyncStatus`和`larkSyncTime`字段，记录同步状态和时间。
+5. 当工单状态发生变化时（如解决、关闭等），系统会再次触发同步，确保Lark中的数据与CMS保持一致。
+
+1. When a user creates a new ticket, the system first saves the ticket information to CMS-10 Tickets Collection.
+2. After saving, the system synchronizes key ticket information (including client_id, name, Email, etc.) to Lark's PRT-UI T01.Ticket System table through the backend API.
+3. The synchronization is implemented through the `syncTicketToLark` function in `backend_larkIntegration.jsw`.
+4. After synchronization, the system updates the `larkSyncStatus` and `larkSyncTime` fields in CMS-10 to record the synchronization status and time.
+5. When the ticket status changes (such as resolved, closed, etc.), the system triggers synchronization again to ensure that the data in Lark remains consistent with the CMS.
 
 ```javascript
 {
-  _id: "string",
-  reportId: "string", // 关联Reports
-  dataType: "string", // chart, table, summary
-  data: "text", // JSON格式的数据
-  metadata: "text", // JSON格式的元数据
-  generatedDate: "datetime", // 数据生成日期
-  isLatest: "boolean", // 是否最新数据
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### ScheduledReports 集合
-**使用页面**: 报表系统页面  
-**代码调用**: `wixData.query('ScheduledReports')`
-
-```javascript
-{
-  _id: "string",
-  scheduleId: "string", // 计划编号
-  reportId: "string", // 关联Reports
-  name: "string", // 计划名称
-  frequency: "string", // daily, weekly, monthly, quarterly
-  dayOfWeek: "number", // 星期几（1-7）
-  dayOfMonth: "number", // 月份中的第几天
-  time: "string", // 执行时间 HH:MM
-  timezone: "string", // 时区
-  isActive: "boolean", // 是否激活
-  lastRun: "datetime", // 最后运行时间
-  nextRun: "datetime", // 下次运行时间
-  recipients: ["string"], // 接收人列表
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
----
-
-## 系统管理集合
-
-### Activities 集合
-**使用页面**: 主仪表盘（Index页面）  
-**代码调用**: `wixData.query('Activities')`
-
-```javascript
-{
-  _id: "string",
-  activityId: "string", // 活动编号
-  userId: "string", // 关联Users
-  userName: "string", // 用户名称
-  action: "string", // created, updated, deleted, logged_in, logged_out
-  module: "string", // students, sessions, finance, reports, settings
-  entityType: "string", // student, session, invoice, report, user
-  entityId: "string", // 实体ID
-  entityName: "string", // 实体名称
-  description: "text", // 活动描述
-  metadata: "text", // JSON格式的额外信息
-  ipAddress: "string", // IP地址
-  userAgent: "string", // 用户代理
-  timestamp: "datetime", // 时间戳
-  isPublic: "boolean", // 是否公开显示
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### Notifications 集合
-**使用页面**: 主仪表盘（Index页面）、所有页面的通知功能  
-**代码调用**: `wixData.query('Notifications')`
-
-```javascript
-{
-  _id: "string",
-  notificationId: "string", // 通知编号
-  userId: "string", // 关联Users
-  title: "string", // 通知标题
-  message: "text", // 通知内容
-  type: "string", // info, warning, error, success
-  category: "string", // enrollment, payment, session, system, reminder
-  isRead: "boolean", // 是否已读
-  actionUrl: "string", // 操作链接
-  actionText: "string", // 操作按钮文字
-  createdDate: "datetime", // 创建时间
-  readDate: "datetime", // 阅读时间
-  expiryDate: "datetime", // 过期时间
-  priority: "string", // low, normal, high, urgent
-  sendEmail: "boolean", // 是否发送邮件
-  sendSMS: "boolean", // 是否发送短信
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### SystemStats 集合
-**使用页面**: 主仪表盘（Index页面）  
-**代码调用**: `wixData.query('SystemStats')`
-
-```javascript
-{
-  _id: "string",
-  date: "date", // 统计日期
-  totalStudents: "number", // 总学生数
-  activeStudents: "number", // 活跃学生数
-  totalMentors: "number", // 总导师数
-  activeMentors: "number", // 活跃导师数
-  totalSessions: "number", // 总课程数
-  sessionsToday: "number", // 今日课程数
-  sessionsThisWeek: "number", // 本周课程数
-  sessionsThisMonth: "number", // 本月课程数
-  totalRevenue: "number", // 总收入
-  revenueToday: "number", // 今日收入
-  revenueThisMonth: "number", // 本月收入
-  attendanceRate: "number", // 出勤率
-  satisfactionScore: "number", // 满意度评分
-  systemUptime: "number", // 系统正常运行时间百分比
-  activeUsers: "number", // 活跃用户数
-  newEnrollments: "number", // 新注册数
-  completedSessions: "number", // 已完成课程数
-  pendingPayments: "number", // 待付款数
-  generatedReports: "number", // 生成报表数
-  lastUpdated: "datetime", // 最后更新时间
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### Statistics 集合
-**使用页面**: 导师仪表盘  
-**代码调用**: `wixData.query('Statistics')`
-
-```javascript
-{
-  _id: "string",
-  totalStudents: "number", // 总学生数
-  activeStudents: "number", // 活跃学生数
-  securityAlerts: "number", // 安全警报数
-  pendingInvoices: "number", // 待处理发票数
-  totalSessions: "number", // 总课程数
-  completedSessions: "number", // 已完成课程数
-  totalRevenue: "number", // 总收入
-  monthlyRevenue: "number", // 月收入
-  lastUpdated: "datetime", // 最后更新时间
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
-}
-```
-
-### Tickets 集合
-**使用页面**: 导师仪表盘、系统管理  
-**代码调用**: `wixData.query('Tickets')`
-
-```javascript
-{
-  _id: "string",
-  ticketId: "string", // 工单编号
-  title: "string", // 工单标题
-  description: "text", // 问题描述
-  category: "string", // technical, billing, general, feature_request
-  priority: "string", // low, normal, high, urgent
-  status: "string", // open, in_progress, resolved, closed
-  submittedBy: "string", // 提交人ID
-  assignedTo: "string", // 分配给（管理员ID）
-  submittedDate: "datetime", // 提交时间
-  resolvedDate: "datetime", // 解决时间
-  resolution: "text", // 解决方案
-  attachments: ["string"], // 附件URL列表
+  _id: "text",
+  ticketId: "text", // Ticket number
+  title: "text", // Ticket title
+  description: "text", // Problem description
+  category: "text", // technical, billing, general, feature_request
+  priority: "text", // low, normal, high, urgent
+  status: "text", // open, in_progress, resolved, closed
+  submittedBy: "text", // Submitter ID
+  assignedTo: "text", // Assigned to (Admin ID)
+  client_id: "text", // Client ID for Lark synchronization
+  clientName: "text", // Client name
+  email: "text", // Client email
+  submittedDate: "text", // Submission time
+  resolvedDate: "text", // Resolution time
+  resolution: "text", // Solution
+  attachments: ["text"], // Attachment URL list
   comments: [{
-    commentId: "string",
-    userId: "string",
+    commentId: "text",
+    userId: "text",
     comment: "text",
-    timestamp: "datetime"
+    timestamp: "text"
   }],
-  _createdDate: "datetime",
-  _updatedDate: "datetime"
+  completionSummary: "text", // Summary of ticket completion - **Note: Not yet added to Wix CMS**
+  proposeToCloseSendAt: "text", // Proposed closure notification time - **Note: Not yet added to Wix CMS**
+  larkSyncStatus: "text", // Synchronization status with Lark
+  larkSyncTime: "text", // Last synchronization time with Lark
+  _createdDate: "text",
+  _updatedDate: "text"
 }
 ```
 
----
+### CMS-11: Course Management Collection
+**Used on Pages**: Admin Dashboard - Course Management Module  
+**Code Call**: `wixData.query('CourseManagement')`
+**Lark Integration**: Data synchronized with Lark Anycross PRT Operation 02.Course Management via HTTP request
+**UI Components**: Course creation, modification, cancellation, and student assignment from Admin Dashboard
 
-## 权限配置
+> **Note**: This collection will be established in Wix CMS with Collection ID `CourseManagement` for comprehensive course management operations.
 
-### 集合权限设置
+**Data Flow / 数据流**:
+1. Course management operations initiated from Admin Dashboard / 从管理员仪表板发起课程管理操作
+2. Course data saved to CMS-11 Course Management Collection / 课程数据保存到CMS-11课程管理集合
+3. HTTP request sent to Lark Anycross API for synchronization / 向Lark Anycross API发送HTTP请求进行同步
+4. Data synchronized to PRT Operation 02.Course Management table / 数据同步到PRT Operation 02.Course Management表
+5. Bidirectional sync ensures consistency between Wix CMS and Lark / 双向同步确保Wix CMS和Lark之间的一致性
+6. Real-time updates reflect course status changes across platforms / 实时更新反映跨平台的课程状态变化
+7. Course extension and cancellation operations tracked with detailed reasons / 课程延期和取消操作通过详细原因进行跟踪
+8. Progress notes and reschedule information maintained for operational transparency / 维护进度备注和重新安排信息以确保操作透明度
 
-每个集合需要设置适当的权限，确保数据安全：
+**Fields for Lark Anycross PRT Operation 02.Course Management**:
+- Course ID (courseId) - 课程唯一标识符
+- Course Title (courseTitle) - 课程名称/标题
+- Subject Category (subject) - 学科类别（数学、科学、英语等）
+- Course Status (courseStatus) - 课程状态（active, cancelled, completed, postponed, pending）
+- Cancel From (cancelFrom) - 课程开始日期
+- Extend Until (extendUntil) - 课程结束日期
+- Progress Notes (progressNotes) - 进度跟踪备注
+- Cancellation Reason (cancellationReason) - 取消原因（如适用）
+- Postponement Reason (postponementReason) - 延期原因（如适用）
+- Reschedule Date (rescheduleDate) - 重新安排的日期（如重新安排）
+- Created By (createdBy) - 创建课程的管理员用户
+- Last Modified By (lastModifiedBy) - 最后修改的管理员用户
+- Lark Sync Status (larkSyncStatus) - 与Lark Anycross的同步状态
+- Lark Sync Time (larkSyncTime) - 最后同步时间
+- Anycross Record ID (anycrossRecordId) - Lark Anycross中对应的记录ID
 
-#### 管理员权限 (Admin)
-- **所有集合**: 完全访问权限（创建、读取、更新、删除）
-
-#### 导师权限 (Mentor)
-- **Students**: 读取、更新（仅分配给自己的学生）
-- **Sessions**: 完全访问权限（仅自己的课程）
-- **SessionAttendance**: 完全访问权限（仅自己的课程）
-- **SessionMaterials**: 完全访问权限（仅自己的课程）
-- **SessionFeedback**: 读取权限
-- **Courses**: 读取、更新（仅自己的课程）
-- **Payments**: 读取权限（仅相关学生）
-- **Reports**: 读取权限（仅相关数据）
-- **其他集合**: 根据需要设置读取权限
-
-#### 学生权限 (Student)
-- **Sessions**: 读取权限（仅自己的课程）
-- **SessionMaterials**: 读取权限（仅自己的课程）
-- **SessionFeedback**: 创建、读取权限（仅自己的反馈）
-- **Payments**: 读取权限（仅自己的支付记录）
-- **Invoices**: 读取权限（仅自己的发票）
-
-#### 家长权限 (Parent)
-- **Students**: 读取权限（仅自己的孩子）
-- **Sessions**: 读取权限（仅孩子的课程）
-- **Payments**: 读取权限（仅相关支付）
-- **Invoices**: 读取权限（仅相关发票）
-
----
-
-## 索引优化
-
-为了提高查询性能，建议为以下字段创建索引：
-
-### Students 集合
-- `studentId` (唯一索引)
-- `email` (唯一索引)
-- `status`
-- `currentMentor`
-- `enrollmentDate`
-
-### Sessions 集合
-- `sessionId` (唯一索引)
-- `mentorId`
-- `studentId`
-- `scheduledDate`
-- `status`
-- 复合索引: `mentorId + scheduledDate`
-- 复合索引: `studentId + scheduledDate`
-
-### Payments 集合
-- `paymentId` (唯一索引)
-- `studentId`
-- `paymentDate`
-- `status`
-- 复合索引: `studentId + paymentDate`
-
-### Activities 集合
-- `userId`
-- `timestamp`
-- `module`
-- 复合索引: `userId + timestamp`
-
-### Notifications 集合
-- `userId`
-- `isRead`
-- `createdDate`
-- 复合索引: `userId + isRead`
-
----
-
-## 使用说明
-
-1. **创建集合**: 在Wix编辑器中，按照上述结构创建所有数据库集合
-2. **设置字段**: 为每个集合添加相应的字段，注意数据类型
-3. **配置权限**: 根据权限配置部分设置每个集合的访问权限
-4. **创建索引**: 为高频查询字段创建索引以提高性能
-5. **测试连接**: 在代码中测试数据库连接和基本CRUD操作
-6. **数据迁移**: 如有现有数据，制定迁移计划
-
-## 注意事项
-
-- 所有日期时间字段使用ISO 8601格式
-- JSON字段存储为文本类型，在代码中进行解析
-- 文件上传使用Wix Media Manager，存储URL引用
-- 定期备份数据库
-- 监控查询性能，必要时优化索引
-- 遵循数据保护法规（如GDPR）
-
----
-
-## 代码一致性检查结果
-
-### 已验证的集合使用情况
-
-经过对所有代码文件的检查，以下是各个模块中实际使用的数据库集合：
-
-#### 01. 导师仪表盘 (Mentor Dashboard)
-- ✅ `Statistics` - 统计数据
-- ✅ `Courses` - 课程信息
-- ✅ `Students` - 学生信息
-- ✅ `PricingPlans` - 定价计划
-
-#### 02. 财务管理 (Finance)
-- ✅ `Payments` - 支付记录
-- ✅ `Invoices` - 发票管理
-- ✅ `Expenses` - 支出记录
-- ✅ `FinancialReports` - 财务报表
-
-#### 03. 学生管理 (Students)
-- ✅ `Students` - 学生基本信息
-- ✅ `Courses` - 课程信息
-- ✅ `Mentors` - 导师信息
-- ✅ `StudentCommunication` - 学生沟通记录
-
-#### 04. 会话管理 (Sessions)
-- ✅ `Sessions` - 会话记录
-- ✅ `Students` - 学生信息
-- ✅ `Mentors` - 导师信息
-- ✅ `Subjects` - 科目信息
-- ✅ `SessionAttendance` - 出勤记录
-
-#### 05. 报表系统 (Reports)
-- ✅ `Reports` - 报表配置
-- ✅ `ScheduledReports` - 定时报表（已修正命名）
-- ✅ `Students` - 学生数据
-- ✅ `Sessions` - 会话数据
-- ✅ `SessionAttendance` - 出勤数据
-- ✅ `Invoices` - 发票数据
-- ✅ `Payments` - 支付数据
-
-#### 06. 主仪表盘 (Index)
-- ✅ `SystemStats` - 系统统计
-- ✅ `Students` - 学生信息
-- ✅ `Mentors` - 导师信息
-- ✅ `Sessions` - 会话信息
-- ✅ `Invoices` - 发票信息
-- ✅ `SessionAttendance` - 出勤信息
-- ✅ `Activities` - 活动记录
-- ✅ `Notifications` - 通知管理
-- ✅ `Users` - 用户信息
-
-#### 特殊集合
-- ✅ `APStudents` - AP学生专用（已添加到配置）
-
-### UI分类展示建议
-
-基于用户反馈，建议在学生管理界面采用分类展示：
-
-#### 学生管理页面布局
-```
-学生管理
-├── 普通学生 (Students)
-│   ├── 学生列表
-│   ├── 添加学生
-│   └── 学生详情
-└── AP学生 (APStudents)
-    ├── AP学生列表
-    ├── 添加AP学生
-    ├── AP考试管理
-    ├── 升学指导
-    └── AP学生详情
+```javascript
+{
+  _id: "text",
+  courseId: "text", // Unique course identifier
+  courseTitle: "text", // Course name/title
+  subject: "text", // Subject category (Mathematics, Science, English, etc.)
+  courseStatus: "text", // active, cancelled, completed, postponed, pending
+  cancelFrom: "text", // Course start date
+  extendUntil: "text", // Course end date
+  progressNotes: "text", // Progress tracking notes
+  cancellationReason: "text", // Reason for cancellation (if applicable)
+  postponementReason: "text", // Reason for postponement (if applicable)
+  rescheduleDate: "text", // New date if rescheduled
+  createdBy: "text", // Admin user who created the course
+  lastModifiedBy: "text", // Admin user who last modified
+  larkSyncStatus: "text", // Synchronization status with Lark Anycross
+  larkSyncTime: "text", // Last synchronization time
+  larkRecordId: "text", // Corresponding record ID in Lark
+  _createdDate: "text",
+  _updatedDate: "text"
+}
 ```
 
-#### 实现方式
-1. **标签页分离**: 使用Tab组件分别显示普通学生和AP学生
-2. **独立路由**: 为两种学生类型设置不同的页面路径
-3. **统一搜索**: 提供跨类型的全局学生搜索功能
-4. **数据统计**: 分别统计两种学生类型的数量和状态
+## Data Flow Diagram
 
-### 命名一致性修正
+The following diagram illustrates the data flow between Wix CMS collections and Lark Base:
 
-在检查过程中发现并修正了以下命名不一致问题：
+```
++---------------------+    +----------------------+    +----------------------+
+|                     |    |                      |    |                      |
+|  CMS-1: Student     |<-->|  Lark: ST0 Website   |<-->|  CMS-7: Students     |
+|  Registration       |    |  Enrollment          |    |  Collection          |
+|                     |    |                      |    |                      |
++---------------------+    +----------------------+    +----------------------+
+         |                           |                          |
+         |                           v                          |
+         |                  +----------------------+            |
+         |                  |                      |            |
+         |                  |  Lark: ST0 Student   |------------+
+         |                  |  SCR                 |
+         |                  |                      |
+         |                  +----------------------+
+         |                           |
+         |                           v
++---------------------+    +----------------------+    +----------------------+
+|                     |    |                      |    |                      |
+|  CMS-6: Admins      |<-->|  Lark: C01.Client    |<-->|  CMS-9: PR-Statistics|
+|  Collection         |    |  Info                |    |  Collection          |
+|                     |    |                      |    |                      |
++---------------------+    +----------------------+    +----------------------+
+                                     ^                          ^
+                                     |                          |
++---------------------+    +----------------------+    +----------------------+
+|                     |    |                      |    |                      |
+|  CMS-2: Student     |<-->|  Lark: PRT Operation |<-->|  CMS-4: Student      |
+|  Course Assignment  |    |  ST1 & R2            |    |  Report Collection   |
+|                     |    |                      |    |                      |
++---------------------+    +----------------------+    +----------------------+
+                                     ^                          
+                                     |                          
++---------------------+    +----------------------+    +----------------------+
+|                     |    |                      |    |                      |
+|  CMS-3: Course      |<-->|  Lark: PRT Logistic  |<-->|  CMS-10: Tickets     |
+|  Information        |    |  C4                  |    |  Collection          |
+|                     |    |                      |    |                      |
++---------------------+    +----------------------+    +----------------------+
+         ^                                                      ^
+         |                                                      |
++---------------------+    +----------------------+    +----------------------+
+|                     |    |                      |    |                      |
+|  Admin Dashboard    |<-->|  CMS-11: Course      |<-->|  Lark Anycross:      |
+|  Course Management  |    |  Management          |    |  PRT Operation       |
+|  Module             |    |  Collection          |    |  02.Course Mgmt      |
++---------------------+    +----------------------+    +----------------------+
+                                                                ^
+                                                                |
+                                                      +----------------------+
+                                                      |                      |
+                                                      |  Lark: PRT-UI        |
+                                                      |  T01.Ticket System   |
+                                                      |                      |
+                                                      +----------------------+
+```
 
-1. **ReportSchedules → ScheduledReports**
-   - 原配置: `ReportSchedules`
-   - 代码中实际使用: `ScheduledReports`
-   - ✅ 已修正为 `ScheduledReports`
+### Data Flow Description
 
-2. **新增APStudents集合**
-   - 代码中使用但配置中缺失: `APStudents`
-   - ✅ 已添加到配置文档
+#### English Description
 
-### 集合使用频率统计
+The system's data flow follows these key patterns:
 
-| 集合名称 | 使用文件数 | 主要功能 |
-|---------|-----------|----------|
-| Students | 6 | 学生信息管理 |
-| Sessions | 4 | 会话管理 |
-| Mentors | 3 | 导师信息 |
-| Courses | 3 | 课程管理 |
-| Reports | 2 | 报表生成 |
-| Invoices | 3 | 发票管理 |
-| Payments | 2 | 支付处理 |
-| Statistics | 2 | 统计数据 |
-| SystemStats | 1 | 系统统计 |
-| Activities | 1 | 活动记录 |
-| Notifications | 1 | 通知管理 |
-| 其他集合 | 1-2 | 专用功能 |
+1. **Student Registration Flow**:
+   - Student data enters through CMS-1 (Registration)
+   - Syncs to Lark's ST0 Website Enrollment
+   - Processed in ST0 Student SCR
+   - Creates/updates records in CMS-7 (Students)
 
-### 权限一致性验证
+2. **Course Management Flow**:
+   - Course data from Lark's PRT Logistic C4 syncs to CMS-3
+   - Student course assignments from Lark's ST1 sync to CMS-2
+   - Admin Dashboard Course Management operations sync to CMS-11
+   - CMS-11 data synchronizes with Lark Anycross PRT Operation 02.Course Management
 
-所有集合的权限配置已根据实际使用情况进行了验证和调整：
+3. **Reporting Flow**:
+   - Student reports from Lark's R2 sync to CMS-4
+   - Statistics from C01.Client Info sync to CMS-9
 
-- ✅ 管理员权限：所有集合完全访问
-- ✅ 导师权限：相关集合的适当访问权限
-- ✅ 学生权限：仅自己相关数据的读取权限
-- ✅ 家长权限：仅孩子相关数据的读取权限
+4. **Admin Management Flow**:
+   - Admin data in CMS-6 receives student counts from C01.Client Info
+   - Admin report links sync from Lark to CMS-6
 
-### 索引优化建议
+5. **Course Management Enhancement Flow**:
+   - Admin Dashboard initiates course management operations
+   - Course data saved to CMS-11 Course Management Collection
+   - HTTP requests sent to Lark Anycross for real-time synchronization
+   - Bidirectional sync with PRT Operation 02.Course Management
 
-基于代码中的查询模式，已为以下高频查询字段建议了索引：
+6. **Support Ticket Flow**:
+   - Tickets in CMS-10 sync with Lark's T01.Ticket System
+   - Bidirectional updates maintain consistency
 
-- ✅ 主键字段（所有集合）
-- ✅ 外键关联字段
-- ✅ 状态字段
-- ✅ 日期时间字段
-- ✅ 复合查询字段
+#### 中文描述
 
-### 验证状态
+系统的数据流遵循以下关键模式：
 
-🟢 **完全一致**: 所有集合名称和调用方式已验证一致  
-🟢 **权限配置**: 已根据实际使用场景配置  
-🟢 **字段定义**: 已包含代码中使用的所有字段  
-🟢 **索引优化**: 已根据查询模式优化  
+1. **学生注册流程**：
+   - 学生数据通过CMS-1（注册）输入
+   - 同步到Lark的ST0 Website Enrollment
+   - 在ST0 Student SCR中处理
+   - 在CMS-7（学生）中创建/更新记录
 
----
+2. **课程管理流程**：
+   - 来自Lark的PRT Logistic C4的课程数据同步到CMS-3
+   - 来自Lark的ST1的学生课程分配同步到CMS-2
+   - 管理员仪表板课程管理操作同步到CMS-11
+   - CMS-11数据与Lark Anycross PRT Operation 02.Course Management同步
 
-**最后更新**: 2024年1月
-**版本**: 1.1
-**维护者**: 系统管理员
-**一致性检查**: 已完成 ✅
+3. **报告流程**：
+   - 来自Lark的R2的学生报告同步到CMS-4
+   - 来自C01.Client Info的统计数据同步到CMS-9
+
+4. **管理员管理流程**：
+   - CMS-6中的管理员数据从C01.Client Info接收学生数量
+   - 管理员报告链接从Lark同步到CMS-6
+
+5. **课程管理增强流程**：
+   - 管理员仪表板发起课程管理操作
+   - 课程数据保存到CMS-11课程管理集合
+   - 向Lark Anycross发送HTTP请求进行实时同步
+   - 与PRT Operation 02.Course Management双向同步
+
+6. **支持工单流程**：
+   - CMS-10中的工单与Lark的T01.Ticket System同步
+   - 双向更新保持一致性
